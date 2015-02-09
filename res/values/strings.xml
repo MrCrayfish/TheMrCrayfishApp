@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">The MrCrayfish App</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="bar_title_name">MrCrayfish</string>
+    <string name="empty">null</string>
+    <string name="title_activity_empty">EmptyActivity</string>
+
+</resources>

@@ -1,0 +1,10 @@
+<resources>
+    <style name="AppTheme" parent="AppBaseTheme">
+         <item name="android:actionBarStyle">@style/RedActionBar</item>
+    </style>
+    
+    <style name="RedActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        
+        <item name="android:background">#F44336</item>
+    </style>
+</resources>

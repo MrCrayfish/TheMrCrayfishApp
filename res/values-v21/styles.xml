@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="android:Theme.Material">
+        <item name="android:colorPrimary">#F44336</item>
+        <item name="android:colorPrimaryDark">#C62828</item>
+        <item name="android:colorAccent">#F44336</item>
+        <item name="android:navigationBarColor">#F44336</item>
+        <item name="android:windowBackground">@drawable/white_background</item>
+    </style>
+
+</resources>
