@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Latest Videos" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="check_for_uploads"
+            android:summary="Should application check for new uploads"
+            android:title="Check for Uploads" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="check_for_uploads"
+            android:key="check_on_mobile_data"
+            android:summary="Should application check when on mobile data"
+            android:title="Check On Mobile Data" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="check_for_uploads"
+            android:key="upload_notification"
+            android:summary="Enable or disable notifications for new uploads"
+            android:title="Display Notifications" />
+
+        <ListPreference
+            android:defaultValue="2"
+            android:dependency="check_for_uploads"
+            android:entries="@array/checkInterval"
+            android:entryValues="@array/checkIntervalValues"
+            android:key="check_interval"
+            android:summary="Time between checking for new uploads"
+            android:title="Check Interval" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Playlists" >
+    </PreferenceCategory>
+
+</PreferenceScreen>

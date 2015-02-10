@@ -18,9 +18,9 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:alpha="0.5"
+        android:contentDescription="@string/empty"
         android:scaleType="center"
-        android:src="@drawable/white_to_grey" 
-        android:contentDescription="@string/empty"/>
+        android:src="@drawable/menu_background" />
 
     <TextView
         android:id="@+id/menuText"

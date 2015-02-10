@@ -1,4 +1,16 @@
-<resources>
-    <style name="AppBaseTheme" parent="android:Theme.Light"> </style>
-    <style name="AppTheme" parent="AppBaseTheme"> </style>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
+
+    <style name="AppTheme" parent="AppBaseTheme"></style>
+
+    <style name="SettingsTheme">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textColorSecondary">@color/light_grey</item>
+    </style>
+
+    <color name="red">#C62828</color>
+	<color name="light_red">#F44336</color>
+	<color name="black">#000000</color>
+	<color name="light_grey">#808080</color>
 </resources>

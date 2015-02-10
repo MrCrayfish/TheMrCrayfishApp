@@ -1,4 +1,4 @@
-package com.mrcrayfish.app;
+package com.mrcrayfish.app.activities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +14,10 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.mrcrayfish.app.R;
+import com.mrcrayfish.app.adapters.MenuAdapter;
+import com.mrcrayfish.app.objects.MenuItem;
 
 public class GridActivity extends Activity {
 
@@ -22,25 +27,20 @@ public class GridActivity extends Activity {
 		setContentView(R.layout.activity_grid);
 
 		setupActionBar();
-		
-		/*SpannableString s = new SpannableString(getResources().getText(R.string.menu_name));
-		s.setSpan(new TypefaceSpan(this, "lobster.otf"), 0, s.length(),
-				Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		s.setSpan(new TextAppearanceSpan(null, 0, 100, null, null), 0,
-				s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		getActionBar().setTitle(s);*/
 
 		ListView menu = (ListView) findViewById(R.id.menuList);
 		menu.setDivider(null);
 		menu.setDividerHeight(0);
 		
 		List<MenuItem> items = new ArrayList<MenuItem>();
-		items.add(new MenuItem("Latest Videos", R.drawable.menu_item_bg_1, EmptyActivity.class));
-		items.add(new MenuItem("Playlists", R.drawable.menu_item_bg_2, EmptyActivity.class));
-		items.add(new MenuItem("Mods", R.drawable.menu_item_bg_3, EmptyActivity.class));
-		items.add(new MenuItem("Furnture Server", R.drawable.menu_item_bg_4, EmptyActivity.class));
-		items.add(new MenuItem("Category", R.drawable.menu_item_bg_5, EmptyActivity.class));
-		items.add(new MenuItem("Category", R.drawable.menu_item_bg_6, EmptyActivity.class));
+		Intent videoIntent = new Intent(this, VideosActivity.class);
+		videoIntent.putExtra("playlist_id", "UUSwwxl2lWJcbGOGQ_d04v2Q");
+		items.add(new MenuItem("Latest Videos", R.drawable.menu_item_bg_1, videoIntent));
+		items.add(new MenuItem("Playlists", R.drawable.menu_item_bg_2, this, PlaylistActivity.class));
+		items.add(new MenuItem("Mods", R.drawable.menu_item_bg_3, this, EmptyActivity.class));
+		items.add(new MenuItem("Furnture Server", R.drawable.menu_item_bg_4, this, EmptyActivity.class));
+		items.add(new MenuItem("Category", R.drawable.menu_item_bg_5, this, EmptyActivity.class));
+		items.add(new MenuItem("Category", R.drawable.menu_item_bg_6, this, SettingsActivity.class));
 		menu.setAdapter(new MenuAdapter(this, items.toArray(new MenuItem[0])));
 	}
 	
@@ -63,18 +63,16 @@ public class GridActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.grid, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(android.view.MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
+			Intent intent = new Intent(this, SettingsActivity.class);
+			startActivity(intent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
