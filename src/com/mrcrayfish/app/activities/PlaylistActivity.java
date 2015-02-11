@@ -11,7 +11,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
@@ -22,10 +22,13 @@ import com.mrcrayfish.app.tasks.TaskFetchPlaylists;
 public class PlaylistActivity extends Activity
 {
 	public SwipeRefreshLayout swipeLayout;
-	private ProgressBar loadProgress;
+	public RelativeLayout loadingContainer;
+	private TextView loadingText;
 	private ListView playlistList;
 	private PlaylistAdapter playlistAdapter;
 	private ArrayList<PlaylistItem> playlists = null;
+	
+	public String playlists_info = "Loading Playlists";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -36,9 +39,12 @@ public class PlaylistActivity extends Activity
 
 		setupActionBar();
 
+		loadingContainer = (RelativeLayout) findViewById(R.id.loadingContainer);
+		loadingText = (TextView) findViewById(R.id.loadingText);
 		swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
-		loadProgress = (ProgressBar) findViewById(R.id.loadProgress);
 		playlistList = (ListView) findViewById(R.id.playlistList);
+		
+		loadingText.setText(playlists_info);
 		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
@@ -103,10 +109,10 @@ public class PlaylistActivity extends Activity
 		ab.setCustomView(v);
 		ab.setDisplayShowCustomEnabled(true);
 	}
-
-	public ProgressBar getLoadProgress()
+	
+	public TextView getLoadingText()
 	{
-		return loadProgress;
+		return loadingText;
 	}
 
 	public ListView getPlaylistList()

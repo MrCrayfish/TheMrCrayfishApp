@@ -29,6 +29,7 @@ public class VideosActivity extends Activity
 	private TextView loadingText;
 	private ListView videoList;
 	private VideoAdapter videoAdapter;
+	
 	private ArrayList<VideoItem> videos = null;
 	public String video_load_amount;
 
@@ -48,7 +49,6 @@ public class VideosActivity extends Activity
 		swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
 		videoList = (ListView) findViewById(R.id.lastestVideosList);
 		
-
 		videoList.setDivider(new ColorDrawable(getResources().getColor(R.color.red)));
 		videoList.setDividerHeight(10);
 

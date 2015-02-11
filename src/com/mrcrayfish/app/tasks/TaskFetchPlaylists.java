@@ -40,6 +40,7 @@ public class TaskFetchPlaylists extends AsyncTask<Void, Integer, ArrayList<Playl
 {
 	private final String TAG = "com.mrcrayfish.app.tasks";
 	private PlaylistActivity activity;
+	private int playlist_size = 0;
 
 	public TaskFetchPlaylists(PlaylistActivity activity)
 	{
@@ -61,16 +62,20 @@ public class TaskFetchPlaylists extends AsyncTask<Void, Integer, ArrayList<Playl
 			JSONObject json = new JSONObject(data);
 			JSONArray items = json.getJSONObject("data").getJSONArray("items");
 
+			playlist_size = items.length();
+
 			ArrayList<PlaylistItem> playlists = new ArrayList<PlaylistItem>();
 			for (int i = 0; i < items.length(); i++)
 			{
+				this.publishProgress(i);
+				
 				JSONObject playlist = items.getJSONObject(i);
 				String playlist_id = playlist.getString("id");
 				String title = playlist.getString("title");
 				int size = playlist.getInt("size");
 				String thumbnail_url = playlist.getJSONObject("thumbnail").getString("hqDefault");
 				String date = "Unknown Date";
-				
+
 				try
 				{
 					SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'", Locale.US);
@@ -82,7 +87,7 @@ public class TaskFetchPlaylists extends AsyncTask<Void, Integer, ArrayList<Playl
 				{
 					e1.printStackTrace();
 				}
-				
+
 				String[] urlData = thumbnail_url.split("/");
 				String video_id = urlData[urlData.length - 2];
 
@@ -105,7 +110,6 @@ public class TaskFetchPlaylists extends AsyncTask<Void, Integer, ArrayList<Playl
 				}
 
 				playlists.add(new PlaylistItem(playlist_id, title, thumbnail, date, size));
-				this.publishProgress(i);
 			}
 			return playlists;
 		}
@@ -127,14 +131,14 @@ public class TaskFetchPlaylists extends AsyncTask<Void, Integer, ArrayList<Playl
 	@Override
 	protected void onProgressUpdate(Integer... values)
 	{
-		activity.getLoadProgress().setProgress(values[0].intValue() + 1);
+		activity.getLoadingText().setText("Loading Playlist " + (values[0].intValue() + 1) + " of " + playlist_size);
 	}
 
 	@Override
 	protected void onPostExecute(ArrayList<PlaylistItem> playlists)
 	{
 		Log.i(TAG, "Post Processing");
-		activity.getLoadProgress().setVisibility(View.INVISIBLE);
+		activity.loadingContainer.setVisibility(View.INVISIBLE);
 		if (playlists != null)
 		{
 			activity.setPlaylistList(playlists);

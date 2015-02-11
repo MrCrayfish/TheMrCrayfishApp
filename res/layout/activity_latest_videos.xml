@@ -10,23 +10,25 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
-        <Spinner
-            android:id="@+id/loadingSpinner"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:background="@color/light_red" />
-
         <TextView
             android:id="@+id/loadingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/loadingSpinner"
+            android:layout_above="@+id/loadingSpinner"
             android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="5dp"
             android:gravity="center"
             android:text="@string/empty"
             android:textColor="@color/red" />
+
+        <ProgressBar
+            android:id="@+id/loadingSpinner"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
 
     </RelativeLayout>
 

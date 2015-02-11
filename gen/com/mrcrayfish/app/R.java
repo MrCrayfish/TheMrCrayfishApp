@@ -68,10 +68,10 @@ public final class R {
         public static final int barTitle=0x7f0c000b;
         public static final int infoBackground=0x7f0c0013;
         public static final int lastestVideosList=0x7f0c0006;
-        public static final int loadProgress=0x7f0c0007;
+        public static final int loadProgress=0x7f0c0008;
         public static final int loadingContainer=0x7f0c0002;
-        public static final int loadingSpinner=0x7f0c0003;
-        public static final int loadingText=0x7f0c0004;
+        public static final int loadingSpinner=0x7f0c0004;
+        public static final int loadingText=0x7f0c0003;
         public static final int menuBackground=0x7f0c000d;
         public static final int menuBackgroundOverlay=0x7f0c000e;
         public static final int menuIcon=0x7f0c0010;
@@ -79,7 +79,7 @@ public final class R {
         public static final int menuList=0x7f0c0000;
         public static final int menuText=0x7f0c000f;
         public static final int playlistInfoContainer=0x7f0c0012;
-        public static final int playlistList=0x7f0c0008;
+        public static final int playlistList=0x7f0c0007;
         public static final int playlistSize=0x7f0c0015;
         public static final int playlistThumbnail=0x7f0c0011;
         public static final int playlistTitle=0x7f0c0014;
