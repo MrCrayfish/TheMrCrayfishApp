@@ -20,6 +20,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.mrcrayfish.app.R;
+import com.mrcrayfish.app.activities.GridActivity;
+import com.mrcrayfish.app.recievers.SaveReceiver;
 import com.mrcrayfish.app.recievers.WatchReceiver;
 import com.mrcrayfish.app.util.StreamUtils;
 
@@ -172,11 +174,11 @@ public class ServiceVideoChecker extends Service
 		PendingIntent pendingWatch = PendingIntent.getBroadcast(this, 0, watchIntent, 0);
 		notification.addAction(android.R.drawable.ic_media_play, "Watch Now", pendingWatch);
 
-		Intent openIntent = new Intent(this, StartActivity.class);
+		Intent openIntent = new Intent(this, SaveReceiver.class);
 		PendingIntent pendingDismiss = PendingIntent.getActivity(this, 0, openIntent, 0);
 		notification.addAction(android.R.drawable.ic_search_category_default, "Save", pendingDismiss);
 
-		Intent intent = new Intent(this, StartActivity.class);
+		Intent intent = new Intent(this, GridActivity.class);
 		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		notification.setContentIntent(pendingIntent);
 

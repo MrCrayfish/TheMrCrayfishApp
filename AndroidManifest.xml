@@ -40,9 +40,13 @@
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name="com.mrcrayfish.app.activities.PlaylistActivity"
+            android:name=".activities.PlaylistActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_playlist" >
+        </activity>
+        <activity
+            android:name="com.mrcrayfish.app.activities.SavedVideosActivity"
+            android:label="@string/title_activity_saved_videos" >
         </activity>
     </application>
 

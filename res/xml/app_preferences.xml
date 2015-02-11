@@ -2,7 +2,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <PreferenceCategory android:title="Latest Videos" >
-        <CheckBoxPreference
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/videoLoadAmount"
+            android:entryValues="@array/videoLoadAmountValues"
+            android:key="video_load_amount"
+            android:summary="How many videos should load"
+            android:title="Video Amount" />        <CheckBoxPreference
             android:defaultValue="true"
             android:key="check_for_uploads"
             android:summary="Should application check for new uploads"

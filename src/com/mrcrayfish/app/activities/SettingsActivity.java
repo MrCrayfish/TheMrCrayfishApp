@@ -5,7 +5,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
-import android.view.MenuItem;
 
 import com.mrcrayfish.app.R;
 
@@ -23,17 +22,20 @@ public class SettingsActivity extends Activity
 		PrefsFragment mPrefsFragment = new PrefsFragment();
 		mFragmentTransaction.replace(android.R.id.content, mPrefsFragment);
 		mFragmentTransaction.commit();
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
+	public boolean onOptionsItemSelected(android.view.MenuItem item)
 	{
-		switch (item.getItemId())
+		int id = item.getItemId();
+		if (id == android.R.id.home)
 		{
-		case 0:
+			onBackPressed();
 			return true;
 		}
-		return false;
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

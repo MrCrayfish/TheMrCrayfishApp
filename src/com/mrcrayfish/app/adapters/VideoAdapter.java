@@ -8,10 +8,12 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.youtube.player.YouTubeIntents;
@@ -32,11 +34,12 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 		View row = layout.inflate(R.layout.video_item, parent, false);
 
 		final VideoItem tutorial = getItem(position);
+		final RelativeLayout container = (RelativeLayout) row.findViewById(R.id.videoInfoContainer);
 		ImageView thumbnail = (ImageView) row.findViewById(R.id.videoThumbnail);
 		TextView title = (TextView) row.findViewById(R.id.videoTitle);
 		TextView views = (TextView) row.findViewById(R.id.videoViews);
 		RatingBar bar = (RatingBar) row.findViewById(R.id.videoRating);
-		ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
+		final ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
 
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		title.setTypeface(bebas_neue);
@@ -59,6 +62,26 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 					VideoAdapter.this.getContext().startActivity(intent);
 				}
 			}
+		});
+
+		thumbnail.setOnLongClickListener(new OnLongClickListener()
+		{
+			@Override
+			public boolean onLongClick(View v)
+			{
+				if (container.getAlpha() == 0)
+				{
+					container.animate().setDuration(500).alpha(1);
+					infoBg.setEnabled(true);
+				}
+				else
+				{
+					container.animate().setDuration(500).alpha(0);
+					infoBg.setEnabled(false);
+				}
+				return true;
+			}
+
 		});
 
 		thumbnail.setImageBitmap(tutorial.getThumbnail());

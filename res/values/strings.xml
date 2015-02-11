@@ -10,5 +10,6 @@
     <string name="title_activity_latest_videos">LatestVideosActivity</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_playlist">PlaylistActivity</string>
+    <string name="title_activity_saved_videos">SavedVideosActivity</string>
 
 </resources>

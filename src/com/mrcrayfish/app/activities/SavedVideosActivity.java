@@ -1,13 +1,16 @@
 package com.mrcrayfish.app.activities;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
@@ -15,30 +18,34 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
-import com.mrcrayfish.app.adapters.PlaylistAdapter;
-import com.mrcrayfish.app.objects.PlaylistItem;
-import com.mrcrayfish.app.tasks.TaskFetchPlaylists;
+import com.mrcrayfish.app.adapters.VideoAdapter;
+import com.mrcrayfish.app.objects.VideoItem;
+import com.mrcrayfish.app.tasks.TaskFetchVideos;
 
-public class PlaylistActivity extends Activity
+public class SavedVideosActivity extends Activity
 {
-	public SwipeRefreshLayout swipeLayout;
 	private ProgressBar loadProgress;
-	private ListView playlistList;
-	private PlaylistAdapter playlistAdapter;
-	private ArrayList<PlaylistItem> playlists = null;
+	private ListView videoList;
+	private VideoAdapter videoAdapter;
+	private ArrayList<VideoItem> videos = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_playlist);
-		overridePendingTransition(R.anim.animation_slide_left_1, R.anim.animation_slide_left_2);
+		setContentView(R.layout.activity_saved_videos);
 
-		setupActionBar();
-
-		swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
 		loadProgress = (ProgressBar) findViewById(R.id.loadProgress);
-		playlistList = (ListView) findViewById(R.id.playlistList);
+		videoList = (ListView) findViewById(R.id.savedVideosList);
+		videoList.setDivider(new ColorDrawable(getResources().getColor(R.color.red)));
+		videoList.setDividerHeight(10);
+
+		SharedPreferences prefs = getSharedPreferences("saved-videos", Context.MODE_PRIVATE);
+		Set<String> videos = prefs.getStringSet("ids", null);
+		if (videos != null)
+		{
+			loadProgress.setMax(videos.size());
+		}
 		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
@@ -47,9 +54,14 @@ public class PlaylistActivity extends Activity
 	public void onStart()
 	{
 		super.onStart();
-		if (playlists == null)
+		if (videos == null)
 		{
-			new TaskFetchPlaylists(this).execute();
+			SharedPreferences prefs = getSharedPreferences("saved-videos", Context.MODE_PRIVATE);
+			Set<String> videos = prefs.getStringSet("ids", null);
+			if (videos != null)
+			{
+				new TaskFetchVideos(this).execute(videos.toArray(new String[0]));
+			}
 		}
 	}
 
@@ -74,16 +86,16 @@ public class PlaylistActivity extends Activity
 
 	public void initList()
 	{
-		if (playlists != null)
+		if (videos != null)
 		{
-			playlistAdapter = new PlaylistAdapter(this, playlists.toArray(new PlaylistItem[0]));
-			playlistList.setAdapter(playlistAdapter);
+			videoAdapter = new VideoAdapter(this, videos.toArray(new VideoItem[0]));
+			videoList.setAdapter(videoAdapter);
 		}
 	}
 
-	public void setPlaylistList(ArrayList<PlaylistItem> playlists)
+	public void setVideoList(ArrayList<VideoItem> videos)
 	{
-		this.playlists = playlists;
+		this.videos = videos;
 	}
 
 	@SuppressLint("InflateParams")
@@ -98,7 +110,7 @@ public class PlaylistActivity extends Activity
 		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
 		TextView title = (TextView) v.findViewById(R.id.barTitle);
 		title.setTypeface(type);
-		title.setText("Playlists");
+		title.setText("Saved Videos");
 
 		ab.setCustomView(v);
 		ab.setDisplayShowCustomEnabled(true);
@@ -109,8 +121,8 @@ public class PlaylistActivity extends Activity
 		return loadProgress;
 	}
 
-	public ListView getPlaylistList()
+	public ListView getVideoList()
 	{
-		return playlistList;
+		return videoList;
 	}
 }
