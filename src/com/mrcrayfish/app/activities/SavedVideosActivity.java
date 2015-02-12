@@ -13,8 +13,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.ListView;
-import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
@@ -24,7 +25,8 @@ import com.mrcrayfish.app.tasks.TaskFetchVideos;
 
 public class SavedVideosActivity extends Activity
 {
-	private ProgressBar loadProgress;
+	public RelativeLayout loadingContainer;
+	private TextView loadingText;
 	private ListView videoList;
 	private VideoAdapter videoAdapter;
 	private ArrayList<VideoItem> videos = null;
@@ -33,19 +35,20 @@ public class SavedVideosActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		setContentView(R.layout.activity_saved_videos);
 
-		loadProgress = (ProgressBar) findViewById(R.id.loadProgress);
+		loadingContainer = (RelativeLayout) findViewById(R.id.loadingContainer);
+		loadingText = (TextView) findViewById(R.id.loadingText);
 		videoList = (ListView) findViewById(R.id.savedVideosList);
 		videoList.setDivider(new ColorDrawable(getResources().getColor(R.color.red)));
 		videoList.setDividerHeight(10);
-
-		SharedPreferences prefs = getSharedPreferences("saved-videos", Context.MODE_PRIVATE);
-		Set<String> videos = prefs.getStringSet("ids", null);
-		if (videos != null)
-		{
-			loadProgress.setMax(videos.size());
-		}
+		
+		Typeface type = Typeface.createFromAsset(getAssets(),"fonts/bebas_neue.otf"); 
+		loadingText.setTypeface(type);
+		loadingText.setText("Loading Saved Videos");
+		
+		setupActionBar();
 		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
@@ -116,9 +119,9 @@ public class SavedVideosActivity extends Activity
 		ab.setDisplayShowCustomEnabled(true);
 	}
 
-	public ProgressBar getLoadProgress()
+	public TextView getLoadingText()
 	{
-		return loadProgress;
+		return loadingText;
 	}
 
 	public ListView getVideoList()

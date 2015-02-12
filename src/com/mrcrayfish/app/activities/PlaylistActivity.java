@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ public class PlaylistActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		setContentView(R.layout.activity_playlist);
 		overridePendingTransition(R.anim.animation_slide_left_1, R.anim.animation_slide_left_2);
 
@@ -44,6 +46,8 @@ public class PlaylistActivity extends Activity
 		swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
 		playlistList = (ListView) findViewById(R.id.playlistList);
 		
+		Typeface type = Typeface.createFromAsset(getAssets(),"fonts/bebas_neue.otf"); 
+		loadingText.setTypeface(type);
 		loadingText.setText(playlists_info);
 		
 		getActionBar().setDisplayHomeAsUpEnabled(true);

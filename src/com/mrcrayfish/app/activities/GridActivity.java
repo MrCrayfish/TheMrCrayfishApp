@@ -12,18 +12,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.adapters.MenuAdapter;
 import com.mrcrayfish.app.objects.MenuItem;
+import com.mrcrayfish.app.services.ServiceVideoChecker;
 
 public class GridActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		setContentView(R.layout.activity_grid);
 
 		setupActionBar();
@@ -34,14 +37,17 @@ public class GridActivity extends Activity {
 		
 		List<MenuItem> items = new ArrayList<MenuItem>();
 		Intent videoIntent = new Intent(this, VideosActivity.class);
-		videoIntent.putExtra("playlist_id", "UUSwwxl2lWJcbGOGQ_d04v2Q");
+		videoIntent.putExtra("playlist_id", "PLy11IosblXIEvmCD1OOsbFkqowZZvN5xi");
 		items.add(new MenuItem("Latest Videos", R.drawable.menu_item_bg_1, videoIntent));
 		items.add(new MenuItem("Playlists", R.drawable.menu_item_bg_2, this, PlaylistActivity.class));
-		items.add(new MenuItem("Mods", R.drawable.menu_item_bg_3, this, EmptyActivity.class));
+		items.add(new MenuItem("Saved Videos", R.drawable.menu_item_bg_3, this, SavedVideosActivity.class));
 		items.add(new MenuItem("Furnture Server", R.drawable.menu_item_bg_4, this, EmptyActivity.class));
 		items.add(new MenuItem("Category", R.drawable.menu_item_bg_5, this, EmptyActivity.class));
 		items.add(new MenuItem("Category", R.drawable.menu_item_bg_6, this, SettingsActivity.class));
 		menu.setAdapter(new MenuAdapter(this, items.toArray(new MenuItem[0])));
+		
+		Intent i = new Intent(this, ServiceVideoChecker.class);
+		startService(i);
 	}
 	
 	@SuppressLint("InflateParams")

@@ -1,4 +1,4 @@
-package com.mrcrayfish.app.recievers;
+package com.mrcrayfish.app.receivers;
 
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;

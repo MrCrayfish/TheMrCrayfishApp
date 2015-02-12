@@ -23,34 +23,38 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.view.View;
 
 import com.mrcrayfish.app.R;
+import com.mrcrayfish.app.activities.SavedVideosActivity;
 import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.util.BitmapCache;
 import com.mrcrayfish.app.util.StreamUtils;
 
 public class TaskFetchVideos extends AsyncTask<String, Integer, ArrayList<VideoItem>>
 {
-	private Activity activity;
+	private SavedVideosActivity activity;
+	private int videosSize = 0;
 
-	public TaskFetchVideos(Activity activity)
+	public TaskFetchVideos(SavedVideosActivity activity)
 	{
 		this.activity = activity;
 	}
-	
+
 	@Override
 	protected ArrayList<VideoItem> doInBackground(String... video_ids)
 	{
+		videosSize = video_ids.length;
 		try
 		{
 			ArrayList<VideoItem> videos = new ArrayList<VideoItem>();
 			int count = 0;
 			for (String video_id : video_ids)
 			{
+				this.publishProgress(count);
 				HttpParams httpparams = new BasicHttpParams();
 				httpparams.setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 				HttpClient client = new DefaultHttpClient(httpparams);
@@ -97,9 +101,8 @@ public class TaskFetchVideos extends AsyncTask<String, Integer, ArrayList<VideoI
 						thumbnail = BitmapFactory.decodeResource(activity.getResources(), R.drawable.unknown);
 					}
 				}
-
 				videos.add(new VideoItem(title, thumbnail, video_id, date, views, (float) rating));
-				this.publishProgress(++count);
+				count++;
 			}
 			return videos;
 		}
@@ -118,4 +121,20 @@ public class TaskFetchVideos extends AsyncTask<String, Integer, ArrayList<VideoI
 		return null;
 	}
 
+	@Override
+	protected void onProgressUpdate(Integer... values)
+	{
+		activity.getLoadingText().setText("Loading Video " + (values[0].intValue() + 1) + " of " + videosSize);
+	}
+
+	@Override
+	protected void onPostExecute(ArrayList<VideoItem> videos)
+	{
+		activity.loadingContainer.setVisibility(View.INVISIBLE);
+		if (videos != null)
+		{
+			activity.setVideoList(videos);
+			activity.initList();
+		}
+	}
 }

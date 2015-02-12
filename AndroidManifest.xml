@@ -7,9 +7,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-sdk
-        android:minSdkVersion="16"
+        android:minSdkVersion="15"
         android:targetSdkVersion="21" />
 
     <application
@@ -48,6 +49,11 @@
             android:name="com.mrcrayfish.app.activities.SavedVideosActivity"
             android:label="@string/title_activity_saved_videos" >
         </activity>
+        
+        <service android:name=".services.ServiceVideoChecker" />
+
+        <receiver android:name=".receivers.WatchReceiver" />
+        <receiver android:name=".receivers.SaveReceiver" />
     </application>
 
 </manifest>

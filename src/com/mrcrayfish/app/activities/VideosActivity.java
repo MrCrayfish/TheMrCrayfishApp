@@ -13,6 +13,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,7 +30,7 @@ public class VideosActivity extends Activity
 	private TextView loadingText;
 	private ListView videoList;
 	private VideoAdapter videoAdapter;
-	
+
 	private ArrayList<VideoItem> videos = null;
 	public String video_load_amount;
 
@@ -39,6 +40,7 @@ public class VideosActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		setContentView(R.layout.activity_latest_videos);
 		overridePendingTransition(R.anim.animation_slide_left_1, R.anim.animation_slide_left_2);
 
@@ -48,13 +50,14 @@ public class VideosActivity extends Activity
 		loadingText = (TextView) findViewById(R.id.loadingText);
 		swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
 		videoList = (ListView) findViewById(R.id.lastestVideosList);
-		
+
 		videoList.setDivider(new ColorDrawable(getResources().getColor(R.color.red)));
 		videoList.setDividerHeight(10);
 
-		setupVideoAmount();
+		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
+		loadingText.setTypeface(type);
 
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		setupVideoAmount();
 	}
 
 	@Override
@@ -106,7 +109,8 @@ public class VideosActivity extends Activity
 	public void setupActionBar()
 	{
 		ActionBar ab = getActionBar();
-		ab.setDisplayShowHomeEnabled(false);
+		ab.setHomeButtonEnabled(true);
+		ab.setDisplayShowHomeEnabled(true);
 		ab.setDisplayShowTitleEnabled(false);
 
 		LayoutInflater inflator = LayoutInflater.from(this);
@@ -114,7 +118,11 @@ public class VideosActivity extends Activity
 		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
 		TextView title = (TextView) v.findViewById(R.id.barTitle);
 		title.setTypeface(type);
-		title.setText("Latest Videos");
+		
+		String apptitle = getIntent().getStringExtra("title");
+		if (apptitle == null)
+			apptitle = "Latest Videos";
+		title.setText(apptitle);
 
 		ab.setCustomView(v);
 		ab.setDisplayShowCustomEnabled(true);

@@ -48,6 +48,7 @@ public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 			public void onClick(View v)
 			{
 				Intent intent = new Intent(PlaylistAdapter.this.getContext(), VideosActivity.class);
+				intent.putExtra("title", playlist.getTitle());
 				intent.putExtra("playlist_id", playlist.getPlaylistId());
 				intent.putExtra("isPlaylist", true);
 				intent.putExtra("playlistSize", playlist.getSize());

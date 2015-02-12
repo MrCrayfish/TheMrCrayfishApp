@@ -25,9 +25,10 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/appIcon"
         android:layout_toStartOf="@+id/appIcon"
-        android:gravity="center_vertical"
+        android:gravity="start|center_vertical"
         android:text="@string/bar_title_name"
         android:textColor="#FFFFFF"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        android:lines="1" />
 
 </RelativeLayout>

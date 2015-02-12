@@ -19,35 +19,44 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mrcrayfish.app.R;
-import com.mrcrayfish.app.activities.GridActivity;
-import com.mrcrayfish.app.recievers.SaveReceiver;
-import com.mrcrayfish.app.recievers.WatchReceiver;
-import com.mrcrayfish.app.util.StreamUtils;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.RingtoneManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.BigPictureStyle;
+import android.util.Log;
+
+import com.mrcrayfish.app.R;
+import com.mrcrayfish.app.activities.GridActivity;
+import com.mrcrayfish.app.activities.VideosActivity;
+import com.mrcrayfish.app.receivers.SaveReceiver;
+import com.mrcrayfish.app.receivers.WatchReceiver;
+import com.mrcrayfish.app.util.StreamUtils;
+import com.mrcrayfish.app.util.Strings;
 
 public class ServiceVideoChecker extends Service
 {
+	private final String TAG = "com.mrcrayfish.app.services";
 	private boolean running = true;
 	private String prevVideoId = null;
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId)
 	{
+		Log.i(TAG, "Starting Service!");
 		Runnable r = new Runnable()
 		{
 			@Override
@@ -55,18 +64,32 @@ public class ServiceVideoChecker extends Service
 			{
 				while (running)
 				{
+					Log.i(TAG, "Running!");
 					synchronized (this)
 					{
-						System.out.println("Checking for video");
-						checkForVideo();
-						try
+						SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ServiceVideoChecker.this);
+						if (prefs.getBoolean("check_for_uploads", true))
 						{
-							// wait(600000);
-							wait(40000);
-						}
-						catch (InterruptedException e)
-						{
-							e.printStackTrace();
+							boolean canRun = true;
+							if (isMobileNetwork() && !prefs.getBoolean("check_on_mobile_data", true))
+							{
+								canRun = false;
+							}
+
+							if (canRun)
+							{
+								Log.i(TAG, "Checking for video!");
+								checkForVideo();
+								try
+								{
+
+									wait(Integer.parseInt(prefs.getString("check_interval", "600")) * 1000);
+								}
+								catch (InterruptedException e)
+								{
+									e.printStackTrace();
+								}
+							}
 						}
 					}
 				}
@@ -75,6 +98,19 @@ public class ServiceVideoChecker extends Service
 		Thread checker = new Thread(r);
 		checker.start();
 		return Service.START_STICKY;
+	}
+
+	public boolean isMobileNetwork()
+	{
+		NetworkInfo active_network = ((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+		if (active_network != null && active_network.isConnectedOrConnecting())
+		{
+			if (active_network.getType() == ConnectivityManager.TYPE_MOBILE)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void checkForVideo()
@@ -122,9 +158,12 @@ public class ServiceVideoChecker extends Service
 						thumbnail = BitmapFactory.decodeStream(input);
 					}
 
-					NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-					nm.notify(1, build(title, video_id, thumbnail));
-					System.out.println("Sending notification");
+					SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+					if (prefs.getBoolean("upload_notification", true))
+					{
+						NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+						nm.notify(1, build(title, video_id, thumbnail));
+					}
 				}
 			}
 			prevVideoId = video_id;
@@ -172,14 +211,17 @@ public class ServiceVideoChecker extends Service
 		Intent watchIntent = new Intent(this, WatchReceiver.class);
 		watchIntent.putExtra("video_id", video_id);
 		PendingIntent pendingWatch = PendingIntent.getBroadcast(this, 0, watchIntent, 0);
-		notification.addAction(android.R.drawable.ic_media_play, "Watch Now", pendingWatch);
+		notification.addAction(R.drawable.ic_stat_camera, "Watch Now", pendingWatch);
 
-		Intent openIntent = new Intent(this, SaveReceiver.class);
-		PendingIntent pendingDismiss = PendingIntent.getActivity(this, 0, openIntent, 0);
-		notification.addAction(android.R.drawable.ic_search_category_default, "Save", pendingDismiss);
+		Intent saveIntent = new Intent(this, SaveReceiver.class);
+		saveIntent.putExtra("video_id", video_id);
+		PendingIntent pendingDismiss = PendingIntent.getBroadcast(this, 0, saveIntent, 0);
+		notification.addAction(R.drawable.ic_stat_floopy_disk, "Later", pendingDismiss);
 
-		Intent intent = new Intent(this, GridActivity.class);
-		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+		Intent mainIntent = new Intent(this, GridActivity.class);
+		Intent videoIntent = new Intent(this, VideosActivity.class);
+		videoIntent.putExtra("playlist_id", Strings.UPLOADS_ID);
+		PendingIntent pendingIntent = PendingIntent.getActivities(this, 0, new Intent[] { mainIntent, videoIntent }, PendingIntent.FLAG_UPDATE_CURRENT);
 		notification.setContentIntent(pendingIntent);
 
 		return notification.build();

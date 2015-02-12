@@ -1,15 +1,18 @@
-package com.mrcrayfish.app.recievers;
+package com.mrcrayfish.app.receivers;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class SaveReceiver extends BroadcastReceiver
 {
+	private final String TAG = "com.mrcrayfish.app.recievers";
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{
@@ -21,5 +24,11 @@ public class SaveReceiver extends BroadcastReceiver
 		savedVideos.add(video_id);
 		editor.putStringSet("ids", savedVideos);
 		editor.apply();
+		Log.i(TAG, "Saved video to Preferences!");
+		
+		NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		manager.cancel(1);
+		
+		context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 	}
 }
