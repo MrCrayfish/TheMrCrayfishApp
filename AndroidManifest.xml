@@ -35,6 +35,9 @@
             android:name=".activities.VideosActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_latest_videos" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mrcrayfish.app.activities.GridActivity" />
         </activity>
         <activity
             android:name=".activities.SettingsActivity"
@@ -49,7 +52,7 @@
             android:name="com.mrcrayfish.app.activities.SavedVideosActivity"
             android:label="@string/title_activity_saved_videos" >
         </activity>
-        
+
         <service android:name=".services.ServiceVideoChecker" />
 
         <receiver android:name=".receivers.WatchReceiver" />

@@ -4,7 +4,6 @@
     </style>
     
     <style name="RedActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        
-        <item name="android:background">#F44336</item>
+        <item name="android:background">@drawable/red_background</item>
     </style>
 </resources>

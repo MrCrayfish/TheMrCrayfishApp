@@ -62,11 +62,12 @@ public final class R {
         public static final int menu_item_bg_5=0x7f020013;
         public static final int menu_item_bg_6=0x7f020014;
         public static final int mrcrayfish_icon=0x7f020015;
-        public static final int star=0x7f020016;
-        public static final int unknown=0x7f020017;
-        public static final int video_info_background=0x7f020018;
-        public static final int white_background=0x7f020019;
-        public static final int white_to_grey=0x7f02001a;
+        public static final int red_background=0x7f020016;
+        public static final int star=0x7f020017;
+        public static final int unknown=0x7f020018;
+        public static final int video_info_background=0x7f020019;
+        public static final int white_background=0x7f02001a;
+        public static final int white_to_grey=0x7f02001b;
     }
     public static final class id {
         public static final int action_settings=0x7f0c001b;
@@ -130,8 +131,8 @@ public final class R {
     public static final class style {
         public static final int AppBaseTheme=0x7f090000;
         public static final int AppTheme=0x7f090001;
-        public static final int RedActionBar=0x7f090003;
-        public static final int SettingsTheme=0x7f090002;
+        public static final int RedActionBar=0x7f090002;
+        public static final int SettingsTheme=0x7f090003;
     }
     public static final class xml {
         public static final int app_preferences=0x7f050000;

@@ -2,11 +2,18 @@
 
     <style name="AppBaseTheme" parent="android:Theme.Light"></style>
 
-    <style name="AppTheme" parent="AppBaseTheme"></style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:actionBarStyle">@style/RedActionBar</item>
+    </style>
+    
+    <style name="RedActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/red_background</item>
+    </style>
 
     <style name="SettingsTheme">
         <item name="android:textColor">@color/red</item>
         <item name="android:textColorSecondary">@color/light_grey</item>
+        <item name="android:background">@drawable/white_background</item>
     </style>
 
     <color name="red">#C62828</color>

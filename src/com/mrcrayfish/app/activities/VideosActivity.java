@@ -58,6 +58,8 @@ public class VideosActivity extends Activity
 		loadingText.setTypeface(type);
 
 		setupVideoAmount();
+
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override
@@ -109,8 +111,7 @@ public class VideosActivity extends Activity
 	public void setupActionBar()
 	{
 		ActionBar ab = getActionBar();
-		ab.setHomeButtonEnabled(true);
-		ab.setDisplayShowHomeEnabled(true);
+		ab.setDisplayShowHomeEnabled(false);
 		ab.setDisplayShowTitleEnabled(false);
 
 		LayoutInflater inflator = LayoutInflater.from(this);
