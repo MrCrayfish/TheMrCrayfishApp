@@ -12,9 +12,10 @@ import android.util.LruCache;
 import android.widget.ImageView;
 
 import com.mrcrayfish.app.R;
+import com.mrcrayfish.app.objects.ThumbnailResult;
 import com.mrcrayfish.app.util.BitmapCache;
 
-public class TaskGetThumbnail extends AsyncTask<String, Void, Bitmap>
+public class TaskGetThumbnail extends AsyncTask<String, Void, ThumbnailResult>
 {
 	private Context context;
 	private ImageView view;
@@ -28,19 +29,20 @@ public class TaskGetThumbnail extends AsyncTask<String, Void, Bitmap>
 	}
 
 	@Override
-	protected Bitmap doInBackground(String... args)
+	protected ThumbnailResult doInBackground(String... args)
 	{
 		String video_id = args[0];
 		Bitmap bitmap;
 		if (cache.get(video_id) != null)
 		{
 			bitmap = cache.get(video_id);
+			return new ThumbnailResult(0, bitmap);
 		}
 		else
 		{
 			bitmap = getThumbnail(args[0]);
+			return new ThumbnailResult(1, bitmap);
 		}
-		return bitmap;
 	}
 
 	public Bitmap getThumbnail(String video_id)
@@ -67,9 +69,16 @@ public class TaskGetThumbnail extends AsyncTask<String, Void, Bitmap>
 	}
 
 	@Override
-	protected void onPostExecute(Bitmap result)
+	protected void onPostExecute(ThumbnailResult result)
 	{
-		view.setImageBitmap(result);
-		view.animate().setDuration(500).alpha(1.0F);
+		view.setImageBitmap(result.getBitmap());
+		if (result.getCode() == 0)
+		{
+			view.setAlpha(1.0F);
+		}
+		else
+		{
+			view.animate().setDuration(500).alpha(1.0F);
+		}
 	}
 }
