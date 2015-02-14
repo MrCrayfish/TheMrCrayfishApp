@@ -23,7 +23,7 @@ public class VideoItem
 	{
 		return title;
 	}
-	
+
 	public String getVideoId()
 	{
 		return video_id;

@@ -28,7 +28,7 @@ public class PlaylistActivity extends Activity
 	private ListView playlistList;
 	private PlaylistAdapter playlistAdapter;
 	private ArrayList<PlaylistItem> playlists = null;
-	
+
 	public String playlists_info = "Loading Playlists";
 
 	@Override
@@ -45,11 +45,11 @@ public class PlaylistActivity extends Activity
 		loadingText = (TextView) findViewById(R.id.loadingText);
 		swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
 		playlistList = (ListView) findViewById(R.id.playlistList);
-		
-		Typeface type = Typeface.createFromAsset(getAssets(),"fonts/bebas_neue.otf"); 
+
+		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
 		loadingText.setTypeface(type);
 		loadingText.setText(playlists_info);
-		
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
@@ -113,7 +113,7 @@ public class PlaylistActivity extends Activity
 		ab.setCustomView(v);
 		ab.setDisplayShowCustomEnabled(true);
 	}
-	
+
 	public TextView getLoadingText()
 	{
 		return loadingText;

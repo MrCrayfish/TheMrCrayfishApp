@@ -16,7 +16,7 @@ public class PlaylistItem
 		this.date = date;
 		this.size = size;
 	}
-	
+
 	public String getPlaylistId()
 	{
 		return playlist_id;
@@ -31,7 +31,7 @@ public class PlaylistItem
 	{
 		return date;
 	}
-	
+
 	public int getSize()
 	{
 		return size;

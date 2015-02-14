@@ -30,7 +30,7 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 {
 	private LruCache<String, Bitmap> cache = new LruCache<String, Bitmap>(5);
 	private IVideoList videoManager;
-	
+
 	public VideoAdapter(Context context, ArrayList<VideoItem> videos, IVideoList videoManager)
 	{
 		super(context, R.layout.video_item, videos);
@@ -96,7 +96,7 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 
 		thumbnail.setAlpha(0.0F);
 		new TaskGetThumbnail(getContext(), thumbnail, cache).execute(tutorial.getVideoId());
-		
+
 		views.setText(tutorial.getViews() + " Views");
 		bar.setRating(tutorial.getRating());
 		infoBg.requestLayout();

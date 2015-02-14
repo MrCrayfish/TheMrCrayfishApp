@@ -16,7 +16,7 @@ public class WatchReceiver extends BroadcastReceiver
 		String video_id = intent.getExtras().getString("video_id");
 		Intent videoIntent = YouTubeIntents.createPlayVideoIntent(context, video_id);
 		videoIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		
+
 		if (YouTubeIntents.isYouTubeInstalled(context))
 		{
 			context.startActivity(videoIntent);

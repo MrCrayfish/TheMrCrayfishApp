@@ -143,7 +143,7 @@ public class TaskFetchPlaylistVideos extends AsyncTask<String, Integer, ArrayLis
 			}
 		}
 	}
-	
+
 	public String getMaxResults()
 	{
 		String max_results = "&max-results=" + activity.video_load_amount;

@@ -154,7 +154,7 @@ public class VideosActivity extends Activity implements IVideoList
 	{
 		return videoList;
 	}
-	
+
 	public void setVideoList(ArrayList<VideoItem> videos)
 	{
 		this.videos = videos;

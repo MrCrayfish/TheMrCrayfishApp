@@ -29,23 +29,23 @@ import android.text.style.MetricAffectingSpan;
  * 
  * @author Tristan Waddington
  */
-public class TypefaceSpan extends MetricAffectingSpan {
+public class TypefaceSpan extends MetricAffectingSpan
+{
 	/** An <code>LruCache</code> for previously loaded typefaces. */
-	private static LruCache<String, Typeface> sTypefaceCache = new LruCache<String, Typeface>(
-			12);
+	private static LruCache<String, Typeface> sTypefaceCache = new LruCache<String, Typeface>(12);
 
 	private Typeface mTypeface;
 
 	/**
 	 * Load the {@link Typeface} and apply to a {@link Spannable}.
 	 */
-	public TypefaceSpan(Context context, String typefaceName) {
+	public TypefaceSpan(Context context, String typefaceName)
+	{
 		mTypeface = sTypefaceCache.get(typefaceName);
 
-		if (mTypeface == null) {
-			mTypeface = Typeface.createFromAsset(context
-					.getApplicationContext().getAssets(), String.format(
-					"fonts/%s", typefaceName));
+		if (mTypeface == null)
+		{
+			mTypeface = Typeface.createFromAsset(context.getApplicationContext().getAssets(), String.format("fonts/%s", typefaceName));
 
 			// Cache the loaded Typeface
 			sTypefaceCache.put(typefaceName, mTypeface);
@@ -53,7 +53,8 @@ public class TypefaceSpan extends MetricAffectingSpan {
 	}
 
 	@Override
-	public void updateMeasureState(TextPaint p) {
+	public void updateMeasureState(TextPaint p)
+	{
 		p.setTypeface(mTypeface);
 
 		// Note: This flag is required for proper typeface rendering
@@ -61,7 +62,8 @@ public class TypefaceSpan extends MetricAffectingSpan {
 	}
 
 	@Override
-	public void updateDrawState(TextPaint tp) {
+	public void updateDrawState(TextPaint tp)
+	{
 		tp.setTypeface(mTypeface);
 
 		// Note: This flag is required for proper typeface rendering

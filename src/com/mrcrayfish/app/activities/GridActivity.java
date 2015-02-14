@@ -21,10 +21,12 @@ import com.mrcrayfish.app.adapters.MenuAdapter;
 import com.mrcrayfish.app.objects.MenuItem;
 import com.mrcrayfish.app.services.ServiceVideoChecker;
 
-public class GridActivity extends Activity {
+public class GridActivity extends Activity
+{
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		setContentView(R.layout.activity_grid);
@@ -34,7 +36,7 @@ public class GridActivity extends Activity {
 		ListView menu = (ListView) findViewById(R.id.menuList);
 		menu.setDivider(null);
 		menu.setDividerHeight(0);
-		
+
 		List<MenuItem> items = new ArrayList<MenuItem>();
 		Intent videoIntent = new Intent(this, VideosActivity.class);
 		videoIntent.putExtra("playlist_id", "PLy11IosblXIEvmCD1OOsbFkqowZZvN5xi");
@@ -45,38 +47,41 @@ public class GridActivity extends Activity {
 		items.add(new MenuItem("Category", R.drawable.menu_item_bg_5, this, EmptyActivity.class));
 		items.add(new MenuItem("Category", R.drawable.menu_item_bg_6, this, SettingsActivity.class));
 		menu.setAdapter(new MenuAdapter(this, items.toArray(new MenuItem[0])));
-		
+
 		Intent i = new Intent(this, ServiceVideoChecker.class);
 		startService(i);
 	}
-	
+
 	@SuppressLint("InflateParams")
 	public void setupActionBar()
 	{
 		ActionBar ab = getActionBar();
 		ab.setDisplayShowHomeEnabled(false);
 		ab.setDisplayShowTitleEnabled(false);
-		
+
 		LayoutInflater inflator = LayoutInflater.from(this);
 		View v = inflator.inflate(R.layout.app_bar, null);
-		Typeface type = Typeface.createFromAsset(getAssets(),"fonts/bebas_neue.otf"); 
+		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
 		TextView title = (TextView) v.findViewById(R.id.barTitle);
 		title.setTypeface(type);
-		
+
 		ab.setCustomView(v);
 		ab.setDisplayShowCustomEnabled(true);
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
 		getMenuInflater().inflate(R.menu.grid, menu);
 		return true;
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(android.view.MenuItem item) {
+	public boolean onOptionsItemSelected(android.view.MenuItem item)
+	{
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.action_settings)
+		{
 			Intent intent = new Intent(this, SettingsActivity.class);
 			startActivity(intent);
 			return true;

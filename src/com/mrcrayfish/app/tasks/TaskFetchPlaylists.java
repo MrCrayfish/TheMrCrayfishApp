@@ -68,7 +68,7 @@ public class TaskFetchPlaylists extends AsyncTask<Void, Integer, ArrayList<Playl
 			for (int i = 0; i < items.length(); i++)
 			{
 				this.publishProgress(i);
-				
+
 				JSONObject playlist = items.getJSONObject(i);
 				String playlist_id = playlist.getString("id");
 				String title = playlist.getString("title");

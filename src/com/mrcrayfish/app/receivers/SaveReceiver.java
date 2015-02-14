@@ -13,6 +13,7 @@ import android.util.Log;
 public class SaveReceiver extends BroadcastReceiver
 {
 	private final String TAG = "com.mrcrayfish.app.recievers";
+
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{
@@ -25,10 +26,10 @@ public class SaveReceiver extends BroadcastReceiver
 		editor.putStringSet("ids", savedVideos);
 		editor.apply();
 		Log.i(TAG, "Saved video to Preferences!");
-		
+
 		NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		manager.cancel(1);
-		
+
 		context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 	}
 }

@@ -22,7 +22,7 @@ public class SettingsActivity extends Activity
 		PrefsFragment mPrefsFragment = new PrefsFragment();
 		mFragmentTransaction.replace(android.R.id.content, mPrefsFragment);
 		mFragmentTransaction.commit();
-		
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 

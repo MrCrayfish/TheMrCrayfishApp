@@ -25,7 +25,7 @@ import com.mrcrayfish.app.tasks.TaskGetThumbnail;
 public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 {
 	private LruCache<String, Bitmap> cache = new LruCache<String, Bitmap>(5);
-	
+
 	public PlaylistAdapter(Context context, PlaylistItem[] objects)
 	{
 		super(context, 0, objects);
@@ -82,7 +82,7 @@ public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 		});
 
 		new TaskGetThumbnail(getContext(), thumbnail, cache).execute();
-		
+
 		size.setText(playlist.getSize() + " Videos");
 		infoBg.requestLayout();
 		return row;

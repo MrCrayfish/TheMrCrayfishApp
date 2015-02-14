@@ -107,7 +107,7 @@ public class SavedVideoAdapter extends ArrayAdapter<VideoItem>
 
 		thumbnail.setAlpha(0.0F);
 		new TaskGetThumbnail(getContext(), thumbnail, cache).execute(tutorial.getVideoId());
-		
+
 		views.setText(tutorial.getViews() + " Views");
 		bar.setRating(tutorial.getRating());
 		infoBg.requestLayout();
