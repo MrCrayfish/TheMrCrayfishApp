@@ -103,7 +103,7 @@ public class TaskFetchPlaylistVideos extends AsyncTask<String, Integer, ArrayLis
 					}
 				}
 
-				videos.add(new VideoItem(title, thumbnail, id, date, views, (float) rating));
+				videos.add(new VideoItem(title, id, date, views, (float) rating));
 			}
 			return videos;
 		}

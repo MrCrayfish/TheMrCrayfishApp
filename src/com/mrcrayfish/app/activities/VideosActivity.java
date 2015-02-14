@@ -98,7 +98,7 @@ public class VideosActivity extends Activity implements IVideoList
 	{
 		if (videos != null)
 		{
-			videoAdapter = new VideoAdapter(this, videos);
+			videoAdapter = new VideoAdapter(this, videos, this);
 			videoList.setAdapter(videoAdapter);
 		}
 	}
@@ -116,10 +116,10 @@ public class VideosActivity extends Activity implements IVideoList
 		TextView title = (TextView) v.findViewById(R.id.barTitle);
 		title.setTypeface(type);
 
-		String apptitle = getIntent().getStringExtra("title");
-		if (apptitle == null)
-			apptitle = "Latest Videos";
-		title.setText(apptitle);
+		String barTitle = getIntent().getStringExtra("title");
+		if (barTitle == null)
+			barTitle = "Latest Videos";
+		title.setText(barTitle);
 
 		ab.setCustomView(v);
 		ab.setDisplayShowCustomEnabled(true);

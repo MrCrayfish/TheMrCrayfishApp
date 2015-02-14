@@ -3,8 +3,10 @@ package com.mrcrayfish.app.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,9 +20,12 @@ import com.google.android.youtube.player.YouTubeIntents;
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.activities.VideosActivity;
 import com.mrcrayfish.app.objects.PlaylistItem;
+import com.mrcrayfish.app.tasks.TaskGetThumbnail;
 
 public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 {
+	private LruCache<String, Bitmap> cache = new LruCache<String, Bitmap>(5);
+	
 	public PlaylistAdapter(Context context, PlaylistItem[] objects)
 	{
 		super(context, 0, objects);
@@ -76,7 +81,8 @@ public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 
 		});
 
-		thumbnail.setImageBitmap(playlist.getThumbnail());
+		new TaskGetThumbnail(getContext(), thumbnail, cache).execute();
+		
 		size.setText(playlist.getSize() + " Videos");
 		infoBg.requestLayout();
 		return row;

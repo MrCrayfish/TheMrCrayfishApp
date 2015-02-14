@@ -109,7 +109,7 @@ public class TaskFetchPlaylists extends AsyncTask<Void, Integer, ArrayList<Playl
 					}
 				}
 
-				playlists.add(new PlaylistItem(playlist_id, title, thumbnail, date, size));
+				playlists.add(new PlaylistItem(playlist_id, title, date, size));
 			}
 			return playlists;
 		}

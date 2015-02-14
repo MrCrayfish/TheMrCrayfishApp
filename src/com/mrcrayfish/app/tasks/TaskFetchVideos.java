@@ -84,24 +84,7 @@ public class TaskFetchVideos extends AsyncTask<String, Integer, ArrayList<VideoI
 					e1.printStackTrace();
 				}
 
-				HttpURLConnection connection = null;
-				Bitmap thumbnail = BitmapCache.getCachedBitmap(video_id);
-				if (thumbnail == null)
-				{
-					try
-					{
-						connection = (HttpURLConnection) new URL("http://i.ytimg.com/vi/" + video_id + "/maxresdefault.jpg").openConnection();
-						connection.connect();
-						InputStream input = connection.getInputStream();
-						thumbnail = BitmapFactory.decodeStream(input);
-						BitmapCache.saveBitmapToCache(video_id, thumbnail);
-					}
-					catch (Exception e)
-					{
-						thumbnail = BitmapFactory.decodeResource(activity.getResources(), R.drawable.unknown);
-					}
-				}
-				videos.add(new VideoItem(title, thumbnail, video_id, date, views, (float) rating));
+				videos.add(new VideoItem(title, video_id, date, views, (float) rating));
 				count++;
 			}
 			return videos;

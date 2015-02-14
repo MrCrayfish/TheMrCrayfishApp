@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,9 +24,11 @@ import com.google.android.youtube.player.YouTubeIntents;
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.interfaces.IVideoList;
 import com.mrcrayfish.app.objects.VideoItem;
+import com.mrcrayfish.app.tasks.TaskGetThumbnail;
 
 public class SavedVideoAdapter extends ArrayAdapter<VideoItem>
 {
+	private LruCache<String, Bitmap> cache = new LruCache<String, Bitmap>(5);
 	private IVideoList videoManager;
 
 	public SavedVideoAdapter(Context context, ArrayList<VideoItem> videos, IVideoList videoManager)
@@ -42,11 +46,11 @@ public class SavedVideoAdapter extends ArrayAdapter<VideoItem>
 
 		final VideoItem tutorial = getItem(position);
 		final RelativeLayout container = (RelativeLayout) row.findViewById(R.id.videoInfoContainer);
+		final ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
 		ImageView thumbnail = (ImageView) row.findViewById(R.id.videoThumbnail);
 		TextView title = (TextView) row.findViewById(R.id.videoTitle);
 		TextView views = (TextView) row.findViewById(R.id.videoViews);
 		RatingBar bar = (RatingBar) row.findViewById(R.id.videoRating);
-		final ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
 		ImageView delete = (ImageView) row.findViewById(R.id.deleteVideoCross);
 
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
@@ -101,7 +105,9 @@ public class SavedVideoAdapter extends ArrayAdapter<VideoItem>
 			}
 		});
 
-		thumbnail.setImageBitmap(tutorial.getThumbnail());
+		thumbnail.setAlpha(0.0F);
+		new TaskGetThumbnail(getContext(), thumbnail, cache).execute(tutorial.getVideoId());
+		
 		views.setText(tutorial.getViews() + " Views");
 		bar.setRating(tutorial.getRating());
 		infoBg.requestLayout();

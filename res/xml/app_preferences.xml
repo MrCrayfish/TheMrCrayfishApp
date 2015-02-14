@@ -3,7 +3,7 @@
 
     <PreferenceCategory android:title="Latest Videos" >
         <ListPreference
-            android:defaultValue="1"
+            android:defaultValue="10"
             android:entries="@array/videoLoadAmount"
             android:entryValues="@array/videoLoadAmountValues"
             android:key="video_load_amount"
@@ -27,7 +27,7 @@
             android:title="Display Notifications" />
 
         <ListPreference
-            android:defaultValue="2"
+            android:defaultValue="600"
             android:dependency="check_for_uploads"
             android:entries="@array/checkInterval"
             android:entryValues="@array/checkIntervalValues"
