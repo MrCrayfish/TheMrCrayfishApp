@@ -64,7 +64,6 @@ public class ServiceVideoChecker extends Service
 			{
 				while (running)
 				{
-					Log.i(TAG, "Running!");
 					synchronized (this)
 					{
 						SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ServiceVideoChecker.this);

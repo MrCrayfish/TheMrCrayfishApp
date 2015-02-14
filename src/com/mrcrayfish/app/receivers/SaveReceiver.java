@@ -22,6 +22,7 @@ public class SaveReceiver extends BroadcastReceiver
 
 		Set<String> savedVideos = prefs.getStringSet("ids", new HashSet<String>());
 		savedVideos.add(video_id);
+		editor.remove("ids");
 		editor.putStringSet("ids", savedVideos);
 		editor.apply();
 		Log.i(TAG, "Saved video to Preferences!");

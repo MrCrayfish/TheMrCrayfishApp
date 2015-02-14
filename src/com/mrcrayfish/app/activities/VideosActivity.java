@@ -20,10 +20,11 @@ import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.adapters.VideoAdapter;
+import com.mrcrayfish.app.interfaces.IVideoList;
 import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.tasks.TaskFetchPlaylistVideos;
 
-public class VideosActivity extends Activity
+public class VideosActivity extends Activity implements IVideoList
 {
 	public SwipeRefreshLayout swipeLayout;
 	public RelativeLayout loadingContainer;
@@ -97,14 +98,9 @@ public class VideosActivity extends Activity
 	{
 		if (videos != null)
 		{
-			videoAdapter = new VideoAdapter(this, videos.toArray(new VideoItem[0]));
+			videoAdapter = new VideoAdapter(this, videos);
 			videoList.setAdapter(videoAdapter);
 		}
-	}
-
-	public void setVideoList(ArrayList<VideoItem> videos)
-	{
-		this.videos = videos;
 	}
 
 	@SuppressLint("InflateParams")
@@ -119,7 +115,7 @@ public class VideosActivity extends Activity
 		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
 		TextView title = (TextView) v.findViewById(R.id.barTitle);
 		title.setTypeface(type);
-		
+
 		String apptitle = getIntent().getStringExtra("title");
 		if (apptitle == null)
 			apptitle = "Latest Videos";
@@ -157,5 +153,28 @@ public class VideosActivity extends Activity
 	public ListView getVideoList()
 	{
 		return videoList;
+	}
+	
+	public void setVideoList(ArrayList<VideoItem> videos)
+	{
+		this.videos = videos;
+	}
+
+	@Override
+	public void addVideo(VideoItem video)
+	{
+		this.videos.add(video);
+	}
+
+	@Override
+	public void removeVideo(int position)
+	{
+		this.videos.remove(position);
+	}
+
+	@Override
+	public void updateVideoList()
+	{
+		videoAdapter.notifyDataSetChanged();
 	}
 }

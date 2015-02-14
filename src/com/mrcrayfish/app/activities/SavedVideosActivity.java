@@ -19,16 +19,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
-import com.mrcrayfish.app.adapters.VideoAdapter;
+import com.mrcrayfish.app.adapters.SavedVideoAdapter;
+import com.mrcrayfish.app.interfaces.IVideoList;
 import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.tasks.TaskFetchVideos;
 
-public class SavedVideosActivity extends Activity
+public class SavedVideosActivity extends Activity implements IVideoList
 {
 	public RelativeLayout loadingContainer;
 	private TextView loadingText;
 	private ListView videoList;
-	private VideoAdapter videoAdapter;
+	private SavedVideoAdapter videoAdapter;
 	private ArrayList<VideoItem> videos = null;
 
 	@Override
@@ -43,13 +44,13 @@ public class SavedVideosActivity extends Activity
 		videoList = (ListView) findViewById(R.id.savedVideosList);
 		videoList.setDivider(new ColorDrawable(getResources().getColor(R.color.red)));
 		videoList.setDividerHeight(10);
-		
-		Typeface type = Typeface.createFromAsset(getAssets(),"fonts/bebas_neue.otf"); 
+
+		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
 		loadingText.setTypeface(type);
 		loadingText.setText("Loading Saved Videos");
-		
+
 		setupActionBar();
-		
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
@@ -63,6 +64,7 @@ public class SavedVideosActivity extends Activity
 			Set<String> videos = prefs.getStringSet("ids", null);
 			if (videos != null)
 			{
+				System.out.println("Fetching Video Data");
 				new TaskFetchVideos(this).execute(videos.toArray(new String[0]));
 			}
 		}
@@ -91,14 +93,9 @@ public class SavedVideosActivity extends Activity
 	{
 		if (videos != null)
 		{
-			videoAdapter = new VideoAdapter(this, videos.toArray(new VideoItem[0]));
+			videoAdapter = new SavedVideoAdapter(this, videos, this);
 			videoList.setAdapter(videoAdapter);
 		}
-	}
-
-	public void setVideoList(ArrayList<VideoItem> videos)
-	{
-		this.videos = videos;
 	}
 
 	@SuppressLint("InflateParams")
@@ -127,5 +124,29 @@ public class SavedVideosActivity extends Activity
 	public ListView getVideoList()
 	{
 		return videoList;
+	}
+
+	@Override
+	public void setVideoList(ArrayList<VideoItem> videos)
+	{
+		this.videos = videos;
+	}
+
+	@Override
+	public void addVideo(VideoItem video)
+	{
+		this.videos.add(video);
+	}
+
+	@Override
+	public void removeVideo(int position)
+	{
+		this.videos.remove(position);
+	}
+
+	@Override
+	public void updateVideoList()
+	{
+		videoAdapter.notifyDataSetChanged();
 	}
 }

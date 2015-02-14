@@ -13,7 +13,6 @@
     <style name="SettingsTheme">
         <item name="android:textColor">@color/red</item>
         <item name="android:textColorSecondary">@color/light_grey</item>
-        <item name="android:background">@drawable/white_background</item>
     </style>
 
     <color name="red">#C62828</color>

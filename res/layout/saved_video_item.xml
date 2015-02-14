@@ -95,4 +95,16 @@
 
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/deleteVideoCross"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/empty"
+        android:src="@drawable/circle_delete" />
+
 </RelativeLayout>

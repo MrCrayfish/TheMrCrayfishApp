@@ -73,7 +73,7 @@ public final class R {
         public static final int action_settings=0x7f0c001b;
         public static final int appIcon=0x7f0c0009;
         public static final int barTitle=0x7f0c000a;
-        public static final int imageView1=0x7f0c001a;
+        public static final int deleteVideoCross=0x7f0c001a;
         public static final int infoBackground=0x7f0c0012;
         public static final int lastestVideosList=0x7f0c0006;
         public static final int loadingContainer=0x7f0c0002;
@@ -108,7 +108,8 @@ public final class R {
         public static final int app_bar=0x7f030005;
         public static final int menu_item=0x7f030006;
         public static final int playlist_item=0x7f030007;
-        public static final int video_item=0x7f030008;
+        public static final int saved_video_item=0x7f030008;
+        public static final int video_item=0x7f030009;
     }
     public static final class menu {
         public static final int grid=0x7f0b0000;
