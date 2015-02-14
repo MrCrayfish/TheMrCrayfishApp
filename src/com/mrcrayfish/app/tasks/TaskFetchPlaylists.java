@@ -91,25 +91,7 @@ public class TaskFetchPlaylists extends AsyncTask<Void, Integer, ArrayList<Playl
 				String[] urlData = thumbnail_url.split("/");
 				String video_id = urlData[urlData.length - 2];
 
-				HttpURLConnection connection = null;
-				Bitmap thumbnail = BitmapCache.getCachedBitmap(video_id);
-				if (thumbnail == null)
-				{
-					try
-					{
-						connection = (HttpURLConnection) new URL("http://i.ytimg.com/vi/" + video_id + "/maxresdefault.jpg").openConnection();
-						connection.connect();
-						InputStream input = connection.getInputStream();
-						thumbnail = BitmapFactory.decodeStream(input);
-						BitmapCache.saveBitmapToCache(video_id, thumbnail);
-					}
-					catch (Exception e)
-					{
-						thumbnail = BitmapFactory.decodeResource(activity.getResources(), R.drawable.unknown);
-					}
-				}
-
-				playlists.add(new PlaylistItem(playlist_id, title, date, size));
+				playlists.add(new PlaylistItem(playlist_id, video_id, title, date, size));
 			}
 			return playlists;
 		}

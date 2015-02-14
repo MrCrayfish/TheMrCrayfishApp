@@ -81,7 +81,8 @@ public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 
 		});
 
-		new TaskGetThumbnail(getContext(), thumbnail, cache).execute();
+		thumbnail.setAlpha(0.0F);
+		new TaskGetThumbnail(getContext(), thumbnail, cache).execute(playlist.getThumbnailId());
 
 		size.setText(playlist.getSize() + " Videos");
 		infoBg.requestLayout();
