@@ -1,6 +1,5 @@
 package com.mrcrayfish.app.objects;
 
-import android.graphics.Bitmap;
 
 public class PlaylistItem
 {

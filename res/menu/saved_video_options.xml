@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
     <item
         android:id="@+id/optionVideoOpen"
         android:layout_width="wrap_content"
@@ -7,9 +8,10 @@
         android:title="@string/open_video">
     </item>
     <item
-        android:id="@+id/optionVideoSave"
+        android:id="@+id/optionVideoRemove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/save_video">
+        android:title="@string/delete_video">
     </item>
+
 </menu>

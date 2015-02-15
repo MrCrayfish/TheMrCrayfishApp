@@ -15,6 +15,8 @@
     <string name="loading_saved_videos">Loading Saved Videos</string>
     <string name="open_video">View Video</string>
     <string name="save_video">Save For Later</string>
-    <string name="detele_video">Remove</string>
+    <string name="delete_video">Remove</string>
+    <string name="open_playlist">Open Playlist</string>
+    <string name="view_playlist">View Playlist</string>
 
 </resources>

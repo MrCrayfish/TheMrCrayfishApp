@@ -1,7 +1,6 @@
 package com.mrcrayfish.app.activities;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 import android.annotation.SuppressLint;
@@ -24,6 +23,7 @@ import com.mrcrayfish.app.adapters.SavedVideoAdapter;
 import com.mrcrayfish.app.interfaces.IVideoList;
 import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.tasks.TaskFetchVideos;
+import com.mrcrayfish.app.util.SavedVideos;
 
 public class SavedVideosActivity extends Activity implements IVideoList
 {
@@ -139,13 +139,7 @@ public class SavedVideosActivity extends Activity implements IVideoList
 	public void removeVideo(int position)
 	{
 		VideoItem video = videos.remove(position);
-		SharedPreferences prefs = getSharedPreferences("saved-videos", Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = prefs.edit();
-		editor.clear();
-		Set<String> savedVideos = prefs.getStringSet("ids", new HashSet<String>());
-		savedVideos.remove(video.getVideoId());
-		editor.putStringSet("ids", savedVideos);
-		editor.commit();
+		SavedVideos.remove(this, video.getVideoId());
 	}
 
 	@Override

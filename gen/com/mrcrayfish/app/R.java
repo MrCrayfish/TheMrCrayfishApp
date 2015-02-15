@@ -87,8 +87,11 @@ public final class R {
         public static final int menuList=0x7f0c0000;
         public static final int menuText=0x7f0c000f;
         public static final int noVideos=0x7f0c0009;
-        public static final int optionVideoOpen=0x7f0c001f;
-        public static final int optionVideoSave=0x7f0c0020;
+        public static final int optionPlaylistOpen=0x7f0c001f;
+        public static final int optionPlaylistView=0x7f0c0020;
+        public static final int optionVideoOpen=0x7f0c0021;
+        public static final int optionVideoRemove=0x7f0c0022;
+        public static final int optionVideoSave=0x7f0c0023;
         public static final int playlistInfoContainer=0x7f0c0012;
         public static final int playlistList=0x7f0c0007;
         public static final int playlistSize=0x7f0c0015;
@@ -121,18 +124,21 @@ public final class R {
         public static final int grid=0x7f0b0000;
         public static final int latest_videos=0x7f0b0001;
         public static final int playlist=0x7f0b0002;
-        public static final int saved_videos=0x7f0b0003;
-        public static final int video_options=0x7f0b0004;
+        public static final int playlist_options=0x7f0b0003;
+        public static final int saved_video_options=0x7f0b0004;
+        public static final int saved_videos=0x7f0b0005;
+        public static final int video_options=0x7f0b0006;
     }
     public static final class string {
         public static final int action_settings=0x7f080002;
         public static final int app_name=0x7f080000;
         public static final int bar_title_name=0x7f080003;
-        public static final int detele_video=0x7f08000e;
+        public static final int delete_video=0x7f08000e;
         public static final int empty=0x7f080004;
         public static final int hello_world=0x7f080001;
         public static final int loading_saved_videos=0x7f08000b;
         public static final int no_videos=0x7f08000a;
+        public static final int open_playlist=0x7f08000f;
         public static final int open_video=0x7f08000c;
         public static final int save_video=0x7f08000d;
         public static final int title_activity_empty=0x7f080005;
@@ -140,6 +146,7 @@ public final class R {
         public static final int title_activity_playlist=0x7f080008;
         public static final int title_activity_saved_videos=0x7f080009;
         public static final int title_activity_settings=0x7f080007;
+        public static final int view_playlist=0x7f080010;
     }
     public static final class style {
         public static final int AppBaseTheme=0x7f090000;

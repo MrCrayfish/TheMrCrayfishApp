@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
     <item
-        android:id="@+id/optionVideoOpen"
+        android:id="@+id/optionPlaylistOpen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/open_video">
+        android:title="@string/open_playlist">
     </item>
     <item
-        android:id="@+id/optionVideoSave"
+        android:id="@+id/optionPlaylistView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/save_video">
+        android:title="@string/view_playlist">
     </item>
+
 </menu>

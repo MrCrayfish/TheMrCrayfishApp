@@ -4,10 +4,8 @@ import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -23,11 +21,11 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.android.youtube.player.YouTubeIntents;
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.interfaces.IVideoList;
 import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.tasks.TaskGetThumbnail;
+import com.mrcrayfish.app.util.SavedVideos;
 import com.mrcrayfish.app.util.YouTubeUtil;
 
 public class VideoAdapter extends ArrayAdapter<VideoItem>
@@ -47,7 +45,7 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 		LayoutInflater layout = LayoutInflater.from(getContext());
 		View row = layout.inflate(R.layout.video_item, parent, false);
 
-		final VideoItem tutorial = getItem(position);
+		final VideoItem video = getItem(position);
 		final RelativeLayout container = (RelativeLayout) row.findViewById(R.id.videoInfoContainer);
 		final ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
 		ImageView thumbnail = (ImageView) row.findViewById(R.id.videoThumbnail);
@@ -59,24 +57,14 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		title.setTypeface(bebas_neue);
-		title.setText(tutorial.getTitle());
+		title.setText(video.getTitle());
 
 		infoBg.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
 			{
-				Intent intent = YouTubeIntents.createPlayVideoIntent(VideoAdapter.this.getContext(), tutorial.getVideoId());
-
-				if (YouTubeIntents.isYouTubeInstalled(VideoAdapter.this.getContext()))
-				{
-					VideoAdapter.this.getContext().startActivity(intent);
-				}
-				else
-				{
-					intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com/watch?v=" + tutorial.getVideoId()));
-					VideoAdapter.this.getContext().startActivity(intent);
-				}
+				YouTubeUtil.openVideo(getContext(), video.getVideoId());
 			}
 		});
 
@@ -97,7 +85,6 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 				}
 				return true;
 			}
-
 		});
 
 		options.setOnClickListener(new OnClickListener()
@@ -115,9 +102,10 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 						switch (item.getItemId())
 						{
 						case R.id.optionVideoOpen:
-							YouTubeUtil.openVideo(getContext(), tutorial.getVideoId());
+							YouTubeUtil.openVideo(getContext(), video.getVideoId());
 							break;
 						case R.id.optionVideoSave:
+							SavedVideos.add(getContext(), video.getVideoId());
 							break;
 						}
 						return true;
@@ -127,19 +115,19 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 			}
 		});
 
-		if (cache.get(tutorial.getVideoId()) != null)
+		if (cache.get(video.getVideoId()) != null)
 		{
-			thumbnail.setImageBitmap(cache.get(tutorial.getVideoId()));
+			thumbnail.setImageBitmap(cache.get(video.getVideoId()));
 		}
 		else
 		{
 			thumbnail.setAlpha(0.0F);
-			new TaskGetThumbnail(getContext(), thumbnail, cache).execute(tutorial.getVideoId());
+			new TaskGetThumbnail(getContext(), thumbnail, cache).execute(video.getVideoId());
 		}
 
-		views.setText(tutorial.getViews() + " Views");
-		bar.setRating(tutorial.getRating());
-		date.setText(tutorial.getDate());
+		views.setText(video.getViews() + " Views");
+		bar.setRating(video.getRating());
+		date.setText(video.getDate());
 		infoBg.requestLayout();
 		return row;
 	}

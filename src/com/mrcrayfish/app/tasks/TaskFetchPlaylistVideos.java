@@ -1,9 +1,6 @@
 package com.mrcrayfish.app.tasks;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,16 +20,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.view.View;
 
-import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.activities.VideosActivity;
-import com.mrcrayfish.app.adapters.VideoAdapter;
 import com.mrcrayfish.app.objects.VideoItem;
-import com.mrcrayfish.app.util.BitmapCache;
 import com.mrcrayfish.app.util.StreamUtils;
 
 public class TaskFetchPlaylistVideos extends AsyncTask<String, Integer, ArrayList<VideoItem>>
