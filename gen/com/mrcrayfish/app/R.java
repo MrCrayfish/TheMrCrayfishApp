@@ -71,10 +71,10 @@ public final class R {
         public static final int white_to_grey=0x7f02001c;
     }
     public static final class id {
-        public static final int action_settings=0x7f0c001d;
+        public static final int action_settings=0x7f0c001e;
         public static final int appIcon=0x7f0c000a;
         public static final int barTitle=0x7f0c000b;
-        public static final int deleteVideoCross=0x7f0c001c;
+        public static final int deleteVideoCross=0x7f0c001d;
         public static final int infoBackground=0x7f0c0013;
         public static final int lastestVideosList=0x7f0c0006;
         public static final int loadingContainer=0x7f0c0002;
@@ -87,6 +87,8 @@ public final class R {
         public static final int menuList=0x7f0c0000;
         public static final int menuText=0x7f0c000f;
         public static final int noVideos=0x7f0c0009;
+        public static final int optionVideoOpen=0x7f0c001f;
+        public static final int optionVideoSave=0x7f0c0020;
         public static final int playlistInfoContainer=0x7f0c0012;
         public static final int playlistList=0x7f0c0007;
         public static final int playlistSize=0x7f0c0015;
@@ -96,11 +98,12 @@ public final class R {
         public static final int swipeLayout=0x7f0c0005;
         public static final int videoContainer=0x7f0c0001;
         public static final int videoDate=0x7f0c0016;
-        public static final int videoInfoContainer=0x7f0c0018;
-        public static final int videoRating=0x7f0c001b;
-        public static final int videoThumbnail=0x7f0c0017;
-        public static final int videoTitle=0x7f0c0019;
-        public static final int videoViews=0x7f0c001a;
+        public static final int videoInfoContainer=0x7f0c0019;
+        public static final int videoOptions=0x7f0c0017;
+        public static final int videoRating=0x7f0c001c;
+        public static final int videoThumbnail=0x7f0c0018;
+        public static final int videoTitle=0x7f0c001a;
+        public static final int videoViews=0x7f0c001b;
     }
     public static final class layout {
         public static final int activity_empty=0x7f030000;
@@ -119,15 +122,19 @@ public final class R {
         public static final int latest_videos=0x7f0b0001;
         public static final int playlist=0x7f0b0002;
         public static final int saved_videos=0x7f0b0003;
+        public static final int video_options=0x7f0b0004;
     }
     public static final class string {
         public static final int action_settings=0x7f080002;
         public static final int app_name=0x7f080000;
         public static final int bar_title_name=0x7f080003;
+        public static final int detele_video=0x7f08000e;
         public static final int empty=0x7f080004;
         public static final int hello_world=0x7f080001;
         public static final int loading_saved_videos=0x7f08000b;
         public static final int no_videos=0x7f08000a;
+        public static final int open_video=0x7f08000c;
+        public static final int save_video=0x7f08000d;
         public static final int title_activity_empty=0x7f080005;
         public static final int title_activity_latest_videos=0x7f080006;
         public static final int title_activity_playlist=0x7f080008;

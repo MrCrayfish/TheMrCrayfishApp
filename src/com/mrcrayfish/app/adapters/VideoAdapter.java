@@ -10,12 +10,15 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.util.LruCache;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,9 +26,9 @@ import android.widget.TextView;
 import com.google.android.youtube.player.YouTubeIntents;
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.interfaces.IVideoList;
-import com.mrcrayfish.app.objects.ThumbnailResult;
 import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.tasks.TaskGetThumbnail;
+import com.mrcrayfish.app.util.YouTubeUtil;
 
 public class VideoAdapter extends ArrayAdapter<VideoItem>
 {
@@ -52,6 +55,7 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 		TextView views = (TextView) row.findViewById(R.id.videoViews);
 		RatingBar bar = (RatingBar) row.findViewById(R.id.videoRating);
 		TextView date = (TextView) row.findViewById(R.id.videoDate);
+		ImageView options = (ImageView) row.findViewById(R.id.videoOptions);
 
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		title.setTypeface(bebas_neue);
@@ -94,6 +98,33 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 				return true;
 			}
 
+		});
+
+		options.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				PopupMenu popup = new PopupMenu(VideoAdapter.this.getContext(), v);
+				popup.inflate(R.menu.video_options);
+				popup.setOnMenuItemClickListener(new OnMenuItemClickListener()
+				{
+					@Override
+					public boolean onMenuItemClick(MenuItem item)
+					{
+						switch (item.getItemId())
+						{
+						case R.id.optionVideoOpen:
+							YouTubeUtil.openVideo(getContext(), tutorial.getVideoId());
+							break;
+						case R.id.optionVideoSave:
+							break;
+						}
+						return true;
+					}
+				});
+				popup.show();
+			}
 		});
 
 		if (cache.get(tutorial.getVideoId()) != null)
