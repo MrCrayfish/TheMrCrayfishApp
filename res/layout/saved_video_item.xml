@@ -92,6 +92,16 @@
             android:numStars="5"
             android:padding="0dp"
             android:stepSize="0.1" />
+        
+        <TextView
+            android:id="@+id/videoDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/videoViews"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:gravity="end"
+            android:text="@string/empty" />
 
     </RelativeLayout>
 

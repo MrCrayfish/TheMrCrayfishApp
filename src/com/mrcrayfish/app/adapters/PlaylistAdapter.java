@@ -42,6 +42,7 @@ public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 		TextView title = (TextView) row.findViewById(R.id.playlistTitle);
 		TextView size = (TextView) row.findViewById(R.id.playlistSize);
 		ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
+		TextView date = (TextView) row.findViewById(R.id.videoDate);
 
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		title.setTypeface(bebas_neue);
@@ -92,6 +93,7 @@ public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 		}
 
 		size.setText(playlist.getSize() + " Videos");
+		date.setText(playlist.getDate());
 		infoBg.requestLayout();
 		return row;
 	}

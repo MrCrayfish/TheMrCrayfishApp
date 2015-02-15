@@ -74,7 +74,7 @@ public final class R {
         public static final int action_settings=0x7f0c001d;
         public static final int appIcon=0x7f0c000a;
         public static final int barTitle=0x7f0c000b;
-        public static final int deleteVideoCross=0x7f0c001b;
+        public static final int deleteVideoCross=0x7f0c001c;
         public static final int infoBackground=0x7f0c0013;
         public static final int lastestVideosList=0x7f0c0006;
         public static final int loadingContainer=0x7f0c0002;
@@ -94,13 +94,13 @@ public final class R {
         public static final int playlistTitle=0x7f0c0014;
         public static final int savedVideosList=0x7f0c0008;
         public static final int swipeLayout=0x7f0c0005;
-        public static final int textView1=0x7f0c001c;
         public static final int videoContainer=0x7f0c0001;
-        public static final int videoInfoContainer=0x7f0c0017;
-        public static final int videoRating=0x7f0c001a;
-        public static final int videoThumbnail=0x7f0c0016;
-        public static final int videoTitle=0x7f0c0018;
-        public static final int videoViews=0x7f0c0019;
+        public static final int videoDate=0x7f0c0016;
+        public static final int videoInfoContainer=0x7f0c0018;
+        public static final int videoRating=0x7f0c001b;
+        public static final int videoThumbnail=0x7f0c0017;
+        public static final int videoTitle=0x7f0c0019;
+        public static final int videoViews=0x7f0c001a;
     }
     public static final class layout {
         public static final int activity_empty=0x7f030000;
