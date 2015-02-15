@@ -20,8 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/videoThumbnail"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true" >
         
@@ -40,11 +38,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="10dp"
             android:gravity="start"
             android:shadowColor="#000000"
             android:shadowDx="1"
@@ -59,13 +55,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/videoViews"
-            android:layout_alignLeft="@+id/videoViews"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignStart="@+id/videoViews"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:gravity="start|bottom"
             android:paddingTop="10dp"
@@ -84,14 +77,22 @@
             android:layout_height="16dp"
             android:layout_alignBottom="@+id/videoViews"
             android:layout_marginBottom="4dp"
-            android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/videoViews"
-            android:layout_toRightOf="@+id/videoViews"
             android:isIndicator="true"
             android:numStars="5"
             android:padding="0dp"
             android:stepSize="0.1" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/videoViews"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:gravity="end"
+            android:text="@string/empty" />
 
     </RelativeLayout>
 

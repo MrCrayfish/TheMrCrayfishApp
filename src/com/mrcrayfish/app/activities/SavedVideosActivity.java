@@ -143,7 +143,7 @@ public class SavedVideosActivity extends Activity implements IVideoList
 		SharedPreferences.Editor editor = prefs.edit();
 		editor.clear();
 		Set<String> savedVideos = prefs.getStringSet("ids", new HashSet<String>());
-		System.out.println(savedVideos.remove(video.getVideoId()));
+		savedVideos.remove(video.getVideoId());
 		editor.putStringSet("ids", savedVideos);
 		editor.commit();
 	}

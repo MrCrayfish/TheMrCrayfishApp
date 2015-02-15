@@ -51,6 +51,7 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 		TextView title = (TextView) row.findViewById(R.id.videoTitle);
 		TextView views = (TextView) row.findViewById(R.id.videoViews);
 		RatingBar bar = (RatingBar) row.findViewById(R.id.videoRating);
+		TextView date = (TextView) row.findViewById(R.id.videoDate);
 
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		title.setTypeface(bebas_neue);
@@ -107,6 +108,7 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 
 		views.setText(tutorial.getViews() + " Views");
 		bar.setRating(tutorial.getRating());
+		date.setText(tutorial.getDate());
 		infoBg.requestLayout();
 		return row;
 	}

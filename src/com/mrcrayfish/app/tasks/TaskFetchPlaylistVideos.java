@@ -77,7 +77,7 @@ public class TaskFetchPlaylistVideos extends AsyncTask<String, Integer, ArrayLis
 				{
 					SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'", Locale.US);
 					Date pre = oldFormat.parse(metadata.getString("uploaded"));
-					SimpleDateFormat newFormat = new SimpleDateFormat("d MMM yyyy", Locale.US);
+					SimpleDateFormat newFormat = new SimpleDateFormat("d MMM yy", Locale.US);
 					date = newFormat.format(pre);
 				}
 				catch (ParseException e1)
