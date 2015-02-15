@@ -81,8 +81,15 @@ public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 
 		});
 
-		thumbnail.setAlpha(0.0F);
-		new TaskGetThumbnail(getContext(), thumbnail, cache).execute(playlist.getThumbnailId());
+		if (cache.get(playlist.getThumbnailId()) != null)
+		{
+			thumbnail.setImageBitmap(cache.get(playlist.getThumbnailId()));
+		}
+		else
+		{
+			thumbnail.setAlpha(0.0F);
+			new TaskGetThumbnail(getContext(), thumbnail, cache).execute(playlist.getThumbnailId());
+		}
 
 		size.setText(playlist.getSize() + " Videos");
 		infoBg.requestLayout();

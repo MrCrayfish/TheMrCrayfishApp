@@ -25,6 +25,9 @@ public class BitmapCache
 		{
 			bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
 		}
+		path = null;
+		dir = null;
+		file = null;
 		return bitmap;
 	}
 
@@ -51,5 +54,8 @@ public class BitmapCache
 		{
 			e.printStackTrace();
 		}
+		path = null;
+		dir = null;
+		file = null;
 	}
 }

@@ -121,7 +121,7 @@ public class TaskFetchPlaylistVideos extends AsyncTask<String, Integer, ArrayLis
 			if (activity.swipeLayout.isRefreshing())
 			{
 				activity.swipeLayout.setRefreshing(false);
-				((VideoAdapter) activity.getVideoList().getAdapter()).notifyDataSetChanged();
+				activity.updateVideoList();
 			}
 		}
 	}

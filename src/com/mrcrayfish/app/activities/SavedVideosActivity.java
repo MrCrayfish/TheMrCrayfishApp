@@ -121,21 +121,10 @@ public class SavedVideosActivity extends Activity implements IVideoList
 		return loadingText;
 	}
 
-	public ListView getVideoList()
-	{
-		return videoList;
-	}
-
 	@Override
 	public void setVideoList(ArrayList<VideoItem> videos)
 	{
 		this.videos = videos;
-	}
-
-	@Override
-	public void addVideo(VideoItem video)
-	{
-		this.videos.add(video);
 	}
 
 	@Override

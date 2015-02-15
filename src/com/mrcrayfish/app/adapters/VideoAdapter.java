@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.google.android.youtube.player.YouTubeIntents;
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.interfaces.IVideoList;
+import com.mrcrayfish.app.objects.ThumbnailResult;
 import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.tasks.TaskGetThumbnail;
 
@@ -94,8 +95,15 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 
 		});
 
-		thumbnail.setAlpha(0.0F);
-		new TaskGetThumbnail(getContext(), thumbnail, cache).execute(tutorial.getVideoId());
+		if (cache.get(tutorial.getVideoId()) != null)
+		{
+			thumbnail.setImageBitmap(cache.get(tutorial.getVideoId()));
+		}
+		else
+		{
+			thumbnail.setAlpha(0.0F);
+			new TaskGetThumbnail(getContext(), thumbnail, cache).execute(tutorial.getVideoId());
+		}
 
 		views.setText(tutorial.getViews() + " Views");
 		bar.setRating(tutorial.getRating());

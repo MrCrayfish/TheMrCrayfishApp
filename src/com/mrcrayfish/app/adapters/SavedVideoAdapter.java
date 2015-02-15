@@ -105,8 +105,15 @@ public class SavedVideoAdapter extends ArrayAdapter<VideoItem>
 			}
 		});
 
-		thumbnail.setAlpha(0.0F);
-		new TaskGetThumbnail(getContext(), thumbnail, cache).execute(tutorial.getVideoId());
+		if (cache.get(tutorial.getVideoId()) != null)
+		{
+			thumbnail.setImageBitmap(cache.get(tutorial.getVideoId()));
+		}
+		else
+		{
+			thumbnail.setAlpha(0.0F);
+			new TaskGetThumbnail(getContext(), thumbnail, cache).execute(tutorial.getVideoId());
+		}
 
 		views.setText(tutorial.getViews() + " Views");
 		bar.setRating(tutorial.getRating());
