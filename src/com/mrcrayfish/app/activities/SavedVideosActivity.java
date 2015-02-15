@@ -1,6 +1,7 @@
 package com.mrcrayfish.app.activities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import android.annotation.SuppressLint;
@@ -28,6 +29,7 @@ public class SavedVideosActivity extends Activity implements IVideoList
 {
 	public RelativeLayout loadingContainer;
 	private TextView loadingText;
+	private TextView noVideos;
 	private ListView videoList;
 	private SavedVideoAdapter videoAdapter;
 	private ArrayList<VideoItem> videos = null;
@@ -38,16 +40,18 @@ public class SavedVideosActivity extends Activity implements IVideoList
 		super.onCreate(savedInstanceState);
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		setContentView(R.layout.activity_saved_videos);
+		overridePendingTransition(R.anim.animation_slide_left_1, R.anim.animation_slide_left_2);
 
 		loadingContainer = (RelativeLayout) findViewById(R.id.loadingContainer);
 		loadingText = (TextView) findViewById(R.id.loadingText);
+		noVideos = (TextView) findViewById(R.id.noVideos);
 		videoList = (ListView) findViewById(R.id.savedVideosList);
 		videoList.setDivider(new ColorDrawable(getResources().getColor(R.color.red)));
 		videoList.setDividerHeight(10);
 
 		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
 		loadingText.setTypeface(type);
-		loadingText.setText("Loading Saved Videos");
+		noVideos.setTypeface(type);
 
 		setupActionBar();
 
@@ -62,10 +66,14 @@ public class SavedVideosActivity extends Activity implements IVideoList
 		{
 			SharedPreferences prefs = getSharedPreferences("saved-videos", Context.MODE_PRIVATE);
 			Set<String> videos = prefs.getStringSet("ids", null);
-			if (videos != null)
+			if (videos != null && videos.size() > 0)
 			{
-				System.out.println("Fetching Video Data");
 				new TaskFetchVideos(this).execute(videos.toArray(new String[0]));
+			}
+			else
+			{
+				loadingContainer.setVisibility(View.INVISIBLE);
+				noVideos.setVisibility(View.VISIBLE);
 			}
 		}
 	}
@@ -130,7 +138,14 @@ public class SavedVideosActivity extends Activity implements IVideoList
 	@Override
 	public void removeVideo(int position)
 	{
-		this.videos.remove(position);
+		VideoItem video = videos.remove(position);
+		SharedPreferences prefs = getSharedPreferences("saved-videos", Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.clear();
+		Set<String> savedVideos = prefs.getStringSet("ids", new HashSet<String>());
+		System.out.println(savedVideos.remove(video.getVideoId()));
+		editor.putStringSet("ids", savedVideos);
+		editor.commit();
 	}
 
 	@Override

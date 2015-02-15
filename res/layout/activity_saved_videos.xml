@@ -18,7 +18,7 @@
             android:layout_centerVertical="true"
             android:layout_marginBottom="5dp"
             android:gravity="center"
-            android:text="@string/empty"
+            android:text="@string/loading_saved_videos"
             android:textColor="@color/red"
             android:textSize="20sp" />
 
@@ -43,5 +43,17 @@
         android:layout_alignParentTop="true" >
 
     </ListView>
+
+    <TextView
+        android:id="@+id/noVideos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="@string/no_videos"
+        android:visibility="invisible"
+        android:textColor="@color/red"
+        android:textSize="30sp" />
 
 </RelativeLayout>
