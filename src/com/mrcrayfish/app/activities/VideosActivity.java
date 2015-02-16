@@ -8,9 +8,11 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -23,17 +25,19 @@ import com.mrcrayfish.app.adapters.VideoAdapter;
 import com.mrcrayfish.app.interfaces.IVideoList;
 import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.tasks.TaskFetchPlaylistVideos;
+import com.mrcrayfish.app.util.ScreenUtil;
 
-public class VideosActivity extends Activity implements IVideoList
+public class VideosActivity extends Activity implements IVideoList, OnRefreshListener
 {
 	public SwipeRefreshLayout swipeLayout;
 	public RelativeLayout loadingContainer;
 	private TextView loadingText;
 	private ListView videoList;
 	private VideoAdapter videoAdapter;
-
 	private ArrayList<VideoItem> videos = null;
+	private boolean loaded = false;
 	public String video_load_amount;
+	public String playlist_id;
 
 	private TaskFetchPlaylistVideos task;
 
@@ -45,15 +49,19 @@ public class VideosActivity extends Activity implements IVideoList
 		setContentView(R.layout.activity_latest_videos);
 		overridePendingTransition(R.anim.animation_slide_left_1, R.anim.animation_slide_left_2);
 
+		this.playlist_id = getIntent().getStringExtra("playlist_id");
+		
 		setupActionBar();
 
 		loadingContainer = (RelativeLayout) findViewById(R.id.loadingContainer);
 		loadingText = (TextView) findViewById(R.id.loadingText);
+		
 		swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
+		swipeLayout.setOnRefreshListener(this);
+		
 		videoList = (ListView) findViewById(R.id.lastestVideosList);
-
-		videoList.setDivider(new ColorDrawable(getResources().getColor(R.color.red)));
-		videoList.setDividerHeight(10);
+		videoList.setDivider(null);
+		videoList.setDividerHeight(ScreenUtil.toPixels(this, 5));
 
 		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
 		loadingText.setTypeface(type);
@@ -70,7 +78,7 @@ public class VideosActivity extends Activity implements IVideoList
 		if (videos == null)
 		{
 			task = new TaskFetchPlaylistVideos(this);
-			task.execute(getIntent().getStringExtra("playlist_id"));
+			task.execute(playlist_id);
 		}
 	}
 
@@ -96,10 +104,11 @@ public class VideosActivity extends Activity implements IVideoList
 
 	public void initList()
 	{
-		if (videos != null)
+		if (videos != null && !loaded)
 		{
-			videoAdapter = new VideoAdapter(this, videos, this);
+			videoAdapter = new VideoAdapter(this, videos);
 			videoList.setAdapter(videoAdapter);
+			loaded = true;
 		}
 	}
 
@@ -166,5 +175,12 @@ public class VideosActivity extends Activity implements IVideoList
 	public void updateVideoList()
 	{
 		videoAdapter.notifyDataSetChanged();
+	}
+
+	@Override
+	public void onRefresh()
+	{
+		task = new TaskFetchPlaylistVideos(this);
+		task.execute(playlist_id);
 	}
 }

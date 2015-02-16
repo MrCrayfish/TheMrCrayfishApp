@@ -2,33 +2,27 @@ package com.mrcrayfish.app.adapters;
 
 import java.util.ArrayList;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.util.LruCache;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
-import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.android.youtube.player.YouTubeIntents;
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.interfaces.IVideoList;
 import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.tasks.TaskGetThumbnail;
-import com.mrcrayfish.app.util.SavedVideos;
 import com.mrcrayfish.app.util.YouTubeUtil;
 
 public class SavedVideoAdapter extends ArrayAdapter<VideoItem>
@@ -50,15 +44,16 @@ public class SavedVideoAdapter extends ArrayAdapter<VideoItem>
 		View row = layout.inflate(R.layout.saved_video_item, parent, false);
 
 		final VideoItem video = getItem(position);
-		final RelativeLayout container = (RelativeLayout) row.findViewById(R.id.videoInfoContainer);
+		final RelativeLayout videoContainer = (RelativeLayout) row.findViewById(R.id.videoContainer);
+		final RelativeLayout infoContainer = (RelativeLayout) row.findViewById(R.id.videoInfoContainer);
 		final ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
+		final ImageView hide_info = (ImageView) row.findViewById(R.id.buttonHideInfo);
 		ImageView thumbnail = (ImageView) row.findViewById(R.id.videoThumbnail);
 		TextView title = (TextView) row.findViewById(R.id.videoTitle);
 		TextView views = (TextView) row.findViewById(R.id.videoViews);
 		RatingBar bar = (RatingBar) row.findViewById(R.id.videoRating);
 		ImageView delete = (ImageView) row.findViewById(R.id.deleteVideoCross);
 		TextView date = (TextView) row.findViewById(R.id.videoDate);
-		ImageView options = (ImageView) row.findViewById(R.id.videoOptions);
 
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		title.setTypeface(bebas_neue);
@@ -69,36 +64,25 @@ public class SavedVideoAdapter extends ArrayAdapter<VideoItem>
 			@Override
 			public void onClick(View v)
 			{
-				Intent intent = YouTubeIntents.createPlayVideoIntent(SavedVideoAdapter.this.getContext(), video.getVideoId());
-
-				if (YouTubeIntents.isYouTubeInstalled(SavedVideoAdapter.this.getContext()))
-				{
-					SavedVideoAdapter.this.getContext().startActivity(intent);
-				}
-				else
-				{
-					intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com/watch?v=" + video.getVideoId()));
-					SavedVideoAdapter.this.getContext().startActivity(intent);
-				}
+				YouTubeUtil.openVideo(getContext(), video.getVideoId());
 			}
 		});
 
-		thumbnail.setOnLongClickListener(new OnLongClickListener()
+		hide_info.setOnClickListener(new OnClickListener()
 		{
 			@Override
-			public boolean onLongClick(View v)
+			public void onClick(View v)
 			{
-				if (container.getAlpha() == 0)
+				if (infoContainer.getY() == 0)
 				{
-					container.animate().setDuration(500).alpha(1);
-					infoBg.setEnabled(true);
+					infoContainer.animate().setDuration(500).y(infoContainer.getHeight());
+					hide_info.animate().rotation(180);
 				}
 				else
 				{
-					container.animate().setDuration(500).alpha(0);
-					infoBg.setEnabled(false);
+					infoContainer.animate().setDuration(500).y(0);
+					hide_info.animate().rotation(0);
 				}
-				return true;
 			}
 		});
 
@@ -108,37 +92,15 @@ public class SavedVideoAdapter extends ArrayAdapter<VideoItem>
 			public void onClick(View arg0)
 			{
 				videoManager.removeVideo(position);
-				videoManager.updateVideoList();
-			}
-		});
-		
-		options.setOnClickListener(new OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				PopupMenu popup = new PopupMenu(getContext(), v);
-				popup.inflate(R.menu.saved_video_options);
-				popup.setOnMenuItemClickListener(new OnMenuItemClickListener()
+				videoContainer.animate().setDuration(500).alpha(0.0F).setListener(new AnimatorListenerAdapter()
 				{
-					@Override
-					public boolean onMenuItemClick(MenuItem item)
+					public void onAnimationEnd(Animator animation)
 					{
-						switch (item.getItemId())
-						{
-						case R.id.optionVideoOpen:
-							YouTubeUtil.openVideo(getContext(), video.getVideoId());
-							break;
-						case R.id.optionVideoRemove:
-							SavedVideos.remove(getContext(), video.getVideoId());
-							break;
-						}
-						return true;
+						videoManager.updateVideoList();
 					}
 				});
-				popup.show();
 			}
-		});
+		});	
 
 		if (cache.get(video.getVideoId()) != null)
 		{

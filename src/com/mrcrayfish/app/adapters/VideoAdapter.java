@@ -2,41 +2,37 @@ package com.mrcrayfish.app.adapters;
 
 import java.util.ArrayList;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.util.LruCache;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
-import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
-import com.mrcrayfish.app.interfaces.IVideoList;
 import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.tasks.TaskGetThumbnail;
 import com.mrcrayfish.app.util.SavedVideos;
+import com.mrcrayfish.app.util.ScreenUtil;
 import com.mrcrayfish.app.util.YouTubeUtil;
 
 public class VideoAdapter extends ArrayAdapter<VideoItem>
 {
 	private LruCache<String, Bitmap> cache = new LruCache<String, Bitmap>(5);
-	private IVideoList videoManager;
 
-	public VideoAdapter(Context context, ArrayList<VideoItem> videos, IVideoList videoManager)
+	public VideoAdapter(Context context, ArrayList<VideoItem> videos)
 	{
 		super(context, R.layout.video_item, videos);
-		this.videoManager = videoManager;
 	}
 
 	@SuppressLint("ViewHolder")
@@ -48,12 +44,13 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 		final VideoItem video = getItem(position);
 		final RelativeLayout container = (RelativeLayout) row.findViewById(R.id.videoInfoContainer);
 		final ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
+		final ImageView hide_info = (ImageView) row.findViewById(R.id.buttonHideInfo);
+		final ImageView save = (ImageView) row.findViewById(R.id.saveVideo);
 		ImageView thumbnail = (ImageView) row.findViewById(R.id.videoThumbnail);
 		TextView title = (TextView) row.findViewById(R.id.videoTitle);
 		TextView views = (TextView) row.findViewById(R.id.videoViews);
 		RatingBar bar = (RatingBar) row.findViewById(R.id.videoRating);
 		TextView date = (TextView) row.findViewById(R.id.videoDate);
-		ImageView options = (ImageView) row.findViewById(R.id.videoOptions);
 
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		title.setTypeface(bebas_neue);
@@ -68,50 +65,37 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 			}
 		});
 
-		thumbnail.setOnLongClickListener(new OnLongClickListener()
-		{
-			@Override
-			public boolean onLongClick(View v)
-			{
-				if (container.getAlpha() == 0)
-				{
-					container.animate().setDuration(500).alpha(1);
-					infoBg.setEnabled(true);
-				}
-				else
-				{
-					container.animate().setDuration(500).alpha(0);
-					infoBg.setEnabled(false);
-				}
-				return true;
-			}
-		});
-
-		options.setOnClickListener(new OnClickListener()
+		hide_info.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
 			{
-				PopupMenu popup = new PopupMenu(VideoAdapter.this.getContext(), v);
-				popup.inflate(R.menu.video_options);
-				popup.setOnMenuItemClickListener(new OnMenuItemClickListener()
+				if (container.getY() == ScreenUtil.toPixels(getContext(), 6))
 				{
-					@Override
-					public boolean onMenuItemClick(MenuItem item)
+					container.animate().setDuration(500).y(container.getHeight());
+					hide_info.animate().rotation(180);
+				}
+				else
+				{
+					container.animate().setDuration(500).y(ScreenUtil.toPixels(getContext(), 6));
+					hide_info.animate().rotation(0);
+				}
+			}
+		});
+
+		save.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				SavedVideos.add(getContext(), video.getVideoId());
+				save.animate().alpha(0).setListener(new AnimatorListenerAdapter()
+				{
+					public void onAnimationEnd(Animator animation)
 					{
-						switch (item.getItemId())
-						{
-						case R.id.optionVideoOpen:
-							YouTubeUtil.openVideo(getContext(), video.getVideoId());
-							break;
-						case R.id.optionVideoSave:
-							SavedVideos.add(getContext(), video.getVideoId());
-							break;
-						}
-						return true;
+						save.setVisibility(View.GONE);
 					}
 				});
-				popup.show();
 			}
 		});
 
@@ -123,6 +107,11 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 		{
 			thumbnail.setAlpha(0.0F);
 			new TaskGetThumbnail(getContext(), thumbnail, cache).execute(video.getVideoId());
+		}
+
+		if (SavedVideos.has(getContext(), video.getVideoId()))
+		{
+			save.setVisibility(View.GONE);
 		}
 
 		views.setText(video.getViews() + " Views");

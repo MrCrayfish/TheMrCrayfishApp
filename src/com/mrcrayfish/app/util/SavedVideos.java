@@ -38,4 +38,11 @@ public class SavedVideos
 		editor.commit();
 		Toast.makeText(context, "Successfully removed video", Toast.LENGTH_LONG).show();
 	}
+	
+	public static boolean has(Context context, String video_id)
+	{
+		SharedPreferences prefs = context.getSharedPreferences("saved-videos", Context.MODE_PRIVATE);
+		Set<String> savedVideos = prefs.getStringSet("ids", new HashSet<String>());
+		return savedVideos.contains(video_id);
+	}
 }

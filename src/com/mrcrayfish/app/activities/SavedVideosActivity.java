@@ -129,6 +129,11 @@ public class SavedVideosActivity extends Activity implements IVideoList
 		return loadingText;
 	}
 
+	public TextView getNoVideoText()
+	{
+		return noVideos;
+	}
+
 	@Override
 	public void setVideoList(ArrayList<VideoItem> videos)
 	{
@@ -146,5 +151,13 @@ public class SavedVideosActivity extends Activity implements IVideoList
 	public void updateVideoList()
 	{
 		videoAdapter.notifyDataSetChanged();
+		if (videos.size() == 0)
+		{
+			noVideos.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			noVideos.setVisibility(View.GONE);
+		}
 	}
 }
