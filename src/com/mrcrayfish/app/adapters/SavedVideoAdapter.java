@@ -23,6 +23,7 @@ import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.interfaces.IVideoList;
 import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.tasks.TaskGetThumbnail;
+import com.mrcrayfish.app.util.ScreenUtil;
 import com.mrcrayfish.app.util.YouTubeUtil;
 
 public class SavedVideoAdapter extends ArrayAdapter<VideoItem>
@@ -73,14 +74,14 @@ public class SavedVideoAdapter extends ArrayAdapter<VideoItem>
 			@Override
 			public void onClick(View v)
 			{
-				if (infoContainer.getY() == 0)
+				if (infoContainer.getY() == ScreenUtil.toPixels(getContext(), 6))
 				{
 					infoContainer.animate().setDuration(500).y(infoContainer.getHeight());
 					hide_info.animate().rotation(180);
 				}
 				else
 				{
-					infoContainer.animate().setDuration(500).y(0);
+					infoContainer.animate().setDuration(500).y(ScreenUtil.toPixels(getContext(), 6));
 					hide_info.animate().rotation(0);
 				}
 			}

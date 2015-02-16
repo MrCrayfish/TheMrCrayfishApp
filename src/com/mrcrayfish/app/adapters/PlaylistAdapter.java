@@ -7,21 +7,20 @@ import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.util.LruCache;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
-import android.widget.PopupMenu.OnMenuItemClickListener;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.activities.VideosActivity;
 import com.mrcrayfish.app.objects.PlaylistItem;
 import com.mrcrayfish.app.tasks.TaskGetThumbnail;
+import com.mrcrayfish.app.util.ScreenUtil;
 import com.mrcrayfish.app.util.YouTubeUtil;
 
 public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
@@ -40,12 +39,13 @@ public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 		View row = layout.inflate(R.layout.playlist_item, parent, false);
 
 		final PlaylistItem playlist = getItem(position);
+		final RelativeLayout infoContainer = (RelativeLayout) row.findViewById(R.id.playlistInfoContainer);
+		final ImageView hide_info = (ImageView) row.findViewById(R.id.buttonHideInfo);
 		ImageView thumbnail = (ImageView) row.findViewById(R.id.playlistThumbnail);
 		TextView title = (TextView) row.findViewById(R.id.playlistTitle);
 		TextView size = (TextView) row.findViewById(R.id.playlistSize);
 		ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
 		TextView date = (TextView) row.findViewById(R.id.videoDate);
-		ImageView options = (ImageView) row.findViewById(R.id.videoOptions);
 
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		title.setTypeface(bebas_neue);
@@ -70,31 +70,21 @@ public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 			}
 		});
 		
-		options.setOnClickListener(new OnClickListener()
+		hide_info.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
 			{
-				PopupMenu popup = new PopupMenu(getContext(), v);
-				popup.inflate(R.menu.playlist_options);
-				popup.setOnMenuItemClickListener(new OnMenuItemClickListener()
+				if (infoContainer.getY() == ScreenUtil.toPixels(getContext(), 6))
 				{
-					@Override
-					public boolean onMenuItemClick(MenuItem item)
-					{
-						switch (item.getItemId())
-						{
-						case R.id.optionPlaylistOpen:
-							YouTubeUtil.openPlaylist(getContext(), playlist.getPlaylistId());
-							break;
-						case R.id.optionPlaylistView:
-							openPlaylist(playlist);
-							break;
-						}
-						return true;
-					}
-				});
-				popup.show();
+					infoContainer.animate().setDuration(500).y(infoContainer.getHeight());
+					hide_info.animate().rotation(180);
+				}
+				else
+				{
+					infoContainer.animate().setDuration(500).y(ScreenUtil.toPixels(getContext(), 6));
+					hide_info.animate().rotation(0);
+				}
 			}
 		});
 

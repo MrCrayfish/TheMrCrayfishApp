@@ -61,8 +61,10 @@
             android:layout_above="@+id/videoViews"
             android:layout_alignParentStart="true"
             android:layout_alignStart="@+id/videoViews"
+            android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:layout_toStartOf="@+id/deleteVideoCross"
             android:gravity="start|bottom"
             android:paddingTop="10dp"
             android:shadowColor="#000000"
@@ -96,6 +98,18 @@
             android:layout_marginEnd="10dp"
             android:gravity="end"
             android:text="@string/empty" />
+        
+        <ImageView
+           android:id="@+id/deleteVideoCross"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="false"
+            android:layout_alignTop="@+id/infoBackground"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/empty"
+            android:src="@drawable/circle_delete" />
 
     </RelativeLayout>
 
@@ -108,15 +122,5 @@
         android:layout_marginTop="5dp"
         android:contentDescription="@string/empty"
         android:src="@drawable/circle_down" />
-    
-    <ImageView
-        android:id="@+id/deleteVideoCross"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_toStartOf="@+id/buttonHideInfo"
-        android:contentDescription="@string/empty"
-        android:src="@drawable/circle_delete" />
 
 </RelativeLayout>

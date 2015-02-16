@@ -9,7 +9,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +23,7 @@ import com.mrcrayfish.app.interfaces.IVideoList;
 import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.tasks.TaskFetchVideos;
 import com.mrcrayfish.app.util.SavedVideos;
+import com.mrcrayfish.app.util.ScreenUtil;
 
 public class SavedVideosActivity extends Activity implements IVideoList
 {
@@ -45,9 +45,10 @@ public class SavedVideosActivity extends Activity implements IVideoList
 		loadingContainer = (RelativeLayout) findViewById(R.id.loadingContainer);
 		loadingText = (TextView) findViewById(R.id.loadingText);
 		noVideos = (TextView) findViewById(R.id.noVideos);
+		
 		videoList = (ListView) findViewById(R.id.savedVideosList);
-		videoList.setDivider(new ColorDrawable(getResources().getColor(R.color.red)));
-		videoList.setDividerHeight(10);
+		videoList.setDivider(null);
+		videoList.setDividerHeight(ScreenUtil.toPixels(this, 5));
 
 		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
 		loadingText.setTypeface(type);
