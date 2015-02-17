@@ -40,7 +40,7 @@ import android.support.v4.app.NotificationCompat.BigPictureStyle;
 import android.util.Log;
 
 import com.mrcrayfish.app.R;
-import com.mrcrayfish.app.activities.GridActivity;
+import com.mrcrayfish.app.activities.MenuActivity;
 import com.mrcrayfish.app.activities.VideosActivity;
 import com.mrcrayfish.app.receivers.SaveReceiver;
 import com.mrcrayfish.app.receivers.WatchReceiver;
@@ -217,7 +217,7 @@ public class ServiceVideoChecker extends Service
 		PendingIntent pendingDismiss = PendingIntent.getBroadcast(this, 0, saveIntent, 0);
 		notification.addAction(R.drawable.ic_stat_floopy_disk, "Later", pendingDismiss);
 
-		Intent mainIntent = new Intent(this, GridActivity.class);
+		Intent mainIntent = new Intent(this, MenuActivity.class);
 		Intent videoIntent = new Intent(this, VideosActivity.class);
 		videoIntent.putExtra("playlist_id", Strings.UPLOADS_ID);
 		PendingIntent pendingIntent = PendingIntent.getActivities(this, 0, new Intent[] { mainIntent, videoIntent }, PendingIntent.FLAG_UPDATE_CURRENT);

@@ -20,13 +20,17 @@
         android:theme="@style/AppTheme"
         android:supportsRtl="false" >
         <activity
-            android:name=".activities.GridActivity"
+            android:name=".activities.MenuActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.VideoMenuActivity"
+            android:label="@string/title_activity_videos_menu" >
         </activity>
         <activity
             android:name=".activities.EmptyActivity"

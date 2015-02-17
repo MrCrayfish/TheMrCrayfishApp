@@ -27,9 +27,10 @@ import com.mrcrayfish.app.activities.VideosActivity;
 import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.util.StreamUtils;
 
-public class TaskFetchPlaylistVideos extends AsyncTask<String, Integer, ArrayList<VideoItem>>
+public class TaskFetchPlaylistVideos extends AsyncTask<String, Object, ArrayList<VideoItem>>
 {
 	private VideosActivity activity;
+	private int video_amount = 0;
 
 	public TaskFetchPlaylistVideos(VideosActivity activity)
 	{
@@ -50,34 +51,44 @@ public class TaskFetchPlaylistVideos extends AsyncTask<String, Integer, ArrayLis
 			String data = StreamUtils.convertToString(response.getEntity().getContent());
 			JSONObject json = new JSONObject(data);
 			JSONArray items = json.getJSONObject("data").getJSONArray("items");
+			this.publishProgress("video_amount", items.length());
 
 			ArrayList<VideoItem> videos = new ArrayList<VideoItem>();
 			for (int i = 0; i < items.length(); i++)
 			{
-				this.publishProgress(i);
+				System.out.println("Getting info for video " + i);
+				this.publishProgress("progress", i);
 
 				JSONObject video = items.getJSONObject(i);
 				JSONObject metadata = video.getJSONObject("video");
 
-				String id = metadata.getString("id");
-				String title = metadata.getString("title");
-				String views = metadata.getString("viewCount");
-				String date = "Unknown Date";
-				double rating = metadata.getDouble("rating");
-
-				try
+				if (!metadata.has("status"))
 				{
-					SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'", Locale.US);
-					Date pre = oldFormat.parse(metadata.getString("uploaded"));
-					SimpleDateFormat newFormat = new SimpleDateFormat("d MMM yy", Locale.US);
-					date = newFormat.format(pre);
-				}
-				catch (ParseException e1)
-				{
-					e1.printStackTrace();
-				}
+					String id = metadata.getString("id");
+					String title = metadata.getString("title");
+					String views = metadata.getString("viewCount");
+					String date = "Unknown Date";
 
-				videos.add(new VideoItem(title, id, date, views, (float) rating));
+					double rating = 0;
+					if (metadata.has("rating"))
+					{
+						rating = metadata.getDouble("rating");
+					}
+
+					try
+					{
+						SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'", Locale.US);
+						Date pre = oldFormat.parse(metadata.getString("uploaded"));
+						SimpleDateFormat newFormat = new SimpleDateFormat("d MMM yy", Locale.US);
+						date = newFormat.format(pre);
+					}
+					catch (ParseException e1)
+					{
+						e1.printStackTrace();
+					}
+
+					videos.add(new VideoItem(title, id, date, views, (float) rating));
+				}
 			}
 			return videos;
 		}
@@ -97,9 +108,20 @@ public class TaskFetchPlaylistVideos extends AsyncTask<String, Integer, ArrayLis
 	}
 
 	@Override
-	protected void onProgressUpdate(Integer... values)
+	protected void onProgressUpdate(Object... values)
 	{
-		activity.getLoadingText().setText("Loading Video " + (values[0].intValue() + 1) + " of " + activity.video_load_amount);
+		String type = (String) values[0];
+		if (type.equals("video_amount"))
+		{
+			Integer integer = (Integer) values[1];
+			this.video_amount = integer.intValue();
+		}
+		else if (type.equals("progress"))
+		{
+			Integer integer = (Integer) values[1];
+			activity.getLoadingText().setText("Loading Video " + (integer.intValue() + 1) + " of " + video_amount);
+		}
+
 	}
 
 	@Override

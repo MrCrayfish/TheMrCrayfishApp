@@ -34,17 +34,22 @@ public class MenuAdapter extends ArrayAdapter<MenuItem>
 			@Override
 			public void onClick(View v)
 			{
-				row.getContext().startActivity(item.getIntent());
+				item.getRunnable().run();
 			}
 		});
 
 		ImageView background = (ImageView) row.findViewById(R.id.menuBackground);
 		background.setImageResource(item.getBackground());
 
-		TextView text = (TextView) row.findViewById(R.id.menuText);
 		Typeface type = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
+		
+		TextView text = (TextView) row.findViewById(R.id.menuText);
 		text.setTypeface(type);
 		text.setText(item.getTitle());
+		
+		TextView desc = (TextView) row.findViewById(R.id.menuDescription);
+		desc.setTypeface(type);
+		desc.setText(item.getDescription());
 		return row;
 	}
 }

@@ -63,6 +63,7 @@ public class VideosActivity extends Activity implements IVideoList, OnRefreshLis
 
 		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
 		loadingText.setTypeface(type);
+		loadingText.setText("Loading Videos");
 
 		setupVideoAmount();
 
@@ -136,20 +137,6 @@ public class VideosActivity extends Activity implements IVideoList, OnRefreshLis
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		video_load_amount = prefs.getString("video_load_amount", "10");
-
-		if (getIntent().getBooleanExtra("isPlaylist", false))
-		{
-			video_load_amount = getIntent().getIntExtra("playlistSize", 0) + "";
-		}
-
-		if (video_load_amount.equals("-1"))
-		{
-			loadingText.setText("Loading All Videos");
-		}
-		else
-		{
-			loadingText.setText("Loading Video 1 of " + video_load_amount);
-		}
 	}
 
 	public TextView getLoadingText()

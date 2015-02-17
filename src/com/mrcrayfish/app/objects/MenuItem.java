@@ -5,28 +5,58 @@ import android.content.Intent;
 
 public class MenuItem
 {
-
 	private String title;
+	private String description;
 	private int background;
-	private Intent intent;
+	private Runnable r;
 
-	public MenuItem(String title, int background, Intent intent)
+	public MenuItem(String title, String description, int background, final Context context, final Intent intent)
 	{
 		this.title = title;
+		this.description = description;
 		this.background = background;
-		this.intent = intent;
+		r = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				context.startActivity(intent);
+
+			}
+		};
 	}
 
-	public MenuItem(String title, int background, Context context, Class<?> clazz)
+	public MenuItem(String title, String description, int background, final Context context, final Class<?> clazz)
 	{
 		this.title = title;
+		this.description = description;
 		this.background = background;
-		this.intent = new Intent(context, clazz);
+		r = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				context.startActivity(new Intent(context, clazz));
+			}
+		};
+	}
+
+	public MenuItem(String title, String description, int background, Runnable r)
+	{
+		this.title = title;
+		this.description = description;
+		this.background = background;
+		this.r = r;
 	}
 
 	public String getTitle()
 	{
 		return title;
+	}
+	
+	public String getDescription()
+	{
+		return description;
 	}
 
 	public int getBackground()
@@ -34,8 +64,8 @@ public class MenuItem
 		return background;
 	}
 
-	public Intent getIntent()
+	public Runnable getRunnable()
 	{
-		return intent;
+		return r;
 	}
 }

@@ -8,20 +8,22 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.adapters.MenuAdapter;
 import com.mrcrayfish.app.objects.MenuItem;
 import com.mrcrayfish.app.services.ServiceVideoChecker;
+import com.mrcrayfish.app.util.YouTubeUtil;
 
-public class GridActivity extends Activity
+public class VideoMenuActivity extends Activity
 {
 
 	@Override
@@ -30,6 +32,7 @@ public class GridActivity extends Activity
 		super.onCreate(savedInstanceState);
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		setContentView(R.layout.activity_grid);
+		overridePendingTransition(R.anim.animation_slide_left_1, R.anim.animation_slide_left_2);
 
 		setupActionBar();
 
@@ -39,17 +42,32 @@ public class GridActivity extends Activity
 
 		List<MenuItem> items = new ArrayList<MenuItem>();
 		Intent videoIntent = new Intent(this, VideosActivity.class);
-		videoIntent.putExtra("playlist_id", "PLy11IosblXIEvmCD1OOsbFkqowZZvN5xi");
-		items.add(new MenuItem("Latest Videos", R.drawable.menu_item_bg_1, videoIntent));
-		items.add(new MenuItem("Playlists", R.drawable.menu_item_bg_2, this, PlaylistActivity.class));
-		items.add(new MenuItem("Saved Videos", R.drawable.menu_item_bg_3, this, SavedVideosActivity.class));
-		items.add(new MenuItem("Furnture Server", R.drawable.menu_item_bg_4, this, EmptyActivity.class));
-		items.add(new MenuItem("Category", R.drawable.menu_item_bg_5, this, EmptyActivity.class));
-		items.add(new MenuItem("Category", R.drawable.menu_item_bg_6, this, SettingsActivity.class));
+		videoIntent.putExtra("playlist_id", "UUSwwxl2lWJcbGOGQ_d04v2Q");
+		items.add(new MenuItem("Latest Uploads", "Discover MrCrayfish's newest videos", R.drawable.menu_item_bg_1, this, videoIntent));
+		items.add(new MenuItem("Playlists", "Collections of Videos", R.drawable.menu_item_bg_2, this, PlaylistActivity.class));
+		items.add(new MenuItem("Watch Later", "Your saved videos", R.drawable.menu_item_bg_3, this, SavedVideosActivity.class));
+		
+		Runnable r = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				YouTubeUtil.openChannel(VideoMenuActivity.this, "mrcrayfishminecraft");
+			}
+		};
+		items.add(new MenuItem("View Channel", "Go to MrCrayfish's Channel", R.drawable.menu_item_bg_3, r));
+		
+		Intent selectsIntent = new Intent(this, VideosActivity.class);
+		selectsIntent.putExtra("playlist_id", "PLy11IosblXIHt81m2qd1d5QQXSlrRZWBi");
+		selectsIntent.putExtra("title", "Cray Selects");
+		items.add(new MenuItem("Cray Selects", "A selection of MrCrayfish's favourite videos", R.drawable.menu_item_bg_3, this, selectsIntent));
+		
 		menu.setAdapter(new MenuAdapter(this, items.toArray(new MenuItem[0])));
 
 		Intent i = new Intent(this, ServiceVideoChecker.class);
 		startService(i);
+
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@SuppressLint("InflateParams")
@@ -64,28 +82,35 @@ public class GridActivity extends Activity
 		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
 		TextView title = (TextView) v.findViewById(R.id.barTitle);
 		title.setTypeface(type);
+		title.setText("Videos");
 
 		ab.setCustomView(v);
 		ab.setDisplayShowCustomEnabled(true);
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.grid, menu);
-		return true;
-	}
-
-	@Override
 	public boolean onOptionsItemSelected(android.view.MenuItem item)
 	{
 		int id = item.getItemId();
-		if (id == R.id.action_settings)
+		if (id == android.R.id.home)
 		{
-			Intent intent = new Intent(this, SettingsActivity.class);
-			startActivity(intent);
+			onBackPressed();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onBackPressed()
+	{
+		super.onBackPressed();
+		overridePendingTransition(R.anim.animation_slide_right_1, R.anim.animation_slide_right_2);
+	}
+
+	public void snap(View v)
+	{
+		MediaPlayer mp = MediaPlayer.create(this, R.raw.snap_snap);
+		mp.start();
+		Toast.makeText(this, "Snap Snap!", Toast.LENGTH_SHORT).show();
 	}
 }

@@ -22,38 +22,58 @@
         android:scaleType="center"
         android:src="@drawable/menu_background" />
 
-    <TextView
-        android:id="@+id/menuText"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentTop="false"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:layout_toLeftOf="@+id/menuIcon"
-        android:layout_toStartOf="@+id/menuIcon"
-        android:alpha="1.0"
-        android:gravity="center_vertical"
-        android:shadowColor="#000000"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="3"
-        android:text="@string/empty"
-        android:textColor="#FFFFFF"
-        android:textSize="50sp" />
+        android:layout_toStartOf="@+id/menuIcon" >
+
+        <TextView
+            android:id="@+id/menuText"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:alpha="1.0"
+            android:gravity="center_vertical|start"
+            android:lines="1"
+            android:shadowColor="#000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="3"
+            android:text="@string/empty"
+            android:textColor="#FFFFFF"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/menuDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/menuText"
+            android:gravity="start"
+            android:lines="1"
+            android:shadowColor="#000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="3"
+            android:text="@string/empty"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/menuIcon"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
         android:contentDescription="@string/empty"
         android:src="@drawable/circle_next" />
 

@@ -11,6 +11,7 @@
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_playlist">PlaylistActivity</string>
     <string name="title_activity_saved_videos">SavedVideosActivity</string>
+    <string name="title_activity_videos_menu">VideoMenuActivity</string>
     <string name="no_videos">No Videos</string>
     <string name="loading_saved_videos">Loading Saved Videos</string>
     <string name="open_video">Play Video</string>
