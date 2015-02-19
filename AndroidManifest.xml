@@ -17,8 +17,8 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:supportsRtl="false" >
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".activities.MenuActivity"
             android:label="@string/app_name" >
@@ -54,7 +54,7 @@
             android:label="@string/title_activity_playlist" >
         </activity>
         <activity
-            android:name="com.mrcrayfish.app.activities.SavedVideosActivity"
+            android:name=".activities.SavedVideosActivity"
             android:label="@string/title_activity_saved_videos" >
         </activity>
 
@@ -62,6 +62,11 @@
 
         <receiver android:name=".receivers.WatchReceiver" />
         <receiver android:name=".receivers.SaveReceiver" />
+
+        <activity
+            android:name="com.mrcrayfish.app.activities.BlogActivity"
+            android:label="@string/title_activity_blog" >
+        </activity>
     </application>
 
 </manifest>

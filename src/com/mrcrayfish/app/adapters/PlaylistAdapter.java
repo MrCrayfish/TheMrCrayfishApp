@@ -19,7 +19,8 @@ import android.widget.TextView;
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.activities.VideosActivity;
 import com.mrcrayfish.app.objects.PlaylistItem;
-import com.mrcrayfish.app.tasks.TaskGetThumbnail;
+import com.mrcrayfish.app.tasks.TaskGetBitmap;
+import com.mrcrayfish.app.tasks.TaskGetBitmap.Type;
 import com.mrcrayfish.app.util.ScreenUtil;
 import com.mrcrayfish.app.util.YouTubeUtil;
 
@@ -95,7 +96,7 @@ public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 		else
 		{
 			thumbnail.setAlpha(0.0F);
-			new TaskGetThumbnail(getContext(), thumbnail, cache).execute(playlist.getThumbnailId());
+			new TaskGetBitmap(getContext(), thumbnail, cache, Type.YOUTUBE).execute(playlist.getThumbnailId());
 		}
 
 		size.setText(playlist.getSize() + " Videos");

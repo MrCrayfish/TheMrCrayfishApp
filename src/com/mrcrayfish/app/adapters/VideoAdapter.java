@@ -21,7 +21,8 @@ import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.objects.VideoItem;
-import com.mrcrayfish.app.tasks.TaskGetThumbnail;
+import com.mrcrayfish.app.tasks.TaskGetBitmap;
+import com.mrcrayfish.app.tasks.TaskGetBitmap.Type;
 import com.mrcrayfish.app.util.SavedVideos;
 import com.mrcrayfish.app.util.ScreenUtil;
 import com.mrcrayfish.app.util.YouTubeUtil;
@@ -106,7 +107,7 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 		else
 		{
 			thumbnail.setAlpha(0.0F);
-			new TaskGetThumbnail(getContext(), thumbnail, cache).execute(video.getVideoId());
+			new TaskGetBitmap(getContext(), thumbnail, cache, Type.YOUTUBE).execute(video.getVideoId());
 		}
 
 		if (SavedVideos.has(getContext(), video.getVideoId()))

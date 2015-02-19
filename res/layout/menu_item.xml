@@ -9,9 +9,9 @@
         android:id="@+id/menuBackground"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
+        android:contentDescription="@string/empty"
         android:scaleType="centerCrop"
-        android:src="@drawable/menu_item_bg_1" 
-        android:contentDescription="@string/empty"/>
+        android:src="@drawable/menu_item_bg_1" />
 
     <ImageView
         android:id="@+id/menuBackgroundOverlay"

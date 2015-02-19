@@ -54,9 +54,8 @@ public class ServiceVideoChecker extends Service
 	private String prevVideoId = null;
 
 	@Override
-	public int onStartCommand(Intent intent, int flags, int startId)
+	public void onCreate()
 	{
-		Log.i(TAG, "Starting Service!");
 		Runnable r = new Runnable()
 		{
 			@Override
@@ -96,6 +95,11 @@ public class ServiceVideoChecker extends Service
 		};
 		Thread checker = new Thread(r);
 		checker.start();
+	}
+	
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId)
+	{
 		return Service.START_STICKY;
 	}
 

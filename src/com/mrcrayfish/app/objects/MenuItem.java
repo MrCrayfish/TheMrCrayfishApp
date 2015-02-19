@@ -8,52 +8,29 @@ public class MenuItem
 	private String title;
 	private String description;
 	private int background;
-	private Runnable r;
+	private Intent intent;
 
-	public MenuItem(String title, String description, int background, final Context context, final Intent intent)
+	public MenuItem(String title, String description, int background, Intent intent)
 	{
 		this.title = title;
 		this.description = description;
 		this.background = background;
-		r = new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				context.startActivity(intent);
-
-			}
-		};
+		this.intent = intent;
 	}
 
-	public MenuItem(String title, String description, int background, final Context context, final Class<?> clazz)
+	public MenuItem(String title, String description, int background, Context context, final Class<?> clazz)
 	{
 		this.title = title;
 		this.description = description;
 		this.background = background;
-		r = new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				context.startActivity(new Intent(context, clazz));
-			}
-		};
-	}
-
-	public MenuItem(String title, String description, int background, Runnable r)
-	{
-		this.title = title;
-		this.description = description;
-		this.background = background;
-		this.r = r;
+		this.intent = new Intent(context, clazz);
 	}
 
 	public String getTitle()
 	{
 		return title;
 	}
-	
+
 	public String getDescription()
 	{
 		return description;
@@ -64,8 +41,8 @@ public class MenuItem
 		return background;
 	}
 
-	public Runnable getRunnable()
+	public Intent getIntent()
 	{
-		return r;
+		return intent;
 	}
 }

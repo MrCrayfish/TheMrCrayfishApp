@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="2dp"
-    android:background="@drawable/dropshadow" >
+    android:background="@drawable/dropshadow"
+    android:padding="6dp" >
 
     <ImageView
-        android:id="@+id/playlistThumbnail"
+        android:id="@+id/blogPhoto"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -16,72 +17,56 @@
         android:src="@drawable/unknown" />
 
     <RelativeLayout
-        android:id="@+id/playlistInfoContainer"
-        android:layout_width="wrap_content"
+        android:id="@+id/blogInfoContainer"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/playlistThumbnail"
+        android:layout_alignBottom="@+id/blogPhoto"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" >
-        
+        android:layout_alignParentTop="true"
+        android:clickable="false" >
+
         <ImageView
             android:id="@+id/infoBackground"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignTop="@+id/playlistTitle"
+            android:layout_alignTop="@+id/blogCaption"
             android:alpha="0.5"
             android:contentDescription="@string/empty"
-            android:src="@drawable/video_info_background" />
+            android:src="@drawable/video_info_background"
+            android:clickable="false" />
 
         <TextView
-            android:id="@+id/playlistSize"
+            android:id="@+id/blogDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="false"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingTop="10dp"
+            android:gravity="end"
+            android:text="@string/empty" />
+
+        <TextView
+            android:id="@+id/blogCaption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
-            android:gravity="start"
-            android:shadowColor="#000000"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="3"
-            android:text="@string/empty"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/playlistTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/playlistSize"
-            android:layout_alignParentStart="true"
-            android:layout_alignStart="@+id/playlistSize"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_toStartOf="@+id/blogDate"
             android:gravity="start|bottom"
             android:paddingTop="10dp"
-            android:shadowColor="#000000"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="3"
             android:text="@string/empty"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp" />
-        
-        <TextView
-            android:id="@+id/videoDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/playlistSize"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:gravity="end"
-            android:text="@string/empty" />
-
+            android:textSize="20sp" />
     </RelativeLayout>
-    
+
     <ImageView
         android:id="@+id/buttonHideInfo"
         android:layout_width="40dp"

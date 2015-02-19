@@ -11,15 +11,15 @@ import android.os.Environment;
 
 public class BitmapCache
 {
-	public static Bitmap getCachedBitmap(String video_id)
+	public static Bitmap getCachedBitmap(String id, String folder)
 	{
-		String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/TheMrCrayfishApp/thumbnail_cache";
+		String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/TheMrCrayfishApp/" + folder;
 		File dir = new File(path);
 		if (!dir.exists())
 		{
 			dir.mkdirs();
 		}
-		File file = new File(dir, video_id);
+		File file = new File(dir, id);
 		Bitmap bitmap = null;
 		if (file.exists() && file.isFile())
 		{
@@ -31,15 +31,15 @@ public class BitmapCache
 		return bitmap;
 	}
 
-	public static void saveBitmapToCache(String video_id, Bitmap image)
+	public static void saveBitmapToCache(String id, Bitmap image, String folder)
 	{
-		String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/TheMrCrayfishApp/thumbnail_cache";
+		String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/TheMrCrayfishApp/" + folder;
 		File dir = new File(path);
 		if (!dir.exists())
 		{
 			dir.mkdirs();
 		}
-		File file = new File(dir, video_id);
+		File file = new File(dir, id);
 		try
 		{
 			FileOutputStream fOut = new FileOutputStream(file);

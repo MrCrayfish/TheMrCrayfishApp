@@ -37,17 +37,15 @@ public class YouTubeUtil
 		}
 	}
 	
-	public static void openChannel(Context context, String user_id)
+	public static Intent openChannel(Context context, String user_id)
 	{
-		Intent intent = YouTubeIntents.createUserIntent(context, user_id);
 		if (YouTubeIntents.isYouTubeInstalled(context))
 		{
-			context.startActivity(intent);
+			return YouTubeIntents.createUserIntent(context, user_id);
 		}
 		else
 		{
-			intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com/user/" + user_id));
-			context.startActivity(intent);
+			return new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com/user/" + user_id));
 		}
 	}
 }

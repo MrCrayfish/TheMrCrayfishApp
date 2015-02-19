@@ -19,5 +19,6 @@
     <string name="delete_video">Remove</string>
     <string name="open_playlist">Open Playlist</string>
     <string name="view_playlist">View Playlist</string>
+    <string name="title_activity_blog">BlogActivity</string>
 
 </resources>

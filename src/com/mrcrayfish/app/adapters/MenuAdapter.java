@@ -1,5 +1,7 @@
 package com.mrcrayfish.app.adapters;
 
+import java.util.ArrayList;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -15,8 +17,8 @@ import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.objects.MenuItem;
 
 public class MenuAdapter extends ArrayAdapter<MenuItem>
-{
-	public MenuAdapter(Context context, MenuItem[] items)
+{	
+	public MenuAdapter(Context context, ArrayList<MenuItem> items)
 	{
 		super(context, R.layout.menu_item, items);
 	}
@@ -34,12 +36,12 @@ public class MenuAdapter extends ArrayAdapter<MenuItem>
 			@Override
 			public void onClick(View v)
 			{
-				item.getRunnable().run();
+				getContext().startActivity(item.getIntent());
 			}
 		});
 
 		ImageView background = (ImageView) row.findViewById(R.id.menuBackground);
-		background.setImageResource(item.getBackground());
+		background.setImageDrawable(getContext().getResources().getDrawable(item.getBackground()));
 
 		Typeface type = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		
