@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.tasks.TaskGetBitmap;
@@ -73,13 +74,23 @@ public class BlogAdapter extends ArrayAdapter<Post>
 	{
 		final RelativeLayout container = (RelativeLayout) row.findViewById(R.id.blogInfoContainer);
 		final ImageView hide_info = (ImageView) row.findViewById(R.id.buttonHideInfo);
-		final ImageView background = (ImageView) row.findViewById(R.id.infoBackground);
+		final ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
 		ImageView picture = (ImageView) row.findViewById(R.id.blogPhoto);
 		TextView caption = (TextView) row.findViewById(R.id.blogCaption);
 		TextView date = (TextView) row.findViewById(R.id.blogDate);
 
 		caption.setText(post.getCaption());
 		date.setText(post.getDate());
+		
+		infoBg.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v)
+			{
+				Toast.makeText(getContext(), "Hey", Toast.LENGTH_SHORT).show();
+			}
+			
+		});
 
 		hide_info.setOnClickListener(new OnClickListener()
 		{
@@ -88,7 +99,7 @@ public class BlogAdapter extends ArrayAdapter<Post>
 			{
 				if (container.getY() == ScreenUtil.toPixels(getContext(), 6))
 				{
-					container.animate().setDuration(500).y(background.getHeight() + ScreenUtil.toPixels(getContext(), 6));
+					container.animate().setDuration(500).y(infoBg.getHeight() + ScreenUtil.toPixels(getContext(), 6));
 					hide_info.animate().rotation(180);
 				}
 				else
@@ -108,7 +119,7 @@ public class BlogAdapter extends ArrayAdapter<Post>
 			picture.setAlpha(0.0F);
 			new TaskGetBitmap(getContext(), picture, cache, Type.TUMBLR).execute(post.getId(), post.getImageUrl());
 		}
-		background.requestLayout();
+		infoBg.requestLayout();
 	}
 
 	public int getItemViewType(Post post, int position)

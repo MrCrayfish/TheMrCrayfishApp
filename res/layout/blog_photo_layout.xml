@@ -3,8 +3,8 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/dropshadow"
-    android:padding="6dp" >
+    android:layout_margin="2dp"
+    android:background="@drawable/dropshadow">
 
     <ImageView
         android:id="@+id/blogPhoto"
@@ -23,8 +23,7 @@
         android:layout_alignBottom="@+id/blogPhoto"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:clickable="false" >
+        android:layout_alignTop="@+id/blogPhoto" >
 
         <ImageView
             android:id="@+id/infoBackground"
@@ -34,20 +33,15 @@
             android:layout_alignTop="@+id/blogCaption"
             android:alpha="0.5"
             android:contentDescription="@string/empty"
-            android:src="@drawable/video_info_background"
-            android:clickable="false" />
+            android:src="@drawable/video_info_background" />
 
         <TextView
             android:id="@+id/blogDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_alignBottom="@+id/blogCaption"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="false"
-            android:layout_marginBottom="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:paddingTop="10dp"
             android:gravity="end"
             android:text="@string/empty" />
 
@@ -57,9 +51,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_toStartOf="@+id/blogDate"
             android:gravity="start|bottom"
             android:paddingTop="10dp"

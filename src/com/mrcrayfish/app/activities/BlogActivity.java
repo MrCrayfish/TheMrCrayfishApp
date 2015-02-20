@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -19,6 +20,7 @@ import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.adapters.BlogAdapter;
 import com.mrcrayfish.app.tasks.TaskFetchBlogPosts;
 import com.mrcrayfish.app.tumblr.Post;
+import com.mrcrayfish.app.util.ScreenUtil;
 
 public class BlogActivity extends Activity
 {
@@ -34,6 +36,7 @@ public class BlogActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		setContentView(R.layout.activity_blog);
 		overridePendingTransition(R.anim.animation_slide_left_1, R.anim.animation_slide_left_2);
 
@@ -42,8 +45,11 @@ public class BlogActivity extends Activity
 		loadingContainer = (RelativeLayout) findViewById(R.id.loadingContainer);
 		loadingText = (TextView) findViewById(R.id.loadingText);
 		swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
+		
 		postList = (ListView) findViewById(R.id.blogList);
-
+		postList.setDivider(null);
+		postList.setDividerHeight(ScreenUtil.toPixels(this, 5));
+		
 		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
 		loadingText.setTypeface(type);
 		loadingText.setText("Loading Posts");

@@ -1,6 +1,9 @@
 package com.mrcrayfish.app.tasks;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,6 +56,7 @@ public class TaskFetchBlogPosts extends AsyncTask<Void, Integer, ArrayList<Post>
 			String data = StreamUtils.convertToString(response.getEntity().getContent());
 			data = data.replace("var tumblr_api_read = ", "");
 			data = data.replace(";", "");
+			data = data.replace("\n\n", "");
 
 			JSONObject json = new JSONObject(data);
 			postCount = json.getInt("posts-total");
@@ -76,6 +80,15 @@ public class TaskFetchBlogPosts extends AsyncTask<Void, Integer, ArrayList<Post>
 					String caption = post.getString("photo-caption").replaceAll("\\<[^>]*>", "");
 					String imageUrl = post.getString("photo-url-1280");
 					posts.add(new PhotoPost(id, caption, imageUrl, date));
+				}
+				else if (type.equals("link"))
+				{
+					String linkTitle = post.getString("link-text");
+					String linkUrl = post.getString("link-url");
+					String linkDesc = post.getString("link-description");
+
+					URL myUrl = new URL(linkUrl);
+					System.out.println(myUrl.getHost());
 				}
 			}
 			return posts;
@@ -132,5 +145,12 @@ public class TaskFetchBlogPosts extends AsyncTask<Void, Integer, ArrayList<Post>
 			e1.printStackTrace();
 		}
 		return "";
+	}
+
+	public String getDomainName(String url) throws URISyntaxException
+	{
+		URI uri = new URI(url);
+		String domain = uri.getHost();
+		return domain.startsWith("www.") ? domain.substring(4) : domain;
 	}
 }
