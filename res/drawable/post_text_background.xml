@@ -71,11 +71,10 @@
 
     <!-- Background -->
     <item>
-        <shape>
-            <solid android:color="#FFFFFF" />
-
-            <corners android:radius="2dp" />
-        </shape>
+        <bitmap 
+            android:src="@drawable/linedpaper"
+            android:tileMode="repeat"
+            android:gravity="center" />
     </item>
 
 </layer-list>

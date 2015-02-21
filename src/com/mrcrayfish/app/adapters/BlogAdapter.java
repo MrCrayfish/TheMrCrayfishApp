@@ -2,10 +2,15 @@ package com.mrcrayfish.app.adapters;
 
 import java.util.ArrayList;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.text.method.LinkMovementMethod;
 import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +31,9 @@ import com.mrcrayfish.app.tumblr.PhotoPost;
 import com.mrcrayfish.app.tumblr.Post;
 import com.mrcrayfish.app.tumblr.TextPost;
 import com.mrcrayfish.app.tumblr.VideoPost;
+import com.mrcrayfish.app.util.SavedVideos;
 import com.mrcrayfish.app.util.ScreenUtil;
+import com.mrcrayfish.app.util.YouTubeUtil;
 
 public class BlogAdapter extends ArrayAdapter<Post>
 {
@@ -51,6 +59,12 @@ public class BlogAdapter extends ArrayAdapter<Post>
 		case R.layout.blog_photo_layout:
 			handlePhotoPost(row, (PhotoPost) post);
 			break;
+		case R.layout.blog_link_layout:
+			handleLinkPost(row, (LinkPost) post);
+			break;
+		case R.layout.video_item:
+			handleVideoPost(row, (VideoPost) post);
+			break;
 		}
 		return row;
 	}
@@ -64,7 +78,9 @@ public class BlogAdapter extends ArrayAdapter<Post>
 
 		title.setText(text.getTitle());
 		date.setText(text.getDate());
+
 		content.setText(text.getContent());
+		content.setMovementMethod(LinkMovementMethod.getInstance());
 
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		title.setTypeface(bebas_neue);
@@ -82,14 +98,18 @@ public class BlogAdapter extends ArrayAdapter<Post>
 		caption.setText(post.getCaption());
 		date.setText(post.getDate());
 		
-		infoBg.setOnClickListener(new OnClickListener(){
+		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
+		caption.setTypeface(bebas_neue);
+
+		infoBg.setOnClickListener(new OnClickListener()
+		{
 
 			@Override
 			public void onClick(View v)
 			{
 				Toast.makeText(getContext(), "Hey", Toast.LENGTH_SHORT).show();
 			}
-			
+
 		});
 
 		hide_info.setOnClickListener(new OnClickListener()
@@ -122,6 +142,111 @@ public class BlogAdapter extends ArrayAdapter<Post>
 		infoBg.requestLayout();
 	}
 
+	public void handleLinkPost(View row, final LinkPost post)
+	{
+		TextView title = (TextView) row.findViewById(R.id.blogTitle);
+		TextView date = (TextView) row.findViewById(R.id.blogDate);
+		TextView content = (TextView) row.findViewById(R.id.blogContent);
+		ImageView button = (ImageView) row.findViewById(R.id.blogLinkButton);
+
+		title.setText(post.getTitle());
+		date.setText(post.getDate());
+		content.setText(post.getDescription());
+		
+		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
+		title.setTypeface(bebas_neue);
+
+		button.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				Intent link = new Intent(Intent.ACTION_VIEW, Uri.parse(post.getLink()));
+				getContext().startActivity(link);
+			}
+		});
+	}
+
+	public void handleVideoPost(View row, final VideoPost post)
+	{
+		final RelativeLayout container = (RelativeLayout) row.findViewById(R.id.videoInfoContainer);
+		final ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
+		final ImageView hide_info = (ImageView) row.findViewById(R.id.buttonHideInfo);
+		final ImageView save = (ImageView) row.findViewById(R.id.saveVideo);
+		ImageView thumbnail = (ImageView) row.findViewById(R.id.videoThumbnail);
+		TextView title = (TextView) row.findViewById(R.id.videoTitle);
+		TextView views = (TextView) row.findViewById(R.id.videoViews);
+		RatingBar bar = (RatingBar) row.findViewById(R.id.videoRating);
+		TextView date = (TextView) row.findViewById(R.id.videoDate);
+
+		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
+		title.setTypeface(bebas_neue);
+		title.setText(post.getTitle());
+
+		infoBg.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				YouTubeUtil.openVideo(getContext(), post.getVideoId());
+			}
+		});
+
+		hide_info.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				if (container.getY() == ScreenUtil.toPixels(getContext(), 6))
+				{
+					container.animate().setDuration(500).y(container.getHeight());
+					hide_info.animate().rotation(180);
+				}
+				else
+				{
+					container.animate().setDuration(500).y(ScreenUtil.toPixels(getContext(), 6));
+					hide_info.animate().rotation(0);
+				}
+			}
+		});
+
+		save.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				SavedVideos.add(getContext(), post.getVideoId());
+				save.animate().alpha(0).setListener(new AnimatorListenerAdapter()
+				{
+					public void onAnimationEnd(Animator animation)
+					{
+						save.setVisibility(View.GONE);
+					}
+				});
+			}
+		});
+
+		if (cache.get(post.getVideoId()) != null)
+		{
+			thumbnail.setImageBitmap(cache.get(post.getVideoId()));
+		}
+		else
+		{
+			thumbnail.setAlpha(0.0F);
+			new TaskGetBitmap(getContext(), thumbnail, cache, Type.YOUTUBE).execute(post.getVideoId());
+		}
+
+		if (SavedVideos.has(getContext(), post.getVideoId()))
+		{
+			save.setVisibility(View.GONE);
+		}
+
+		views.setText(post.getViews() + " Views");
+		bar.setRating(post.getRating());
+		date.setText(post.getDate());
+		infoBg.requestLayout();
+	}
+
 	public int getItemViewType(Post post, int position)
 	{
 		if (post instanceof TextPost)
@@ -130,7 +255,7 @@ public class BlogAdapter extends ArrayAdapter<Post>
 		}
 		else if (post instanceof LinkPost)
 		{
-
+			return R.layout.blog_link_layout;
 		}
 		else if (post instanceof PhotoPost)
 		{
@@ -138,7 +263,7 @@ public class BlogAdapter extends ArrayAdapter<Post>
 		}
 		else if (post instanceof VideoPost)
 		{
-
+			return R.layout.video_item;
 		}
 		return 0;
 	}

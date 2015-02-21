@@ -1,11 +1,13 @@
 package com.mrcrayfish.app.tumblr;
 
+import android.text.Spanned;
+
 public class TextPost extends Post
 {
 	private String title;
-	private String contents;
+	private Spanned contents;
 
-	public TextPost(String id, String title, String contents, String date)
+	public TextPost(String id, String title, Spanned contents, String date)
 	{
 		super(id, date);
 		this.title = title;
@@ -17,7 +19,7 @@ public class TextPost extends Post
 		return title;
 	}
 	
-	public String getContent()
+	public Spanned getContent()
 	{
 		return contents;
 	}
