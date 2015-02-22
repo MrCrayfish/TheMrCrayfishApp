@@ -159,6 +159,8 @@ public class VideosActivity extends Activity implements IVideoList, OnRefreshLis
 	@Override
 	public void updateVideoList()
 	{
+		videoAdapter.clear();
+		videoAdapter.addAll(videos);
 		videoAdapter.notifyDataSetChanged();
 	}
 

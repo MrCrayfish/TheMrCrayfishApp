@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -22,7 +23,7 @@ import com.mrcrayfish.app.tasks.TaskFetchBlogPosts;
 import com.mrcrayfish.app.tumblr.Post;
 import com.mrcrayfish.app.util.ScreenUtil;
 
-public class BlogActivity extends Activity
+public class BlogActivity extends Activity implements OnRefreshListener
 {
 	public SwipeRefreshLayout swipeLayout;
 	public RelativeLayout loadingContainer;
@@ -44,7 +45,9 @@ public class BlogActivity extends Activity
 
 		loadingContainer = (RelativeLayout) findViewById(R.id.loadingContainer);
 		loadingText = (TextView) findViewById(R.id.loadingText);
+		
 		swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
+		swipeLayout.setOnRefreshListener(this);
 		
 		postList = (ListView) findViewById(R.id.blogList);
 		postList.setDivider(null);
@@ -127,5 +130,18 @@ public class BlogActivity extends Activity
 	public ArrayAdapter<Post> getAdapter()
 	{
 		return blogAdapter;
+	}
+	
+	public void updatePosts()
+	{
+		blogAdapter.clear();
+		blogAdapter.addAll(posts);
+		blogAdapter.notifyDataSetChanged();
+	}
+
+	@Override
+	public void onRefresh()
+	{
+		new TaskFetchBlogPosts(this).execute();
 	}
 }

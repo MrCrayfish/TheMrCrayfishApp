@@ -157,7 +157,7 @@ public class TaskFetchBlogPosts extends AsyncTask<Void, Object, ArrayList<Post>>
 			if (activity.swipeLayout.isRefreshing())
 			{
 				activity.swipeLayout.setRefreshing(false);
-				activity.getAdapter().notifyDataSetChanged();
+				activity.updatePosts();
 			}
 		}
 	}
