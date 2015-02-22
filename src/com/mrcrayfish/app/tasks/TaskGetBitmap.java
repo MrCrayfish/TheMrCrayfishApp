@@ -62,8 +62,8 @@ public class TaskGetBitmap extends AsyncTask<String, Void, Bitmap>
 			{
 				bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.unknown);
 			}
-			cache.put(id, bitmap);
 		}
+		cache.put(id, bitmap);
 		return bitmap;
 	}
 

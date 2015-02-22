@@ -60,7 +60,7 @@
             android:paddingTop="10dp"
             android:text="@string/empty"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="30sp" />
 
     </RelativeLayout>
 

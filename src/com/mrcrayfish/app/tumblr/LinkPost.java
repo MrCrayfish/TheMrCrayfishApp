@@ -6,9 +6,9 @@ public class LinkPost extends Post
 {
 	private String title;
 	private String link;
-	private Spanned description;
+	private String description;
 	
-	public LinkPost(String id, String title, String link, Spanned description, String date)
+	public LinkPost(String id, String title, String link, String description, String date)
 	{
 		super(id, date);
 		this.title = title;
@@ -26,7 +26,7 @@ public class LinkPost extends Post
 		return link;
 	}
 
-	public Spanned getDescription()
+	public String getDescription()
 	{
 		return description;
 	}

@@ -93,7 +93,7 @@ public class TaskFetchBlogPosts extends AsyncTask<Void, Object, ArrayList<Post>>
 					try
 					{
 						String domain = getDomainName(linkUrl);
-						if (domain.equals("youtube"))
+						if (domain.equals("youtube") && linkUrl.contains("watch?v="))
 						{
 							Post video = convertVideoIdToPost(date, linkUrl.split("=")[1]);
 							if (video != null)
@@ -103,7 +103,7 @@ public class TaskFetchBlogPosts extends AsyncTask<Void, Object, ArrayList<Post>>
 						}
 						else
 						{
-							posts.add(new LinkPost(id, linkTitle, linkUrl, Html.fromHtml(linkDesc.replace("<p>", "").replace("</p>", "")), date));
+							posts.add(new LinkPost(id, linkTitle, linkUrl, linkDesc, date));
 						}
 					}
 					catch (URISyntaxException e)
@@ -194,7 +194,7 @@ public class TaskFetchBlogPosts extends AsyncTask<Void, Object, ArrayList<Post>>
 			HttpParams httpparams = new BasicHttpParams();
 			httpparams.setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 			HttpClient client = new DefaultHttpClient(httpparams);
-			HttpGet request = new HttpGet("https://gdata.youtube.com/feeds/api/videos?q=" + video_id + "&v=2&alt=jsonc&max-results=1");
+			HttpGet request = new HttpGet("http://gdata.youtube.com/feeds/api/videos?q=" + video_id + "&v=2&alt=jsonc&max-results=1");
 			HttpResponse response = client.execute(request);
 
 			String data = StreamUtils.convertToString(response.getEntity().getContent());

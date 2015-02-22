@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.LruCache;
 import android.view.LayoutInflater;
@@ -130,6 +131,7 @@ public class BlogAdapter extends ArrayAdapter<Post>
 			}
 		});
 
+		System.out.println(cache.get(post.getId()));
 		if (cache.get(post.getId()) != null)
 		{
 			picture.setImageBitmap(cache.get(post.getId()));
@@ -147,11 +149,13 @@ public class BlogAdapter extends ArrayAdapter<Post>
 		TextView title = (TextView) row.findViewById(R.id.blogTitle);
 		TextView date = (TextView) row.findViewById(R.id.blogDate);
 		TextView content = (TextView) row.findViewById(R.id.blogContent);
+		TextView link = (TextView) row.findViewById(R.id.blogLinkUrl);
 		ImageView button = (ImageView) row.findViewById(R.id.blogLinkButton);
 
 		title.setText(post.getTitle());
 		date.setText(post.getDate());
-		content.setText(post.getDescription());
+		content.setText(Html.fromHtml(post.getDescription()).toString().replaceAll("\n", ""));
+		link.setText(post.getLink());
 		
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		title.setTypeface(bebas_neue);
