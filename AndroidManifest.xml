@@ -64,8 +64,12 @@
         <receiver android:name=".receivers.SaveReceiver" />
 
         <activity
-            android:name="com.mrcrayfish.app.activities.BlogActivity"
+            android:name=".activities.BlogActivity"
             android:label="@string/title_activity_blog" >
+        </activity>
+        <activity
+            android:name="com.mrcrayfish.app.activities.SocialActivity"
+            android:label="@string/title_activity_social" >
         </activity>
     </application>
 

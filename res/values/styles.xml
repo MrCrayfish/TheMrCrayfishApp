@@ -19,4 +19,13 @@
 	<color name="light_red">#F44336</color>
 	<color name="black">#000000</color>
 	<color name="light_grey">#808080</color>
+	
+	<color name="twitter">#5EA9DD</color>
+	<color name="facebook">#3B579D</color>
+	<color name="instagram">#7C5641</color>
+	<color name="github">#000000</color>
+	<color name="vine">#00B488</color>
+	<color name="reddit">#FF5D00</color>
+	<color name="planetmc">#569AD2</color>
+	<color name="mcforums">#3F6634</color>
 </resources>
