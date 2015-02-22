@@ -33,6 +33,7 @@ public class SocialAdapter extends ArrayAdapter<SocialItem>
 		View row = layout.inflate(R.layout.social_item, parent, false);
 
 		final SocialItem item = getItem(position);
+		ImageView background = (ImageView) row.findViewById(R.id.socialBackground);
 		ImageView icon = (ImageView) row.findViewById(R.id.socialIcon);
 		TextView name = (TextView) row.findViewById(R.id.socialName);
 
@@ -46,6 +47,8 @@ public class SocialAdapter extends ArrayAdapter<SocialItem>
 				getContext().startActivity(intent);
 			}
 		});
+		
+		background.setBackgroundResource(item.getBackground());
 
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		name.setTypeface(bebas_neue);

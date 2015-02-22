@@ -6,13 +6,15 @@ public class SocialItem
 	private String url;
 	private int icon;
 	private int colour;
+	private int bg;
 
-	public SocialItem(String name, String url, int icon, int colour)
+	public SocialItem(String name, String url, int icon, int colour, int bg)
 	{
 		this.name = name;
 		this.url = url;
 		this.icon = icon;
 		this.colour = colour;
+		this.bg = bg;
 	}
 
 	public String getName()
@@ -33,5 +35,10 @@ public class SocialItem
 	public int getColour()
 	{
 		return colour;
+	}
+	
+	public int getBackground()
+	{
+		return bg;
 	}
 }

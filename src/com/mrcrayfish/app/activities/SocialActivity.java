@@ -76,15 +76,15 @@ public class SocialActivity extends Activity
 	public List<SocialItem> compile()
 	{
 		List<SocialItem> items = new ArrayList<SocialItem>();
-		items.add(new SocialItem("Twitter", "https://twitter.com/MrCraayfish", R.drawable.twitter, R.color.twitter));
-		items.add(new SocialItem("Facebook", "https://www.facebook.com/MrCrayfish", R.drawable.facebook, R.color.facebook));
-		items.add(new SocialItem("Reddit", "http://www.reddit.com/user/MrCrayfish/", R.drawable.reddit, R.color.reddit));
-		items.add(new SocialItem("Instagram", "https://instagram.com/mrcraayfish", R.drawable.instagram, R.color.instagram));
-		items.add(new SocialItem("GitHub", "https://github.com/MrCrayfish", R.drawable.github, R.color.github));
-		items.add(new SocialItem("Vine", "https://vine.co/u/1009468775671943168", R.drawable.vine, R.color.vine));
-		items.add(new SocialItem("PlanetMC", "http://www.planetminecraft.com/member/mr_crayfish/", R.drawable.planetmc, R.color.planetmc));
-		items.add(new SocialItem("MC Forums", "http://www.minecraftforum.net/members/Mr_Crayfish", R.drawable.minecraftforum, R.color.mcforums));
-		items.add(new SocialItem("Website", "http://www.mrcrayfish.com", R.drawable.website, R.color.red));
+		items.add(new SocialItem("Twitter", "https://twitter.com/MrCraayfish", R.drawable.twitter, R.color.twitter, R.drawable.repeatable_twitter_background));
+		items.add(new SocialItem("Facebook", "https://www.facebook.com/MrCrayfish", R.drawable.facebook, R.color.facebook, R.drawable.repeatable_facebook_background));
+		items.add(new SocialItem("Reddit", "http://www.reddit.com/user/MrCrayfish/", R.drawable.reddit, R.color.reddit, R.drawable.repeatable_reddit_background));
+		items.add(new SocialItem("Instagram", "https://instagram.com/mrcraayfish", R.drawable.instagram, R.color.instagram, R.drawable.repeatable_instagram_background));
+		items.add(new SocialItem("GitHub", "https://github.com/MrCrayfish", R.drawable.github, R.color.github, R.drawable.repeatable_github_background));
+		items.add(new SocialItem("Vine", "https://vine.co/u/1009468775671943168", R.drawable.vine, R.color.vine, R.drawable.repeatable_vine_background));
+		items.add(new SocialItem("PlanetMC", "http://www.planetminecraft.com/member/mr_crayfish/", R.drawable.planetmc, R.color.planetmc, R.drawable.repeatable_planetmc_background));
+		items.add(new SocialItem("MC Forums", "http://www.minecraftforum.net/members/Mr_Crayfish", R.drawable.minecraftforum, R.color.mcforums, R.drawable.repeatable_mcforums_background));
+		items.add(new SocialItem("Website", "http://www.mrcrayfish.com", R.drawable.website, R.color.red, R.drawable.repeatable_mrcrayfish_background));
 		return items;
 	}
 }

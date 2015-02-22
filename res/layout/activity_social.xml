@@ -1,19 +1,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:background="@drawable/dropshadow"
     tools:context="com.mrcrayfish.app.activities.SocialActivity" >
 
     <GridView
         android:id="@+id/socialGrid"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:horizontalSpacing="5dp"
         android:numColumns="3"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="5dp" >
+        android:stretchMode="columnWidth" >
 
     </GridView>
 
