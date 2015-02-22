@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Space;
 import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
@@ -36,9 +37,11 @@ public class SocialAdapter extends ArrayAdapter<SocialItem>
 		ImageView background = (ImageView) row.findViewById(R.id.socialBackground);
 		ImageView icon = (ImageView) row.findViewById(R.id.socialIcon);
 		TextView name = (TextView) row.findViewById(R.id.socialName);
+		ImageView overlay = (ImageView) row.findViewById(R.id.socialOverlay);
 
 		new TaskSetBackground(icon).execute(item.getIcon());
-		icon.setOnClickListener(new OnClickListener()
+
+		overlay.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
@@ -47,7 +50,7 @@ public class SocialAdapter extends ArrayAdapter<SocialItem>
 				getContext().startActivity(intent);
 			}
 		});
-		
+
 		background.setBackgroundResource(item.getBackground());
 
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");

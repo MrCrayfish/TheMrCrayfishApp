@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-	
+    android:layout_height="match_parent" >
+
     <ImageView
         android:id="@+id/socialBackground"
         android:layout_width="fill_parent"
@@ -11,9 +11,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
-        android:scaleType="centerInside"
-        android:contentDescription="@string/empty" />
-    
+        android:contentDescription="@string/empty"
+        android:scaleType="centerInside" />
+
     <ImageView
         android:id="@+id/socialIcon"
         android:layout_width="wrap_content"
@@ -37,5 +37,17 @@
         android:text="@string/empty"
         android:textColor="#000000"
         android:textSize="20sp" />
+     
+     <ImageView
+         android:id="@+id/socialOverlay"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:layout_alignBottom="@id/socialBackground"
+         android:layout_alignStart="@id/socialBackground"
+         android:layout_alignEnd="@id/socialBackground"
+         android:layout_alignTop="@id/socialBackground"
+         android:alpha="0.5"
+         android:contentDescription="@string/empty"
+         android:src="@drawable/buttom_pressed_only" />
 
 </RelativeLayout>

@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <PreferenceCategory android:title="General" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="mobile_data"
+            android:summary="Allow outgoing connections on mobile network. You will not be notified of new uploads or posts if off."
+            android:title="Mobile Network" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="Latest Videos" >
         <ListPreference
             android:defaultValue="10"
             android:entries="@array/videoLoadAmount"
             android:entryValues="@array/videoLoadAmountValues"
             android:key="video_load_amount"
-            android:summary="How many videos should load"
-            android:title="Video Amount" />        <CheckBoxPreference
+            android:summary="Set how many videos populate the list"
+            android:title="Video Amount" />
+
+        <CheckBoxPreference
             android:defaultValue="true"
             android:key="check_for_uploads"
             android:summary="Should application check for new uploads"
@@ -16,26 +25,30 @@
         <CheckBoxPreference
             android:defaultValue="true"
             android:dependency="check_for_uploads"
-            android:key="check_on_mobile_data"
-            android:summary="Should application check when on mobile data"
-            android:title="Check On Mobile Data" />
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:dependency="check_for_uploads"
             android:key="upload_notification"
-            android:summary="Enable or disable notifications for new uploads"
-            android:title="Display Notifications" />
+            android:summary="Display a notifcation for new uploads"
+            android:title="Display Notification" />
 
         <ListPreference
             android:defaultValue="600"
-            android:dependency="check_for_uploads"
             android:entries="@array/checkInterval"
             android:entryValues="@array/checkIntervalValues"
             android:key="check_interval"
             android:summary="Time between checking for new uploads"
             android:title="Check Interval" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="Playlists" >
+    <PreferenceCategory android:title="Blog" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="check_for_posts"
+            android:summary="Should application check for new posts"
+            android:title="Check for New Posts" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:dependency="check_for_posts"
+            android:key="post_notification"
+            android:summary="Display a notifcation for new posts"
+            android:title="Display Notification" />
     </PreferenceCategory>
 
 </PreferenceScreen>
