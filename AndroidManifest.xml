@@ -68,8 +68,12 @@
             android:label="@string/title_activity_blog" >
         </activity>
         <activity
-            android:name="com.mrcrayfish.app.activities.SocialActivity"
+            android:name=".activities.SocialActivity"
             android:label="@string/title_activity_social" >
+        </activity>
+        <activity
+            android:name="com.mrcrayfish.app.activities.SoundboardActivity"
+            android:label="@string/title_activity_soundboard" >
         </activity>
     </application>
 

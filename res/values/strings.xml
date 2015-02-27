@@ -21,5 +21,6 @@
     <string name="view_playlist">View Playlist</string>
     <string name="title_activity_blog">BlogActivity</string>
     <string name="title_activity_social">SocialActivity</string>
+    <string name="title_activity_soundboard">SoundboardActivity</string>
 
 </resources>

@@ -98,7 +98,7 @@ public class MenuActivity extends Activity implements IMenu
 		items.add(new MenuItem("Videos", "The latest and greatest content", R.drawable.menu_item_bg_1, this, VideoMenuActivity.class));
 		items.add(new MenuItem("Mods", "Collection of Mods by MrCrayfish", R.drawable.menu_item_bg_2, this, EmptyActivity.class));
 		items.add(new MenuItem("Blog", "Get the latest news and updates", R.drawable.menu_item_bg_5, this, BlogActivity.class));
-		items.add(new MenuItem("Soundboard", "I think you know what this is!", R.drawable.menu_item_bg_3, this, EmptyActivity.class));
+		items.add(new MenuItem("Soundboard", "I think you know what this is!", R.drawable.menu_item_bg_3, this, SoundboardActivity.class));
 		items.add(new MenuItem("Social Media", "Want more content?", R.drawable.menu_item_bg_6, this, SocialActivity.class));
 		return items;
 	}

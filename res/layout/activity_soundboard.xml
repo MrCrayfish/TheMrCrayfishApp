@@ -1,0 +1,21 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/repeatable_light_brown_background"
+    tools:context="com.mrcrayfish.app.activities.SoundboardActivity" >
+
+    <com.mrcrayfish.app.objects.SoundGridView
+        android:id="@+id/soundGrid"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:columnWidth="100dp"
+        android:gravity="center"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth" >
+
+    </com.mrcrayfish.app.objects.SoundGridView>
+
+</RelativeLayout>
