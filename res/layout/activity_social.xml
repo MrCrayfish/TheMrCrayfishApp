@@ -1,9 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="2dp"
-    android:background="@drawable/dropshadow"
+    android:layout_height="fill_parent"
+    android:background="@drawable/repeatable_orange_background"
     tools:context="com.mrcrayfish.app.activities.SocialActivity" >
 
     <GridView
@@ -11,6 +10,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_margin="2dp"
+        android:background="@drawable/dropshadow"
         android:gravity="center"
         android:numColumns="3"
         android:stretchMode="columnWidth" >

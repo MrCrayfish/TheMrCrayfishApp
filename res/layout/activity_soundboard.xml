@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/repeatable_light_brown_background"
+    android:background="@drawable/repeatable_orange_background"
     tools:context="com.mrcrayfish.app.activities.SoundboardActivity" >
 
     <com.mrcrayfish.app.objects.SoundGridView
