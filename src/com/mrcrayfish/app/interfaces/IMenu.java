@@ -9,5 +9,6 @@ import com.mrcrayfish.app.objects.MenuItem;
 public interface IMenu
 {
 	public ArrayAdapter<MenuItem> getMenuAdapter();
+
 	public ArrayList<MenuItem> getItems();
 }

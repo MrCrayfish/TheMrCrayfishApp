@@ -102,7 +102,7 @@ public class SavedVideoAdapter extends ArrayAdapter<VideoItem>
 					}
 				});
 			}
-		});	
+		});
 
 		if (cache.get(video.getVideoId()) != null)
 		{

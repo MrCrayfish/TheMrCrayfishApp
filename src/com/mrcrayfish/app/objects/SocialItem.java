@@ -36,7 +36,7 @@ public class SocialItem
 	{
 		return colour;
 	}
-	
+
 	public int getBackground()
 	{
 		return bg;

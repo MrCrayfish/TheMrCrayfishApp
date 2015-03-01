@@ -48,15 +48,15 @@ public class VideosActivity extends Activity implements IVideoList, OnRefreshLis
 		overridePendingTransition(R.anim.animation_slide_left_1, R.anim.animation_slide_left_2);
 
 		this.playlist_id = getIntent().getStringExtra("playlist_id");
-		
+
 		setupActionBar();
 
 		loadingContainer = (RelativeLayout) findViewById(R.id.loadingContainer);
 		loadingText = (TextView) findViewById(R.id.loadingText);
-		
+
 		swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
 		swipeLayout.setOnRefreshListener(this);
-		
+
 		videoList = (ListView) findViewById(R.id.lastestVideosList);
 		videoList.setDivider(null);
 		videoList.setDividerHeight(ScreenUtil.toPixels(this, 5));

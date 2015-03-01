@@ -1,6 +1,5 @@
 package com.mrcrayfish.app.objects;
 
-
 public class VideoItem
 {
 	private String title;

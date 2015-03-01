@@ -13,7 +13,5 @@ public class ModAdapter extends ArrayAdapter<Mod>
 	{
 		super(context, 0, objects);
 	}
-	
-	
 
 }

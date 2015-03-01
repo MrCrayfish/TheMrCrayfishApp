@@ -45,18 +45,18 @@ public class BlogActivity extends Activity implements OnRefreshListener
 
 		loadingContainer = (RelativeLayout) findViewById(R.id.loadingContainer);
 		loadingText = (TextView) findViewById(R.id.loadingText);
-		
+
 		swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
 		swipeLayout.setOnRefreshListener(this);
-		
+
 		postList = (ListView) findViewById(R.id.blogList);
 		postList.setDivider(null);
 		postList.setDividerHeight(ScreenUtil.toPixels(this, 5));
-		
+
 		Typeface type = Typeface.createFromAsset(getAssets(), "fonts/bebas_neue.otf");
 		loadingText.setTypeface(type);
 		loadingText.setText("Loading Posts");
-		
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
@@ -126,12 +126,12 @@ public class BlogActivity extends Activity implements OnRefreshListener
 	{
 		return loadingText;
 	}
-	
+
 	public ArrayAdapter<Post> getAdapter()
 	{
 		return blogAdapter;
 	}
-	
+
 	public void updatePosts()
 	{
 		blogAdapter.clear();

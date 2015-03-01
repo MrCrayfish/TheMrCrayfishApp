@@ -36,7 +36,7 @@ public class YouTubeUtil
 			context.startActivity(intent);
 		}
 	}
-	
+
 	public static Intent openChannel(Context context, String user_id)
 	{
 		if (YouTubeIntents.isYouTubeInstalled(context))
@@ -48,7 +48,7 @@ public class YouTubeUtil
 			return new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com/user/" + user_id));
 		}
 	}
-	
+
 	public static String getThumbnailUrl(String video_id)
 	{
 		return "http://i.ytimg.com/vi/" + video_id + "/maxresdefault.jpg";

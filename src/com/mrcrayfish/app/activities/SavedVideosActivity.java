@@ -45,7 +45,7 @@ public class SavedVideosActivity extends Activity implements IVideoList
 		loadingContainer = (RelativeLayout) findViewById(R.id.loadingContainer);
 		loadingText = (TextView) findViewById(R.id.loadingText);
 		noVideos = (TextView) findViewById(R.id.noVideos);
-		
+
 		videoList = (ListView) findViewById(R.id.savedVideosList);
 		videoList.setDivider(null);
 		videoList.setDividerHeight(ScreenUtil.toPixels(this, 5));

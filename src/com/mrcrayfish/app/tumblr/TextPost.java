@@ -13,12 +13,12 @@ public class TextPost extends Post
 		this.title = title;
 		this.contents = contents;
 	}
-	
+
 	public String getTitle()
 	{
 		return title;
 	}
-	
+
 	public Spanned getContent()
 	{
 		return contents;

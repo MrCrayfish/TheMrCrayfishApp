@@ -9,6 +9,6 @@ public interface IVideoList
 	public void setVideoList(ArrayList<VideoItem> videos);
 
 	public void removeVideo(int position);
-	
+
 	public void updateVideoList();
 }

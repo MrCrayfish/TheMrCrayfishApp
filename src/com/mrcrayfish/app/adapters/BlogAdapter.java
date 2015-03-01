@@ -98,7 +98,7 @@ public class BlogAdapter extends ArrayAdapter<Post>
 
 		caption.setText(post.getCaption());
 		date.setText(post.getDate());
-		
+
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		caption.setTypeface(bebas_neue);
 
@@ -156,7 +156,7 @@ public class BlogAdapter extends ArrayAdapter<Post>
 		date.setText(post.getDate());
 		content.setText(Html.fromHtml(post.getDescription()).toString().replaceAll("\n", ""));
 		link.setText(post.getLink());
-		
+
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		title.setTypeface(bebas_neue);
 

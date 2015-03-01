@@ -10,17 +10,17 @@ public class Post
 		this.id = id;
 		this.date = date;
 	}
-	
+
 	public String getId()
 	{
 		return id;
 	}
-	
+
 	public String getDate()
 	{
 		return date;
 	}
-	
+
 	public void setDate(String date)
 	{
 		this.date = date;

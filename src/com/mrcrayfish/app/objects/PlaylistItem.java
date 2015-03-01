@@ -1,6 +1,5 @@
 package com.mrcrayfish.app.objects;
 
-
 public class PlaylistItem
 {
 	private String playlist_id;
@@ -22,7 +21,7 @@ public class PlaylistItem
 	{
 		return playlist_id;
 	}
-	
+
 	public String getThumbnailId()
 	{
 		return thumbnail_id;

@@ -44,7 +44,7 @@ public class VideoMenuActivity extends Activity implements IMenu
 
 		adapater = new MenuAdapter(this, getItems());
 		menu.setAdapter(adapater);
-		
+
 	}
 
 	@SuppressLint("InflateParams")

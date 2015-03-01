@@ -70,7 +70,7 @@ public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 				return true;
 			}
 		});
-		
+
 		hide_info.setOnClickListener(new OnClickListener()
 		{
 			@Override
@@ -104,7 +104,7 @@ public class PlaylistAdapter extends ArrayAdapter<PlaylistItem>
 		infoBg.requestLayout();
 		return row;
 	}
-	
+
 	public void openPlaylist(PlaylistItem playlist)
 	{
 		Intent intent = new Intent(PlaylistAdapter.this.getContext(), VideosActivity.class);

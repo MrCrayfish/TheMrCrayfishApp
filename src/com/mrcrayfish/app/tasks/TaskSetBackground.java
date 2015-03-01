@@ -8,7 +8,7 @@ import android.widget.ImageView;
 public class TaskSetBackground extends AsyncTask<Integer, Void, Bitmap>
 {
 	private ImageView v;
-	
+
 	public TaskSetBackground(ImageView v)
 	{
 		this.v = v;
@@ -19,7 +19,7 @@ public class TaskSetBackground extends AsyncTask<Integer, Void, Bitmap>
 	{
 		return BitmapFactory.decodeResource(v.getResources(), params[0].intValue());
 	}
-	
+
 	@Override
 	protected void onPostExecute(Bitmap result)
 	{

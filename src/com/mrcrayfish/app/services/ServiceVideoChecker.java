@@ -96,7 +96,7 @@ public class ServiceVideoChecker extends Service
 		Thread checker = new Thread(r);
 		checker.start();
 	}
-	
+
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId)
 	{

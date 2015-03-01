@@ -22,12 +22,12 @@ public class ModActivity extends Activity
 	private String modId;
 	private String modName;
 	private String modDesc;
-	
+
 	private ListView modContentlist;
 	private ModAdapter adapter;
 	private ArrayList<Mod> modContent = null;
 	private boolean loaded = false;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -36,13 +36,13 @@ public class ModActivity extends Activity
 		setContentView(R.layout.activity_mod);
 		overridePendingTransition(R.anim.animation_slide_left_1, R.anim.animation_slide_left_2);
 		initProperties();
-		
+
 		setupActionBar();
-		
+
 		modContentlist = (ListView) findViewById(R.id.modContentList);
 		modContentlist.setDivider(null);
 		modContentlist.setDividerHeight(5);
-		
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
@@ -52,7 +52,7 @@ public class ModActivity extends Activity
 		this.modName = getIntent().getStringExtra("modName");
 		this.modDesc = getIntent().getStringExtra("modDesc");
 	}
-	
+
 	public void initList()
 	{
 		if (modContent != null && !loaded)
@@ -81,7 +81,7 @@ public class ModActivity extends Activity
 		super.onBackPressed();
 		overridePendingTransition(R.anim.animation_slide_right_1, R.anim.animation_slide_right_2);
 	}
-	
+
 	@SuppressLint("InflateParams")
 	public void setupActionBar()
 	{

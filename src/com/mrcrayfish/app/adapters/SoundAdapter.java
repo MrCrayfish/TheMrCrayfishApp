@@ -63,7 +63,7 @@ public class SoundAdapter extends ArrayAdapter<SoundItem>
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		desc.setTypeface(bebas_neue);
 		desc.setText(item.getDesc());
-		
+
 		desc.requestLayout();
 		return row;
 	}

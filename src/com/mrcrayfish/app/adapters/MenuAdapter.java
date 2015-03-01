@@ -17,7 +17,7 @@ import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.objects.MenuItem;
 
 public class MenuAdapter extends ArrayAdapter<MenuItem>
-{	
+{
 	public MenuAdapter(Context context, ArrayList<MenuItem> items)
 	{
 		super(context, R.layout.menu_item, items);
@@ -44,11 +44,11 @@ public class MenuAdapter extends ArrayAdapter<MenuItem>
 		background.setImageDrawable(getContext().getResources().getDrawable(item.getBackground()));
 
 		Typeface type = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
-		
+
 		TextView text = (TextView) row.findViewById(R.id.menuText);
 		text.setTypeface(type);
 		text.setText(item.getTitle());
-		
+
 		TextView desc = (TextView) row.findViewById(R.id.menuDescription);
 		desc.setTypeface(type);
 		desc.setText(item.getDescription());
