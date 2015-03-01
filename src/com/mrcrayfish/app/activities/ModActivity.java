@@ -42,6 +42,8 @@ public class ModActivity extends Activity
 		modContentlist = (ListView) findViewById(R.id.modContentList);
 		modContentlist.setDivider(null);
 		modContentlist.setDividerHeight(5);
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	public void initProperties()

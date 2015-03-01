@@ -41,6 +41,8 @@ public class ModListActivity extends Activity implements IMenu
 		
 		adapater = new MenuAdapter(this, getItems());
 		menu.setAdapter(adapater);
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override
