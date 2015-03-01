@@ -1,7 +1,6 @@
 package com.mrcrayfish.app.activities;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -36,11 +35,13 @@ public class ModListActivity extends Activity implements IMenu
 		
 		setupActionBar();
 		
-		adapater = new MenuAdapter(this, getItems());
+		
 		menu = (ListView) findViewById(R.id.menuList);
-		menu.setAdapter(adapater);
 		menu.setDivider(null);
 		menu.setDividerHeight(0);	
+		
+		adapater = new MenuAdapter(this, getItems());
+		menu.setAdapter(adapater);
 	}
 
 	@Override
@@ -89,29 +90,29 @@ public class ModListActivity extends Activity implements IMenu
 	@Override
 	public ArrayList<MenuItem> getItems()
 	{
-		List<MenuItem> mods = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> mods = new ArrayList<MenuItem>();
 		Intent furnitureIntent = new Intent(this, ModActivity.class);
-		setModInfo(furnitureIntent.getExtras(), R.string.modid_furniture_mod, R.string.name_furniture_mod, R.string.desc_furniture_mod);
-		mods.add(new MenuItem("Furniture Mod", getResources().getString(R.string.desc_furniture_mod_simple), R.drawable.menu_item_bg_1, furnitureIntent));
+		setModInfo(furnitureIntent, R.string.modid_furniture_mod, R.string.name_furniture_mod, R.string.desc_furniture_mod);
+		mods.add(new MenuItem("Furniture Mod", getResources().getString(R.string.desc_furniture_mod_simple), R.drawable.menu_item_bg_2, furnitureIntent));
 		
 		Intent skateboardIntent = new Intent(this, ModActivity.class);
-		setModInfo(skateboardIntent.getExtras(), R.string.modid_skateboard_mod, R.string.name_skateboard_mod, R.string.desc_skateboard_mod);
-		mods.add(new MenuItem("Skateboarding Mod", "Adds skateboards, tricks, rail and ramps!", R.drawable.menu_item_bg_1, skateboardIntent));
+		setModInfo(skateboardIntent, R.string.modid_skateboard_mod, R.string.name_skateboard_mod, R.string.desc_skateboard_mod);
+		mods.add(new MenuItem("Skateboarding Mod", "Adds skateboards, tricks, rail and ramps!", R.drawable.menu_item_bg_2, skateboardIntent));
 		
 		Intent constructionIntent = new Intent(this, ModActivity.class);
-		setModInfo(constructionIntent.getExtras(), R.string.modid_construct_mod, R.string.name_construct_mod, R.string.desc_construct_mod);
-		mods.add(new MenuItem("Construction Mod", "Create awesome buildings without skill!", R.drawable.menu_item_bg_1, constructionIntent));
+		setModInfo(constructionIntent, R.string.modid_construct_mod, R.string.name_construct_mod, R.string.desc_construct_mod);
+		mods.add(new MenuItem("Construction Mod", "Create awesome buildings without skill!", R.drawable.menu_item_bg_2, constructionIntent));
 		
 		Intent tokensIntent = new Intent(this, ModActivity.class);
-		setModInfo(tokensIntent.getExtras(), R.string.modid_tokens_mod, R.string.name_tokens_mod, R.string.desc_tokens_mod);
-		mods.add(new MenuItem("CrayTokens", "A simple currency!", 0, tokensIntent));
-		return null;
+		setModInfo(tokensIntent, R.string.modid_tokens_mod, R.string.name_tokens_mod, R.string.desc_tokens_mod);
+		mods.add(new MenuItem("CrayTokens", "A simple currency!", R.drawable.menu_item_bg_2, tokensIntent));
+		return mods;
 	}
 	
-	public void setModInfo(Bundle modInfo, int modId, int modName, int modDesc)
+	public void setModInfo(Intent modInfo, int modId, int modName, int modDesc)
 	{
-		modInfo.putString("modId", getResources().getString(modId));
-		modInfo.putString("modName", getResources().getString(modName));
-		modInfo.putString("modDesc", getResources().getString(modDesc));
+		modInfo.putExtra("modId", getResources().getString(modId));
+		modInfo.putExtra("modName", getResources().getString(modName));
+		modInfo.putExtra("modDesc", getResources().getString(modDesc));
 	}
 }

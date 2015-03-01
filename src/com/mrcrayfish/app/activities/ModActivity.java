@@ -1,14 +1,11 @@
 package com.mrcrayfish.app.activities;
 
-import com.mrcrayfish.app.R;
-import com.mrcrayfish.app.R.id;
-import com.mrcrayfish.app.R.layout;
-import com.mrcrayfish.app.R.menu;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.mrcrayfish.app.R;
 
 public class ModActivity extends Activity
 {
