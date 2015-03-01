@@ -24,5 +24,25 @@
     <string name="title_activity_soundboard">SoundboardActivity</string>
     <string name="title_activity_mods">ModsActivity</string>
     <string name="title_activity_mod">ModActivity</string>
+    
+    <string name="modid_furniture_mod">cfm</string>
+    <string name="name_furniture_mod">Furniture Mod</string>
+    <string name="desc_furniture_mod">This mod adds in over 40 unique pieces of furniture into the game. Turn your house into a real home!</string>
+    <string name="desc_furniture_mod_simple">Adds over 40 unique pieces of furniture!</string>
+    
+    <string name="modid_skateboard_mod">csm</string>
+    <string name="name_skateboard_mod">Skateboarding Mod</string>
+    <string name="desc_skateboard_mod">This mods adds in skateboards, rails, ramps, and much more! Customise the skateboard to your liking. Perfrom tricks, grind, and grabs. You can even combine them into a combo!</string>
+    <string name="desc_skateboard_mod_simple">Adds skateboards, tricks, rail and ramps!</string>
+    
+    <string name="modid_construct_mod">ccm</string>
+    <string name="name_construct_mod">Construction Mod</string>
+    <string name="desc_construct_mod">Ever wanted to build and awesome house but never had the skills? This mod solves this problem, all you have to do is provide the materials!</string>
+    <string name="desc_construct_mod_simple">Create awesome buildings without skill!</string>
+    
+    <string name="modid_tokens_mod">ct</string>
+    <string name="name_tokens_mod">CrayTokens</string>
+    <string name="desc_tokens_mod">A simple currency to add to your modded server. Earn tokens by killing mobs. Fully customizable drop rates!</string>
+    <string name="desc_tokens_mod_simple">A simple currency!</string>
 
 </resources>

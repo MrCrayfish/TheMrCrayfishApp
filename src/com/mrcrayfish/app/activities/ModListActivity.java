@@ -91,13 +91,27 @@ public class ModListActivity extends Activity implements IMenu
 	{
 		List<MenuItem> mods = new ArrayList<MenuItem>();
 		Intent furnitureIntent = new Intent(this, ModActivity.class);
-		mods.add(new MenuItem("Furniture Mod", "Adds over 40 unique pieces of furniture!", 0, furnitureIntent));
+		setModInfo(furnitureIntent.getExtras(), R.string.modid_furniture_mod, R.string.name_furniture_mod, R.string.desc_furniture_mod);
+		mods.add(new MenuItem("Furniture Mod", getResources().getString(R.string.desc_furniture_mod_simple), R.drawable.menu_item_bg_1, furnitureIntent));
+		
 		Intent skateboardIntent = new Intent(this, ModActivity.class);
-		mods.add(new MenuItem("Skateboarding Mod", "Adds skateboards, tricks, rail and ramps!", 0, skateboardIntent));
+		setModInfo(furnitureIntent.getExtras(), R.string.modid_skateboard_mod, R.string.name_skateboard_mod, R.string.desc_skateboard_mod);
+		mods.add(new MenuItem("Skateboarding Mod", "Adds skateboards, tricks, rail and ramps!", R.drawable.menu_item_bg_1, skateboardIntent));
+		
 		Intent constructionIntent = new Intent(this, ModActivity.class);
-		mods.add(new MenuItem("Construction Mod", "Create awesome buildings without skill!", 0, constructionIntent));
+		setModInfo(furnitureIntent.getExtras(), R.string.modid_construct_mod, R.string.name_construct_mod, R.string.desc_construct_mod);
+		mods.add(new MenuItem("Construction Mod", "Create awesome buildings without skill!", R.drawable.menu_item_bg_1, constructionIntent));
+		
 		Intent tokensIntent = new Intent(this, ModActivity.class);
+		setModInfo(furnitureIntent.getExtras(), R.string.modid_tokens_mod, R.string.name_tokens_mod, R.string.desc_tokens_mod);
 		mods.add(new MenuItem("CrayTokens", "A simple currency!", 0, tokensIntent));
 		return null;
+	}
+	
+	public void setModInfo(Bundle modInfo, int modId, int modName, int modDesc)
+	{
+		modInfo.putString("modId", getResources().getString(modId));
+		modInfo.putString("modName", getResources().getString(modName));
+		modInfo.putString("modDesc", getResources().getString(modDesc));
 	}
 }
