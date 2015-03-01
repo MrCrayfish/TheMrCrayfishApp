@@ -139,7 +139,7 @@ public final class R {
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f0d0017;
-        public static final int action_settings=0x7f0d003b;
+        public static final int action_settings=0x7f0d003c;
         public static final int appIcon=0x7f0d000f;
         public static final int barTitle=0x7f0d0010;
         public static final int blogCaption=0x7f0d001b;
@@ -155,6 +155,7 @@ public final class R {
         public static final int buttonHideInfo=0x7f0d001c;
         public static final int crayfishIcon=0x7f0d0008;
         public static final int deleteVideoCross=0x7f0d002e;
+        public static final int dummyView=0x7f0d0039;
         public static final int infoBackground=0x7f0d001a;
         public static final int lastestVideosList=0x7f0d0006;
         public static final int loadingContainer=0x7f0d0000;
@@ -169,17 +170,17 @@ public final class R {
         public static final int menuText=0x7f0d0021;
         public static final int modContentList=0x7f0d0009;
         public static final int noVideos=0x7f0d000c;
-        public static final int optionPlaylistOpen=0x7f0d003c;
-        public static final int optionPlaylistView=0x7f0d003d;
-        public static final int optionVideoOpen=0x7f0d003e;
-        public static final int optionVideoRemove=0x7f0d003f;
-        public static final int optionVideoSave=0x7f0d0040;
+        public static final int optionPlaylistOpen=0x7f0d003d;
+        public static final int optionPlaylistView=0x7f0d003e;
+        public static final int optionVideoOpen=0x7f0d003f;
+        public static final int optionVideoRemove=0x7f0d0040;
+        public static final int optionVideoSave=0x7f0d0041;
         public static final int playlistInfoContainer=0x7f0d0026;
         public static final int playlistList=0x7f0d000a;
         public static final int playlistSize=0x7f0d0028;
         public static final int playlistThumbnail=0x7f0d0025;
         public static final int playlistTitle=0x7f0d0027;
-        public static final int saveVideo=0x7f0d003a;
+        public static final int saveVideo=0x7f0d003b;
         public static final int savedVideosList=0x7f0d000b;
         public static final int screenshotImage=0x7f0d0031;
         public static final int screenshotLayout=0x7f0d0030;
@@ -193,7 +194,7 @@ public final class R {
         public static final int socialOverlay=0x7f0d0036;
         public static final int soundButton=0x7f0d0038;
         public static final int soundContainer=0x7f0d0037;
-        public static final int soundDescription=0x7f0d0039;
+        public static final int soundDescription=0x7f0d003a;
         public static final int soundGrid=0x7f0d000e;
         public static final int swipeLayout=0x7f0d0003;
         public static final int videoContainer=0x7f0d0005;
