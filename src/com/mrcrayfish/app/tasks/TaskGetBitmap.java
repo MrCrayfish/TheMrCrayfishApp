@@ -35,19 +35,27 @@ public class TaskGetBitmap extends AsyncTask<String, Void, Bitmap>
 	{
 		if (type == Type.YOUTUBE)
 		{
-			return getBitmap(args[0], "http://i.ytimg.com/vi/" + args[0] + "/maxresdefault.jpg");
+			return getBitmap(args[0], "http://i.ytimg.com/vi/" + args[0] + "/maxresdefault.jpg", false);
 		}
 		if (type == Type.TUMBLR)
 		{
-			return getBitmap(args[0], args[1]);
+			return getBitmap(args[0], args[1], false);
+		}
+		if (type == Type.MOD_SCREENSHOT)
+		{
+			return getBitmap(args[0], args[1], true);
 		}
 		return null;
 	}
 
-	public Bitmap getBitmap(String id, String url)
+	public Bitmap getBitmap(String id, String url, boolean ignoreCache)
 	{
 		HttpURLConnection connection = null;
-		Bitmap bitmap = BitmapCache.getCachedBitmap(id, type.name().toLowerCase(Locale.US));
+		Bitmap bitmap = null;
+		if (!ignoreCache)
+		{
+			bitmap = BitmapCache.getCachedBitmap(id, type.name().toLowerCase(Locale.US));
+		}
 		if (bitmap == null)
 		{
 			try
@@ -56,7 +64,10 @@ public class TaskGetBitmap extends AsyncTask<String, Void, Bitmap>
 				connection.connect();
 				InputStream input = connection.getInputStream();
 				bitmap = BitmapFactory.decodeStream(input);
-				BitmapCache.saveBitmapToCache(id, bitmap, type.name().toLowerCase(Locale.US));
+				if (!ignoreCache)
+				{
+					BitmapCache.saveBitmapToCache(id, bitmap, type.name().toLowerCase(Locale.US));
+				}
 			}
 			catch (Exception e)
 			{
@@ -79,6 +90,6 @@ public class TaskGetBitmap extends AsyncTask<String, Void, Bitmap>
 
 	public static enum Type
 	{
-		YOUTUBE, TUMBLR;
+		YOUTUBE, TUMBLR, MOD_SCREENSHOT;
 	}
 }

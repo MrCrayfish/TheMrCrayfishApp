@@ -12,7 +12,10 @@ import android.view.MenuItem;
 
 public class ModActivity extends Activity
 {
-
+	private String modName;
+	private String modDesc;
+	private String modVersion;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
