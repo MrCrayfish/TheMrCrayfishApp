@@ -22,5 +22,7 @@
     <string name="title_activity_blog">BlogActivity</string>
     <string name="title_activity_social">SocialActivity</string>
     <string name="title_activity_soundboard">SoundboardActivity</string>
+    <string name="title_activity_mods">ModsActivity</string>
+    <string name="title_activity_mod">ModActivity</string>
 
 </resources>

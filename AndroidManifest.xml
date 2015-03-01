@@ -72,8 +72,16 @@
             android:label="@string/title_activity_social" >
         </activity>
         <activity
-            android:name="com.mrcrayfish.app.activities.SoundboardActivity"
+            android:name=".activities.SoundboardActivity"
             android:label="@string/title_activity_soundboard" >
+        </activity>
+        <activity
+            android:name=".activities.ModsActivity"
+            android:label="@string/title_activity_mods" >
+        </activity>
+        <activity
+            android:name="com.mrcrayfish.app.activities.ModActivity"
+            android:label="@string/title_activity_mod" >
         </activity>
     </application>
 

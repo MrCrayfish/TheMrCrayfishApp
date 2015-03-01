@@ -203,33 +203,36 @@ public final class R {
         public static final int activity_empty=0x7f030001;
         public static final int activity_latest_videos=0x7f030002;
         public static final int activity_menu=0x7f030003;
-        public static final int activity_playlist=0x7f030004;
-        public static final int activity_saved_videos=0x7f030005;
-        public static final int activity_social=0x7f030006;
-        public static final int activity_soundboard=0x7f030007;
-        public static final int app_bar=0x7f030008;
-        public static final int blog_link_layout=0x7f030009;
-        public static final int blog_photo_layout=0x7f03000a;
-        public static final int blog_text_layout=0x7f03000b;
-        public static final int menu_item=0x7f03000c;
-        public static final int mod_item=0x7f03000d;
-        public static final int playlist_item=0x7f03000e;
-        public static final int saved_video_item=0x7f03000f;
-        public static final int social_item=0x7f030010;
-        public static final int soundboard_item=0x7f030011;
-        public static final int video_item=0x7f030012;
+        public static final int activity_mod=0x7f030004;
+        public static final int activity_playlist=0x7f030005;
+        public static final int activity_saved_videos=0x7f030006;
+        public static final int activity_social=0x7f030007;
+        public static final int activity_soundboard=0x7f030008;
+        public static final int app_bar=0x7f030009;
+        public static final int blog_link_layout=0x7f03000a;
+        public static final int blog_photo_layout=0x7f03000b;
+        public static final int blog_text_layout=0x7f03000c;
+        public static final int menu_item=0x7f03000d;
+        public static final int mod_item=0x7f03000e;
+        public static final int playlist_item=0x7f03000f;
+        public static final int saved_video_item=0x7f030010;
+        public static final int social_item=0x7f030011;
+        public static final int soundboard_item=0x7f030012;
+        public static final int video_item=0x7f030013;
     }
     public static final class menu {
         public static final int blog=0x7f0c0000;
         public static final int grid=0x7f0c0001;
         public static final int latest_videos=0x7f0c0002;
-        public static final int playlist=0x7f0c0003;
-        public static final int playlist_options=0x7f0c0004;
-        public static final int saved_video_options=0x7f0c0005;
-        public static final int saved_videos=0x7f0c0006;
-        public static final int social=0x7f0c0007;
-        public static final int soundboard=0x7f0c0008;
-        public static final int video_options=0x7f0c0009;
+        public static final int mod=0x7f0c0003;
+        public static final int mods=0x7f0c0004;
+        public static final int playlist=0x7f0c0005;
+        public static final int playlist_options=0x7f0c0006;
+        public static final int saved_video_options=0x7f0c0007;
+        public static final int saved_videos=0x7f0c0008;
+        public static final int social=0x7f0c0009;
+        public static final int soundboard=0x7f0c000a;
+        public static final int video_options=0x7f0c000b;
     }
     public static final class raw {
         public static final int blocks_of_choice=0x7f060000;
@@ -256,6 +259,8 @@ public final class R {
         public static final int title_activity_blog=0x7f090012;
         public static final int title_activity_empty=0x7f090005;
         public static final int title_activity_latest_videos=0x7f090006;
+        public static final int title_activity_mod=0x7f090016;
+        public static final int title_activity_mods=0x7f090015;
         public static final int title_activity_playlist=0x7f090008;
         public static final int title_activity_saved_videos=0x7f090009;
         public static final int title_activity_settings=0x7f090007;
