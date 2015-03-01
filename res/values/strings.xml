@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+	
     <string name="app_name">The MrCrayfish App</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="bar_title_name">MrCrayfish</string>
-    <string name="empty">null</string>
+    
     <string name="title_activity_empty">EmptyActivity</string>
     <string name="title_activity_latest_videos">LatestVideosActivity</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_playlist">PlaylistActivity</string>
     <string name="title_activity_saved_videos">SavedVideosActivity</string>
     <string name="title_activity_videos_menu">VideoMenuActivity</string>
+    <string name="title_activity_blog">BlogActivity</string>
+    <string name="title_activity_social">SocialActivity</string>
+    <string name="title_activity_soundboard">SoundboardActivity</string>
+    <string name="title_activity_mods">ModsActivity</string>
+    <string name="title_activity_mod">ModActivity</string>
+    
     <string name="no_videos">No Videos</string>
     <string name="loading_saved_videos">Loading Saved Videos</string>
     <string name="open_video">Play Video</string>
@@ -19,30 +24,24 @@
     <string name="delete_video">Remove</string>
     <string name="open_playlist">Open Playlist</string>
     <string name="view_playlist">View Playlist</string>
-    <string name="title_activity_blog">BlogActivity</string>
-    <string name="title_activity_social">SocialActivity</string>
-    <string name="title_activity_soundboard">SoundboardActivity</string>
-    <string name="title_activity_mods">ModsActivity</string>
-    <string name="title_activity_mod">ModActivity</string>
+    <string name="screenshots">Screenshots</string>
     
-    <string name="modid_furniture_mod">cfm</string>
     <string name="name_furniture_mod">Furniture Mod</string>
     <string name="desc_furniture_mod">This mod adds in over 40 unique pieces of furniture into the game. Turn your house into a real home!</string>
     <string name="desc_furniture_mod_simple">Adds over 40 unique pieces of furniture!</string>
     
-    <string name="modid_skateboard_mod">csm</string>
     <string name="name_skateboard_mod">Skateboarding Mod</string>
     <string name="desc_skateboard_mod">This mods adds in skateboards, rails, ramps, and much more! Customise the skateboard to your liking. Perfrom tricks, grind, and grabs. You can even combine them into a combo!</string>
     <string name="desc_skateboard_mod_simple">Adds skateboards, tricks, rail and ramps!</string>
     
-    <string name="modid_construct_mod">ccm</string>
     <string name="name_construct_mod">Construction Mod</string>
     <string name="desc_construct_mod">Ever wanted to build and awesome house but never had the skills? This mod solves this problem, all you have to do is provide the materials!</string>
     <string name="desc_construct_mod_simple">Create awesome buildings without skill!</string>
     
-    <string name="modid_tokens_mod">ct</string>
     <string name="name_tokens_mod">CrayTokens</string>
     <string name="desc_tokens_mod">A simple currency to add to your modded server. Earn tokens by killing mobs. Fully customizable drop rates!</string>
     <string name="desc_tokens_mod_simple">A simple currency!</string>
+    
+    <string name="empty">null</string>
 
 </resources>
