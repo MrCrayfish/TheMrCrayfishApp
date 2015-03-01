@@ -55,6 +55,7 @@
         </activity>
         <activity
             android:name=".activities.SavedVideosActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_saved_videos" >
         </activity>
 
@@ -65,6 +66,7 @@
 
         <activity
             android:name=".activities.BlogActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_blog" >
         </activity>
         <activity
@@ -76,11 +78,11 @@
             android:label="@string/title_activity_soundboard" >
         </activity>
         <activity
-            android:name=".activities.ModsActivity"
+            android:name=".activities.ModListActivity"
             android:label="@string/title_activity_mods" >
         </activity>
         <activity
-            android:name="com.mrcrayfish.app.activities.ModActivity"
+            android:name=".activities.ModActivity"
             android:label="@string/title_activity_mod" >
         </activity>
     </application>

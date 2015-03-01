@@ -95,15 +95,15 @@ public class ModListActivity extends Activity implements IMenu
 		mods.add(new MenuItem("Furniture Mod", getResources().getString(R.string.desc_furniture_mod_simple), R.drawable.menu_item_bg_1, furnitureIntent));
 		
 		Intent skateboardIntent = new Intent(this, ModActivity.class);
-		setModInfo(furnitureIntent.getExtras(), R.string.modid_skateboard_mod, R.string.name_skateboard_mod, R.string.desc_skateboard_mod);
+		setModInfo(skateboardIntent.getExtras(), R.string.modid_skateboard_mod, R.string.name_skateboard_mod, R.string.desc_skateboard_mod);
 		mods.add(new MenuItem("Skateboarding Mod", "Adds skateboards, tricks, rail and ramps!", R.drawable.menu_item_bg_1, skateboardIntent));
 		
 		Intent constructionIntent = new Intent(this, ModActivity.class);
-		setModInfo(furnitureIntent.getExtras(), R.string.modid_construct_mod, R.string.name_construct_mod, R.string.desc_construct_mod);
+		setModInfo(constructionIntent.getExtras(), R.string.modid_construct_mod, R.string.name_construct_mod, R.string.desc_construct_mod);
 		mods.add(new MenuItem("Construction Mod", "Create awesome buildings without skill!", R.drawable.menu_item_bg_1, constructionIntent));
 		
 		Intent tokensIntent = new Intent(this, ModActivity.class);
-		setModInfo(furnitureIntent.getExtras(), R.string.modid_tokens_mod, R.string.name_tokens_mod, R.string.desc_tokens_mod);
+		setModInfo(tokensIntent.getExtras(), R.string.modid_tokens_mod, R.string.name_tokens_mod, R.string.desc_tokens_mod);
 		mods.add(new MenuItem("CrayTokens", "A simple currency!", 0, tokensIntent));
 		return null;
 	}
