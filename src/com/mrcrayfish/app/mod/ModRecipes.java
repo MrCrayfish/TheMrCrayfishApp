@@ -1,11 +1,11 @@
 package com.mrcrayfish.app.mod;
 
-public class ModDownload extends ModPart
+public class ModRecipes extends ModPart
 {
 	private String url;
 	private String version;
 
-	public ModDownload(String url, String version)
+	public ModRecipes(String url, String version)
 	{
 		this.url = url;
 		this.version = version;

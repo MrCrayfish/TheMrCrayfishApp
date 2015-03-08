@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.adapters.ModAdapter;
-import com.mrcrayfish.app.mod.Mod;
+import com.mrcrayfish.app.mod.ModPart;
 
 public class ModActivity extends Activity
 {
@@ -25,7 +25,7 @@ public class ModActivity extends Activity
 
 	private ListView modContentlist;
 	private ModAdapter adapter;
-	private ArrayList<Mod> modContent = null;
+	private ArrayList<ModPart> modContent = null;
 	private boolean loaded = false;
 
 	@Override

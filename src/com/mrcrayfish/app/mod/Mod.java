@@ -1,6 +1,9 @@
 package com.mrcrayfish.app.mod;
 
-public class Mod
+import java.util.List;
+
+public enum Mod
 {
+	FURNITURE, SKATEBOARDING, CONSTRUCTION, CRAYTOKENS;
 
 }

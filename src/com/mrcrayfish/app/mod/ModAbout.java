@@ -1,6 +1,6 @@
 package com.mrcrayfish.app.mod;
 
-public class ModAbout extends Mod
+public class ModAbout extends ModPart
 {
 	private int titleImage;
 	private String desc;

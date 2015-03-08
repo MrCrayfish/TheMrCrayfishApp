@@ -1,6 +1,6 @@
 package com.mrcrayfish.app.mod;
 
-public class ModScreenshots extends Mod
+public class ModScreenshots extends ModPart
 {
 	private String[] urls;
 
