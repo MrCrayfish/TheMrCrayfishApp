@@ -3,6 +3,7 @@
     android:id="@+id/menuLayout"
     android:layout_width="match_parent"
     android:layout_height="100dp"
+    android:background="#F26A60"
     android:orientation="vertical" >
 
     <ImageView
@@ -11,7 +12,8 @@
         android:layout_height="100dp"
         android:contentDescription="@string/empty"
         android:scaleType="centerCrop"
-        android:src="@drawable/menu_item_bg_1" />
+        android:src="@drawable/menu_item_bg_1"
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/menuBackgroundOverlay"
@@ -20,7 +22,8 @@
         android:alpha="0.5"
         android:contentDescription="@string/empty"
         android:scaleType="center"
-        android:src="@drawable/menu_background" />
+        android:src="@drawable/menu_background"
+        android:visibility="invisible" />
 
     <RelativeLayout
         android:layout_width="wrap_content"

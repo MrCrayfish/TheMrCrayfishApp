@@ -43,9 +43,6 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 		View row = layout.inflate(R.layout.video_item, parent, false);
 
 		final VideoItem video = getItem(position);
-		final RelativeLayout container = (RelativeLayout) row.findViewById(R.id.videoInfoContainer);
-		final ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
-		final ImageView hide_info = (ImageView) row.findViewById(R.id.buttonHideInfo);
 		final ImageView save = (ImageView) row.findViewById(R.id.saveVideo);
 		ImageView thumbnail = (ImageView) row.findViewById(R.id.videoThumbnail);
 		TextView title = (TextView) row.findViewById(R.id.videoTitle);
@@ -57,30 +54,12 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 		title.setTypeface(bebas_neue);
 		title.setText(video.getTitle());
 
-		infoBg.setOnClickListener(new OnClickListener()
+		thumbnail.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
 			{
 				YouTubeUtil.openVideo(getContext(), video.getVideoId());
-			}
-		});
-
-		hide_info.setOnClickListener(new OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				if (container.getY() == ScreenUtil.toPixels(getContext(), 6))
-				{
-					container.animate().setDuration(500).y(container.getHeight());
-					hide_info.animate().rotation(180);
-				}
-				else
-				{
-					container.animate().setDuration(500).y(ScreenUtil.toPixels(getContext(), 6));
-					hide_info.animate().rotation(0);
-				}
 			}
 		});
 
@@ -118,7 +97,6 @@ public class VideoAdapter extends ArrayAdapter<VideoItem>
 		views.setText(video.getViews() + " Views");
 		bar.setRating(video.getRating());
 		date.setText(video.getDate());
-		infoBg.requestLayout();
 		return row;
 	}
 }

@@ -89,9 +89,6 @@ public class BlogAdapter extends ArrayAdapter<Post>
 
 	public void handlePhotoPost(View row, PhotoPost post)
 	{
-		final RelativeLayout container = (RelativeLayout) row.findViewById(R.id.blogInfoContainer);
-		final ImageView hide_info = (ImageView) row.findViewById(R.id.buttonHideInfo);
-		final ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
 		ImageView picture = (ImageView) row.findViewById(R.id.blogPhoto);
 		TextView caption = (TextView) row.findViewById(R.id.blogCaption);
 		TextView date = (TextView) row.findViewById(R.id.blogDate);
@@ -101,35 +98,6 @@ public class BlogAdapter extends ArrayAdapter<Post>
 
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		caption.setTypeface(bebas_neue);
-
-		infoBg.setOnClickListener(new OnClickListener()
-		{
-
-			@Override
-			public void onClick(View v)
-			{
-				Toast.makeText(getContext(), "Hey", Toast.LENGTH_SHORT).show();
-			}
-
-		});
-
-		hide_info.setOnClickListener(new OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				if (container.getY() == ScreenUtil.toPixels(getContext(), 6))
-				{
-					container.animate().setDuration(500).y(infoBg.getHeight() + ScreenUtil.toPixels(getContext(), 6));
-					hide_info.animate().rotation(180);
-				}
-				else
-				{
-					container.animate().setDuration(500).y(ScreenUtil.toPixels(getContext(), 6));
-					hide_info.animate().rotation(0);
-				}
-			}
-		});
 
 		System.out.println(cache.get(post.getId()));
 		if (cache.get(post.getId()) != null)
@@ -141,7 +109,6 @@ public class BlogAdapter extends ArrayAdapter<Post>
 			picture.setAlpha(0.0F);
 			new TaskGetBitmap(getContext(), picture, cache, Type.TUMBLR).execute(post.getId(), post.getImageUrl());
 		}
-		infoBg.requestLayout();
 	}
 
 	public void handleLinkPost(View row, final LinkPost post)
@@ -173,9 +140,6 @@ public class BlogAdapter extends ArrayAdapter<Post>
 
 	public void handleVideoPost(View row, final VideoPost post)
 	{
-		final RelativeLayout container = (RelativeLayout) row.findViewById(R.id.videoInfoContainer);
-		final ImageView infoBg = (ImageView) row.findViewById(R.id.infoBackground);
-		final ImageView hide_info = (ImageView) row.findViewById(R.id.buttonHideInfo);
 		final ImageView save = (ImageView) row.findViewById(R.id.saveVideo);
 		ImageView thumbnail = (ImageView) row.findViewById(R.id.videoThumbnail);
 		TextView title = (TextView) row.findViewById(R.id.videoTitle);
@@ -187,30 +151,12 @@ public class BlogAdapter extends ArrayAdapter<Post>
 		title.setTypeface(bebas_neue);
 		title.setText(post.getTitle());
 
-		infoBg.setOnClickListener(new OnClickListener()
+		thumbnail.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
 			{
 				YouTubeUtil.openVideo(getContext(), post.getVideoId());
-			}
-		});
-
-		hide_info.setOnClickListener(new OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				if (container.getY() == ScreenUtil.toPixels(getContext(), 6))
-				{
-					container.animate().setDuration(500).y(container.getHeight());
-					hide_info.animate().rotation(180);
-				}
-				else
-				{
-					container.animate().setDuration(500).y(ScreenUtil.toPixels(getContext(), 6));
-					hide_info.animate().rotation(0);
-				}
 			}
 		});
 
@@ -248,7 +194,6 @@ public class BlogAdapter extends ArrayAdapter<Post>
 		views.setText(post.getViews() + " Views");
 		bar.setRating(post.getRating());
 		date.setText(post.getDate());
-		infoBg.requestLayout();
 	}
 
 	public int getItemViewType(Post post, int position)

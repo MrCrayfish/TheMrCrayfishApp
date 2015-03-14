@@ -9,69 +9,56 @@
         android:id="@+id/videoThumbnail"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
         android:contentDescription="@string/empty"
-        android:padding="0dp"
+        android:padding="5dp"
         android:src="@drawable/unknown" />
 
     <RelativeLayout
-        android:id="@+id/videoInfoContainer"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignBottom="@+id/videoThumbnail"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" >
-
-        <ImageView
-            android:id="@+id/infoBackground"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignTop="@+id/videoTitle"
-            android:alpha="0.5"
-            android:contentDescription="@string/empty"
-            android:src="@drawable/video_info_background" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#80F26A60"
+        android:padding="5dp" >
 
         <TextView
-            android:id="@+id/videoViews"
+            android:id="@+id/videoDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
-            android:gravity="start"
-            android:shadowColor="#000000"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="3"
             android:text="@string/empty"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textColor="#FFFFFF" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/headerContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/videoThumbnail"
+        android:background="#F26A60"
+        android:padding="5dp" >
 
         <TextView
             android:id="@+id/videoTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/videoViews"
             android:layout_alignParentStart="true"
-            android:layout_alignStart="@+id/videoViews"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@+id/saveVideo"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
             android:layout_toStartOf="@+id/saveVideo"
-            android:gravity="start|bottom"
-            android:paddingTop="10dp"
-            android:shadowColor="#000000"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="3"
             android:text="@string/empty"
             android:textColor="#FFFFFF"
-            android:textSize="25sp" />
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/videoViews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/videoTitle"
+            android:layout_marginStart="5dp"
+            android:text="@string/empty"
+            android:textColor="#E5E5E5" />
 
         <RatingBar
             android:id="@+id/videoRating"
@@ -79,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="16dp"
             android:layout_alignBottom="@+id/videoViews"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="2dp"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/videoViews"
             android:isIndicator="true"
@@ -87,37 +74,14 @@
             android:padding="0dp"
             android:stepSize="0.1" />
 
-        <TextView
-            android:id="@+id/videoDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/videoViews"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:gravity="end"
-            android:text="@string/empty" />
-
         <ImageView
             android:id="@+id/saveVideo"
             android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="false"
-            android:layout_alignTop="@+id/infoBackground"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
             android:contentDescription="@string/empty"
             android:src="@drawable/circle_save" />
     </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/buttonHideInfo"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="5dp"
-        android:layout_marginTop="5dp"
-        android:contentDescription="@string/empty"
-        android:src="@drawable/circle_down" />
 
 </RelativeLayout>

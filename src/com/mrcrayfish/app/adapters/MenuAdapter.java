@@ -31,7 +31,7 @@ public class MenuAdapter extends ArrayAdapter<MenuItem>
 		final MenuItem item = getItem(position);
 
 		ImageView overlay = (ImageView) row.findViewById(R.id.menuBackgroundOverlay);
-		overlay.setOnClickListener(new OnClickListener()
+		row.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
