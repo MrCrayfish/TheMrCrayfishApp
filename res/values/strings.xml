@@ -43,6 +43,6 @@
     <string name="desc_tokens_mod">A simple currency to add to your modded server. Earn tokens by killing mobs. Fully customizable drop rates!</string>
     <string name="desc_tokens_mod_simple">A simple currency!</string>
     
-    <string name="empty">null</string>
+    <string name="empty">TextView</string>
 
 </resources>

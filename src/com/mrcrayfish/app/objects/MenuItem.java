@@ -7,22 +7,22 @@ public class MenuItem
 {
 	private String title;
 	private String description;
-	private int background;
+	private int icon;
 	private Intent intent;
 
-	public MenuItem(String title, String description, int background, Intent intent)
+	public MenuItem(String title, String description, int icon, Intent intent)
 	{
 		this.title = title;
 		this.description = description;
-		this.background = background;
+		this.icon = icon;
 		this.intent = intent;
 	}
 
-	public MenuItem(String title, String description, int background, Context context, final Class<?> clazz)
+	public MenuItem(String title, String description, int icon, Context context, final Class<?> clazz)
 	{
 		this.title = title;
 		this.description = description;
-		this.background = background;
+		this.icon = icon;
 		this.intent = new Intent(context, clazz);
 	}
 
@@ -36,9 +36,9 @@ public class MenuItem
 		return description;
 	}
 
-	public int getBackground()
+	public int getIcon()
 	{
-		return background;
+		return icon;
 	}
 
 	public Intent getIntent()

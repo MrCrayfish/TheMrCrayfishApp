@@ -20,17 +20,16 @@ public class MenuAdapter extends ArrayAdapter<MenuItem>
 {
 	public MenuAdapter(Context context, ArrayList<MenuItem> items)
 	{
-		super(context, R.layout.menu_item, items);
+		super(context, R.layout.main_menu_item, items);
 	}
 
 	@SuppressLint("ViewHolder")
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
 		LayoutInflater layout = LayoutInflater.from(getContext());
-		final View row = layout.inflate(R.layout.menu_item, parent, false);
+		final View row = layout.inflate(R.layout.main_menu_item, parent, false);
 		final MenuItem item = getItem(position);
 
-		ImageView overlay = (ImageView) row.findViewById(R.id.menuBackgroundOverlay);
 		row.setOnClickListener(new OnClickListener()
 		{
 			@Override
@@ -39,9 +38,6 @@ public class MenuAdapter extends ArrayAdapter<MenuItem>
 				getContext().startActivity(item.getIntent());
 			}
 		});
-
-		ImageView background = (ImageView) row.findViewById(R.id.menuBackground);
-		background.setImageDrawable(getContext().getResources().getDrawable(item.getBackground()));
 
 		Typeface type = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 
@@ -52,6 +48,9 @@ public class MenuAdapter extends ArrayAdapter<MenuItem>
 		TextView desc = (TextView) row.findViewById(R.id.menuDescription);
 		desc.setTypeface(type);
 		desc.setText(item.getDescription());
+		
+		ImageView icon = (ImageView) row.findViewById(R.id.menuIcon);
+		icon.setImageResource(item.getIcon());
 		return row;
 	}
 }

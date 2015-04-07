@@ -39,7 +39,6 @@ public class MenuActivity extends Activity implements IMenu
 
 		menu = (ListView) findViewById(R.id.menuList);
 		menu.setDivider(null);
-		menu.setDividerHeight(0);
 
 		adapater = new MenuAdapter(this, getItems());
 		menu.setAdapter(adapater);
@@ -95,11 +94,11 @@ public class MenuActivity extends Activity implements IMenu
 	public ArrayList<MenuItem> getItems()
 	{
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
-		items.add(new MenuItem("Videos", "The latest and greatest content", R.drawable.menu_item_bg_1, this, VideoMenuActivity.class));
-		items.add(new MenuItem("Mods", "Collection of Mods by MrCrayfish", R.drawable.menu_item_bg_2, this, ModListActivity.class));
-		items.add(new MenuItem("Blog", "Get the latest news and updates", R.drawable.menu_item_bg_5, this, BlogActivity.class));
-		items.add(new MenuItem("Soundboard", "I think you know what this is!", R.drawable.menu_item_bg_3, this, SoundboardActivity.class));
-		items.add(new MenuItem("Social Media", "Want more content?", R.drawable.menu_item_bg_6, this, SocialActivity.class));
+		items.add(new MenuItem("Videos", "The latest and greatest content", R.drawable.camera, this, VideoMenuActivity.class));
+		items.add(new MenuItem("Mods", "Collection of Mods by MrCrayfish", R.drawable.chair, this, ModListActivity.class));
+		items.add(new MenuItem("Blog", "Get the latest news and updates", R.drawable.paper, this, BlogActivity.class));
+		items.add(new MenuItem("Soundboard", "I think you know what this is!", R.drawable.ic_sound, this, SoundboardActivity.class));
+		items.add(new MenuItem("Social Media", "Want more content?", R.drawable.socialmedia, this, SocialActivity.class));
 		return items;
 	}
 

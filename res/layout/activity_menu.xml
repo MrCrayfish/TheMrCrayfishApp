@@ -8,7 +8,7 @@
         android:id="@+id/menuList"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/dropshadow" >
+        android:dividerHeight="10dp" >
         
     </ListView>
 
