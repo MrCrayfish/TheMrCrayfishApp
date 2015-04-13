@@ -85,6 +85,11 @@
             android:name=".activities.ModActivity"
             android:label="@string/title_activity_mod" >
         </activity>
+        <activity
+            android:name=".activities.ScreenshotActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_screenshot" >
+        </activity>
     </application>
 
 </manifest>

@@ -16,9 +16,9 @@ import android.widget.TextView;
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.objects.MenuItem;
 
-public class MenuAdapter extends ArrayAdapter<MenuItem>
+public class ModMenuAdapter extends ArrayAdapter<MenuItem>
 {
-	public MenuAdapter(Context context, ArrayList<MenuItem> items)
+	public ModMenuAdapter(Context context, ArrayList<MenuItem> items)
 	{
 		super(context, R.layout.main_menu_item, items);
 	}
@@ -48,7 +48,7 @@ public class MenuAdapter extends ArrayAdapter<MenuItem>
 		TextView desc = (TextView) row.findViewById(R.id.menuDescription);
 		desc.setTypeface(type);
 		desc.setText(item.getDescription());
-
+		
 		ImageView icon = (ImageView) row.findViewById(R.id.menuIcon);
 		icon.setImageResource(item.getIcon());
 		return row;

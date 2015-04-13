@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
@@ -24,7 +23,6 @@ import com.mrcrayfish.app.objects.VideoItem;
 import com.mrcrayfish.app.tasks.TaskGetBitmap;
 import com.mrcrayfish.app.tasks.TaskGetBitmap.Type;
 import com.mrcrayfish.app.util.SavedVideos;
-import com.mrcrayfish.app.util.ScreenUtil;
 import com.mrcrayfish.app.util.YouTubeUtil;
 
 public class VideoAdapter extends ArrayAdapter<VideoItem>

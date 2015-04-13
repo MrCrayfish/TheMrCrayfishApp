@@ -35,6 +35,7 @@
         android:layout_centerVertical="true"
         android:adjustViewBounds="true"
         android:padding="5dp"
-        android:src="@drawable/minecraft_book" />
+        android:src="@drawable/minecraft_book" 
+        android:contentDescription="@string/empty" />
 
 </RelativeLayout>

@@ -1,6 +1,6 @@
 package com.mrcrayfish.app.activities;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.adapters.ModAdapter;
+import com.mrcrayfish.app.mod.Mod;
 import com.mrcrayfish.app.mod.ModPart;
 
 public class ModActivity extends Activity
@@ -25,8 +26,7 @@ public class ModActivity extends Activity
 
 	private ListView modContentlist;
 	private ModAdapter adapter;
-	private ArrayList<ModPart> modContent = null;
-	private boolean loaded = false;
+	private List<ModPart> modContent = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -38,10 +38,15 @@ public class ModActivity extends Activity
 		initProperties();
 
 		setupActionBar();
+		
+		modContent = Mod.generateFurnitureMod();
+		
+		adapter = new ModAdapter(this, modContent);
 
 		modContentlist = (ListView) findViewById(R.id.modContentList);
 		modContentlist.setDivider(null);
 		modContentlist.setDividerHeight(5);
+		modContentlist.setAdapter(adapter);
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
@@ -53,15 +58,6 @@ public class ModActivity extends Activity
 		this.modDesc = getIntent().getStringExtra("modDesc");
 	}
 
-	public void initList()
-	{
-		if (modContent != null && !loaded)
-		{
-			adapter = new ModAdapter(this, modContent);
-			modContentlist.setAdapter(adapter);
-			loaded = true;
-		}
-	}
 
 	@Override
 	public boolean onOptionsItemSelected(android.view.MenuItem item)

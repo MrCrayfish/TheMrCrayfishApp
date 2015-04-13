@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppBaseTheme" parent="android:Theme.Light"></style>
@@ -5,7 +6,7 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="android:actionBarStyle">@style/RedActionBar</item>
     </style>
-    
+
     <style name="RedActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/red_background</item>
     </style>
@@ -16,16 +17,33 @@
     </style>
 
     <color name="red">#C62828</color>
-	<color name="light_red">#F44336</color>
-	<color name="black">#000000</color>
-	<color name="light_grey">#808080</color>
-	
-	<color name="twitter">#5EA9DD</color>
-	<color name="facebook">#3B579D</color>
-	<color name="instagram">#7C5641</color>
-	<color name="github">#000000</color>
-	<color name="vine">#00B488</color>
-	<color name="reddit">#FF5D00</color>
-	<color name="planetmc">#569AD2</color>
-	<color name="mcforums">#3F6634</color>
+    <color name="light_red">#F44336</color>
+    <color name="black">#000000</color>
+    <color name="light_grey">#808080</color>
+    <color name="twitter">#5EA9DD</color>
+    <color name="facebook">#3B579D</color>
+    <color name="instagram">#7C5641</color>
+    <color name="github">#000000</color>
+    <color name="vine">#00B488</color>
+    <color name="reddit">#FF5D00</color>
+    <color name="planetmc">#569AD2</color>
+    <color name="mcforums">#3F6634</color>
+
+    <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">@style/ButtonBar</item>
+        <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
+    </style>
+
+    <style name="ButtonBar">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:background">@android:drawable/bottom_bar</item>
+    </style>
+
+    <style name="ButtonBarButton" />
+
 </resources>

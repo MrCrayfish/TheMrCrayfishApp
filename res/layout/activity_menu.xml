@@ -22,6 +22,7 @@
         android:alpha="0.1"
         android:onClick="snap"
         android:src="@drawable/ic_crayfish"
-        android:soundEffectsEnabled="false" />
+        android:soundEffectsEnabled="false" 
+        android:contentDescription="@string/empty"/>
 
 </RelativeLayout>

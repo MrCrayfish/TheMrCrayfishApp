@@ -1,6 +1,5 @@
 package com.mrcrayfish.app.tumblr;
 
-import android.text.Spanned;
 
 public class LinkPost extends Post
 {

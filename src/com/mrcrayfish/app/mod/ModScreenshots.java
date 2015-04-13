@@ -2,15 +2,15 @@ package com.mrcrayfish.app.mod;
 
 public class ModScreenshots extends ModPart
 {
-	private String[] urls;
+	private int[] screenshots;
 
-	public ModScreenshots(String[] urls)
+	public ModScreenshots(int[] screenshots)
 	{
-		this.urls = urls;
+		this.screenshots = screenshots;
 	}
 
-	public String[] getUrls()
+	public int[] getScreenshots()
 	{
-		return urls;
+		return screenshots;
 	}
 }

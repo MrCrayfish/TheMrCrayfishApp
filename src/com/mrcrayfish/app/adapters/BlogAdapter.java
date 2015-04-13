@@ -20,9 +20,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.tasks.TaskGetBitmap;
@@ -33,7 +31,6 @@ import com.mrcrayfish.app.tumblr.Post;
 import com.mrcrayfish.app.tumblr.TextPost;
 import com.mrcrayfish.app.tumblr.VideoPost;
 import com.mrcrayfish.app.util.SavedVideos;
-import com.mrcrayfish.app.util.ScreenUtil;
 import com.mrcrayfish.app.util.YouTubeUtil;
 
 public class BlogAdapter extends ArrayAdapter<Post>
@@ -52,6 +49,7 @@ public class BlogAdapter extends ArrayAdapter<Post>
 		Post post = getItem(position);
 		int type = getItemViewType(post, position);
 		View row = layout.inflate(type, parent, false);
+		
 		switch (type)
 		{
 		case R.layout.blog_text_layout:

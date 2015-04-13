@@ -13,7 +13,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
@@ -35,7 +34,6 @@ public class SoundAdapter extends ArrayAdapter<SoundItem>
 		View row = layout.inflate(R.layout.soundboard_item, parent, false);
 
 		final SoundItem item = getItem(position);
-		RelativeLayout container = (RelativeLayout) row.findViewById(R.id.soundContainer);
 		ImageView button = (ImageView) row.findViewById(R.id.soundButton);
 		TextView desc = (TextView) row.findViewById(R.id.soundDescription);
 

@@ -21,7 +21,8 @@
             android:layout_centerVertical="true"
             android:adjustViewBounds="true"
             android:padding="8dp"
-            android:src="@drawable/camera" />
+            android:src="@drawable/camera" 
+            android:contentDescription="@string/empty"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -29,7 +30,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/menuIcon" >
+            android:layout_toEndOf="@+id/menuIcon" >
 
             <TextView
                 android:id="@+id/menuText"
