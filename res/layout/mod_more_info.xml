@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:background="@drawable/dropshadow" >
+
+    <RelativeLayout
+        android:id="@+id/titleContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="#F26A60" >
+
+        <TextView
+            android:id="@+id/downloadsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:text="@string/more_info"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:id="@+id/downloadsIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/empty"
+            android:padding="4dp"
+            android:src="@drawable/circle_text" />
+    </RelativeLayout>
+
+    <com.mrcrayfish.app.objects.LinkListView
+        android:id="@+id/linkList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleContainer"
+        android:dividerHeight="5dp"
+        android:padding="5dp"
+        tools:listitem="@android:layout/simple_list_item_1" >
+
+    </com.mrcrayfish.app.objects.LinkListView>
+
+</RelativeLayout>

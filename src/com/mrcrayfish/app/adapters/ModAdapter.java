@@ -1,20 +1,27 @@
 package com.mrcrayfish.app.adapters;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mrcrayfish.app.R;
+import com.mrcrayfish.app.activities.RecipeActivity;
 import com.mrcrayfish.app.mod.ModAbout;
+import com.mrcrayfish.app.mod.ModDownload;
+import com.mrcrayfish.app.mod.ModLink;
 import com.mrcrayfish.app.mod.ModPart;
 import com.mrcrayfish.app.mod.ModRecipes;
 import com.mrcrayfish.app.mod.ModScreenshots;
@@ -47,7 +54,10 @@ public class ModAdapter extends ArrayAdapter<ModPart>
 			handleScreenshots(row, (ModScreenshots) part);
 			break;
 		case R.layout.mod_recipes:
-			handleRecipePart(row, part);
+			handleRecipePart(row, (ModRecipes) part);
+			break;
+		case R.layout.mod_more_info:
+			handleDownloads(row, (ModDownload) part);
 			break;
 		}
 		return row;
@@ -71,6 +81,10 @@ public class ModAdapter extends ArrayAdapter<ModPart>
 		{
 			return R.layout.mod_recipes;
 		}
+		else if (part instanceof ModDownload)
+		{
+			return R.layout.mod_more_info;
+		}
 		return 0;
 	}
 
@@ -79,11 +93,11 @@ public class ModAdapter extends ArrayAdapter<ModPart>
 		ImageView banner = (ImageView) row.findViewById(R.id.banner);
 		TextView title = (TextView) row.findViewById(R.id.modTitle);
 		ImageView icon = (ImageView) row.findViewById(R.id.modIcon);
-		
+
 		banner.setImageResource(part.getBanner());
 		title.setText(part.getTitle());
 		icon.setImageResource(part.getIcon());
-		
+
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		title.setTypeface(bebas_neue);
 	}
@@ -93,7 +107,7 @@ public class ModAdapter extends ArrayAdapter<ModPart>
 		TextView title = (TextView) row.findViewById(R.id.aboutTitle);
 		TextView desc = (TextView) row.findViewById(R.id.modDesc);
 		desc.setText(part.getDesc());
-		
+
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		title.setTypeface(bebas_neue);
 	}
@@ -103,14 +117,51 @@ public class ModAdapter extends ArrayAdapter<ModPart>
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		TextView title = (TextView) row.findViewById(R.id.screenshotTitle);
 		title.setTypeface(bebas_neue);
-		
+
 		GridView grid = (GridView) row.findViewById(R.id.screenshotsGrid);
 		grid.setAdapter(new ScreenshotAdapter(row.getContext(), part.getScreenshots()));
 	}
 
-	public void handleRecipePart(View row, ModPart part)
+	public void handleRecipePart(View row, final ModRecipes part)
 	{
+		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 
+		TextView title = (TextView) row.findViewById(R.id.recipeTitle);
+		title.setTypeface(bebas_neue);
+
+		TextView desc = (TextView) row.findViewById(R.id.recipeDesc);
+		desc.setTypeface(bebas_neue);
+
+		row.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				Intent intent = new Intent(getContext(), RecipeActivity.class);
+				intent.putExtra("recipes", part.getRecipes());
+				getContext().startActivity(intent);
+			}
+		});
+	}
+
+	public void handleDownloads(View row, ModDownload part)
+	{
+		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
+		TextView title = (TextView) row.findViewById(R.id.downloadsTitle);
+		title.setTypeface(bebas_neue);
+
+		ListView links = (ListView) row.findViewById(R.id.linkList);
+		links.setAdapter(new ModLinkAdapter(row.getContext(), convert(part.getLinks())));
+	}
+
+	private ArrayList<ModLink> convert(ModLink[] links)
+	{
+		ArrayList<ModLink> converted = new ArrayList<ModLink>();
+		for (ModLink link : links)
+		{
+			converted.add(link);
+		}
+		return converted;
 	}
 
 }

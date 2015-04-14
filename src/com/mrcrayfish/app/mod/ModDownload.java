@@ -2,22 +2,15 @@ package com.mrcrayfish.app.mod;
 
 public class ModDownload extends ModPart
 {
-	private String url;
-	private String version;
+	private ModLink[] links;
 
-	public ModDownload(String url, String version)
+	public ModDownload(ModLink ... links)
 	{
-		this.url = url;
-		this.version = version;
+		this.links = links;
 	}
 
-	public String getURL()
+	public ModLink[] getLinks()
 	{
-		return url;
-	}
-
-	public String getVersion()
-	{
-		return version;
+		return links;
 	}
 }

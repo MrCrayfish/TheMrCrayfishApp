@@ -2,22 +2,14 @@ package com.mrcrayfish.app.mod;
 
 public class ModRecipes extends ModPart
 {
-	private String url;
-	private String version;
+	private int[] recipes;
 
-	public ModRecipes(String url, String version)
+	public ModRecipes(int ... recipes)
 	{
-		this.url = url;
-		this.version = version;
+		this.recipes = recipes;
 	}
-
-	public String getURL()
+	public int[] getRecipes()
 	{
-		return url;
-	}
-
-	public String getVersion()
-	{
-		return version;
+		return recipes;
 	}
 }

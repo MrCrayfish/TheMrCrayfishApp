@@ -58,7 +58,6 @@ public class ModActivity extends Activity
 		this.modDesc = getIntent().getStringExtra("modDesc");
 	}
 
-
 	@Override
 	public boolean onOptionsItemSelected(android.view.MenuItem item)
 	{

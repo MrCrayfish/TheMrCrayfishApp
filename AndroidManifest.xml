@@ -90,6 +90,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_screenshot" >
         </activity>
+        <activity
+            android:name="com.mrcrayfish.app.activities.RecipeActivity"
+            android:label="@string/title_activity_recipe" >
+        </activity>
     </application>
 
 </manifest>

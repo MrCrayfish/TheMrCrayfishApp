@@ -13,6 +13,8 @@ public class Mod
 		parts.add(new ModTitle(R.drawable.furniture_banner, "Furniture Mod", R.drawable.chair));
 		parts.add(new ModAbout("This mod adds in over 40 unique pieces of Furniture into Minecraft. It includes furniture from the kitchen, living room, bedroom, garden, and much more!"));
 		parts.add(new ModScreenshots(new int[] { R.drawable.furniture_screenshot_1, R.drawable.furniture_screenshot_2, R.drawable.furniture_screenshot_3, R.drawable.furniture_screenshot_4, R.drawable.furniture_screenshot_5, R.drawable.furniture_screenshot_6 }));
+		parts.add(new ModRecipes(R.drawable.furniture_recipe_1));
+		parts.add(new ModDownload(new ModLink("Website", "Test"), new ModLink("Minecraft Forum", "Test"), new ModLink("Planet Minecraft", "Test")));
 		return parts;
 	}
 }
