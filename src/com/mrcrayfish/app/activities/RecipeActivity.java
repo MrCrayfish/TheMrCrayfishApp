@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.adapters.RecipeAdapter;
@@ -20,6 +21,8 @@ public class RecipeActivity extends Activity
 		
 		ListView list = (ListView) findViewById(R.id.recipeList);
 		list.setAdapter(new RecipeAdapter(list.getContext(), getIntent().getIntArrayExtra("recipes")));
+		
+		Toast.makeText(this, "Not finished!", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

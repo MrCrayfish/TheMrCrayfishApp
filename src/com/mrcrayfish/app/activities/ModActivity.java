@@ -20,9 +20,7 @@ import com.mrcrayfish.app.mod.ModPart;
 
 public class ModActivity extends Activity
 {
-	private String modId;
 	private String modName;
-	private String modDesc;
 
 	private ListView modContentlist;
 	private ModAdapter adapter;
@@ -35,29 +33,24 @@ public class ModActivity extends Activity
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		setContentView(R.layout.activity_mod);
 		overridePendingTransition(R.anim.animation_slide_left_1, R.anim.animation_slide_left_2);
-		initProperties();
+		this.modName = getIntent().getStringExtra("modname");
 
 		setupActionBar();
-		
-		modContent = Mod.generateFurnitureMod();
-		
-		adapter = new ModAdapter(this, modContent);
 
 		modContentlist = (ListView) findViewById(R.id.modContentList);
 		modContentlist.setDivider(null);
 		modContentlist.setDividerHeight(5);
-		modContentlist.setAdapter(adapter);
+
+		modContent = Mod.getFromModId(getIntent().getStringExtra("modid"));
+		if (modContent != null)
+		{
+			adapter = new ModAdapter(this, modContent);
+			modContentlist.setAdapter(adapter);
+		}
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
-
-	public void initProperties()
-	{
-		this.modId = getIntent().getStringExtra("modId");
-		this.modName = getIntent().getStringExtra("modName");
-		this.modDesc = getIntent().getStringExtra("modDesc");
-	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(android.view.MenuItem item)
 	{

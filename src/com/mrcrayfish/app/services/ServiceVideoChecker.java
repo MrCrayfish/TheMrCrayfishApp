@@ -123,7 +123,7 @@ public class ServiceVideoChecker extends Service
 			HttpParams httpparams = new BasicHttpParams();
 			httpparams.setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 			HttpClient client = new DefaultHttpClient(httpparams);
-			HttpGet request = new HttpGet("http://gdata.youtube.com/feeds/api/playlists/PLy11IosblXIEvmCD1OOsbFkqowZZvN5xi?v=2&alt=jsonc&max-results=1");
+			HttpGet request = new HttpGet("http://gdata.youtube.com/feeds/api/playlists/UUSwwxl2lWJcbGOGQ_d04v2Q?v=2&alt=jsonc&max-results=1");
 			HttpResponse response = client.execute(request);
 
 			String data = StreamUtils.convertToString(response.getEntity().getContent());

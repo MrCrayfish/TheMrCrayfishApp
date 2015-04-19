@@ -3,10 +3,14 @@ package com.mrcrayfish.app.adapters;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,9 +30,16 @@ import com.mrcrayfish.app.mod.ModPart;
 import com.mrcrayfish.app.mod.ModRecipes;
 import com.mrcrayfish.app.mod.ModScreenshots;
 import com.mrcrayfish.app.mod.ModTitle;
+import com.mrcrayfish.app.mod.ModVideo;
+import com.mrcrayfish.app.tasks.TaskGetBitmap;
+import com.mrcrayfish.app.tasks.TaskGetBitmap.Type;
+import com.mrcrayfish.app.util.SavedVideos;
+import com.mrcrayfish.app.util.YouTubeUtil;
 
 public class ModAdapter extends ArrayAdapter<ModPart>
 {
+	private LruCache<String, Bitmap> cache = new LruCache<String, Bitmap>(1);
+	
 	public ModAdapter(Context context, List<ModPart> parts)
 	{
 		super(context, 0, parts);
@@ -59,6 +70,9 @@ public class ModAdapter extends ArrayAdapter<ModPart>
 		case R.layout.mod_more_info:
 			handleDownloads(row, (ModDownload) part);
 			break;
+		case R.layout.mod_video:
+			handleVideo(row, (ModVideo) part);
+			break;
 		}
 		return row;
 	}
@@ -84,6 +98,10 @@ public class ModAdapter extends ArrayAdapter<ModPart>
 		else if (part instanceof ModDownload)
 		{
 			return R.layout.mod_more_info;
+		}
+		else if (part instanceof ModVideo)
+		{
+			return R.layout.mod_video;
 		}
 		return 0;
 	}
@@ -152,6 +170,57 @@ public class ModAdapter extends ArrayAdapter<ModPart>
 
 		ListView links = (ListView) row.findViewById(R.id.linkList);
 		links.setAdapter(new ModLinkAdapter(row.getContext(), convert(part.getLinks())));
+	}
+	
+	public void handleVideo(View row, final ModVideo part)
+	{
+		final ImageView save = (ImageView) row.findViewById(R.id.saveVideo);
+		ImageView thumbnail = (ImageView) row.findViewById(R.id.videoThumbnail);
+		TextView title = (TextView) row.findViewById(R.id.videoTitle);
+
+		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
+		title.setTypeface(bebas_neue);
+		title.setText(part.getTitle());
+
+		thumbnail.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				YouTubeUtil.openVideo(getContext(), part.getVideoId());
+			}
+		});
+
+		save.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				SavedVideos.add(getContext(), part.getVideoId());
+				save.animate().alpha(0).setListener(new AnimatorListenerAdapter()
+				{
+					public void onAnimationEnd(Animator animation)
+					{
+						save.setVisibility(View.GONE);
+					}
+				});
+			}
+		});
+
+		if (cache.get(part.getVideoId()) != null)
+		{
+			thumbnail.setImageBitmap(cache.get(part.getVideoId()));
+		}
+		else
+		{
+			thumbnail.setAlpha(0.0F);
+			new TaskGetBitmap(getContext(), thumbnail, cache, Type.YOUTUBE).execute(part.getVideoId());
+		}
+
+		if (SavedVideos.has(getContext(), part.getVideoId()))
+		{
+			save.setVisibility(View.GONE);
+		}
 	}
 
 	private ArrayList<ModLink> convert(ModLink[] links)

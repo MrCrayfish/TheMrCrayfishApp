@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 
 import com.mrcrayfish.app.activities.BlogActivity;
@@ -73,11 +74,12 @@ public class TaskFetchBlogPosts extends AsyncTask<Void, Object, ArrayList<Post>>
 				String id = post.getString("id");
 				String type = post.getString("type");
 				String date = convertDate(post.getString("date"));
+				Log.i("themrcrayfishapp", type);
 				if (type.equals("regular"))
 				{
 					String title = post.getString("regular-title");
 					String content = post.getString("regular-body");
-					posts.add(new TextPost(id, title, Html.fromHtml(content.replace("<p>", "").replace("</p>", "")), date));
+					posts.add(new TextPost(id, title, Html.fromHtml(Html.fromHtml(content.replace("<p>", "").replace("</p>", "")).toString()), date));
 				}
 				else if (type.equals("photo"))
 				{

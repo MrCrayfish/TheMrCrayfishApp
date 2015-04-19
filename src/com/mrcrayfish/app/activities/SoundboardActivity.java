@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mrcrayfish.app.R;
 import com.mrcrayfish.app.adapters.SoundAdapter;
@@ -34,6 +35,8 @@ public class SoundboardActivity extends Activity
 		setupActionBar();
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		Toast.makeText(this, "Going to be redesigned!", Toast.LENGTH_LONG).show();
 	}
 
 	@Override

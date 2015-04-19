@@ -29,8 +29,9 @@ public class MenuAdapter extends ArrayAdapter<MenuItem>
 		LayoutInflater layout = LayoutInflater.from(getContext());
 		final View row = layout.inflate(R.layout.main_menu_item, parent, false);
 		final MenuItem item = getItem(position);
-
-		row.setOnClickListener(new OnClickListener()
+		
+		ImageView overlay = (ImageView) row.findViewById(R.id.overlay);
+		overlay.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)

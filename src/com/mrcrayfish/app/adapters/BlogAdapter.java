@@ -97,7 +97,6 @@ public class BlogAdapter extends ArrayAdapter<Post>
 		Typeface bebas_neue = Typeface.createFromAsset(row.getContext().getAssets(), "fonts/bebas_neue.otf");
 		caption.setTypeface(bebas_neue);
 
-		System.out.println(cache.get(post.getId()));
 		if (cache.get(post.getId()) != null)
 		{
 			picture.setImageBitmap(cache.get(post.getId()));
