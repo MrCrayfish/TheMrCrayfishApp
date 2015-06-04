@@ -84,12 +84,6 @@ public class MenuActivity extends Activity implements IMenu
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void snap(View v)
-	{
-		MediaPlayer mp = MediaPlayer.create(this, R.raw.snap_snap);
-		mp.start();
-	}
-
 	@Override
 	public ArrayList<MenuItem> getItems()
 	{

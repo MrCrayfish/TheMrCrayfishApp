@@ -12,17 +12,4 @@
         
     </ListView>
 
-    <ImageView
-        android:id="@+id/crayfishIcon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/menuList"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:alpha="0.1"
-        android:onClick="snap"
-        android:src="@drawable/ic_crayfish"
-        android:soundEffectsEnabled="false" 
-        android:contentDescription="@string/empty"/>
-
 </RelativeLayout>
